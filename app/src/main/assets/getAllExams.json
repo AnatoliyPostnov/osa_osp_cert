@@ -1,0 +1,12 @@
+[
+  {
+    "exam_id": 1,
+    "content": "Start preparing OSA exam",
+    "picture_file_name": "osa"
+  },
+  {
+    "exam_id": 2,
+    "content": "Start preparing OSP exam",
+    "picture_file_name": "osp"
+  }
+]

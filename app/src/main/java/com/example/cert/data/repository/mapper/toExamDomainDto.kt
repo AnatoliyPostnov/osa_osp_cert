@@ -7,7 +7,8 @@ fun toExamDomainDto(examsDto: ExamsDto?): ExamsDomainDto? {
     return examsDto?.let {
         ExamsDomainDto(
             examId = it.examId,
-            content = it.content
+            content = it.content,
+            pictureFileName = it.pictureFileName
         )
     }
 }

@@ -27,7 +27,7 @@ import com.example.cert.ui.model.MainMenuDto
 
 @Composable
 fun MainWindow(
-    mainActivityViewModel: MainActivityViewModel = viewModel(),
+    mainActivityViewModel: MainActivityViewModel,
     context: Context,
     savedInstanceState: Bundle?
 ) {
@@ -61,7 +61,8 @@ fun MainWindow(
             modifier = Modifier.padding(10.dp),
             textAlign = TextAlign.Justify
         )
-        MainWindowMenu(MainMenuDto.createOsaActivity(context, savedInstanceState))
-        MainWindowMenu(MainMenuDto.createOspActivity(context, savedInstanceState))
+        uiState.examsDomainDto.forEach {
+            MainWindowMenu(MainMenuDto.createExamActivity(context, savedInstanceState, it))
+        }
     }
 }

@@ -1,11 +1,14 @@
 package com.example.cert.ui.model
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.example.cert.R
+import com.example.cert.domain.model.ExamsDomainDto
 import com.example.cert.ui.activity.OsaMainActivity
 import com.example.cert.ui.activity.OspMainActivity
+import com.example.cert.ui.viewmodel.MainActivityViewModel
 
 class MainMenuDto(
     val buttonName: String,
@@ -15,22 +18,13 @@ class MainMenuDto(
     val options: Bundle? = null
 ) {
     companion object {
-        fun createOsaActivity(context: Context, savedInstanceState: Bundle?): MainMenuDto {
+        @SuppressLint("DiscouragedApi")
+        fun createExamActivity(context: Context, savedInstanceState: Bundle?, exam: ExamsDomainDto): MainMenuDto {
             return MainMenuDto(
-                "Start preparing OSA exam",
-                R.drawable.osa,
+                exam.content,
+                context.resources.getIdentifier(exam.pictureFileName, "drawable", null),
                 context,
                 Intent(context, OsaMainActivity::class.java),
-                savedInstanceState
-            )
-        }
-
-        fun createOspActivity(context: Context, savedInstanceState: Bundle?): MainMenuDto {
-            return MainMenuDto(
-                "Start preparing OSP exam",
-                R.drawable.osp,
-                context,
-                Intent(context, OspMainActivity::class.java),
                 savedInstanceState
             )
         }
