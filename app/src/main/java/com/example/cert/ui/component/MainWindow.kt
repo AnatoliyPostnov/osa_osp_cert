@@ -43,7 +43,8 @@ fun MainWindow(
         Text(
             "OCA/OCP JAVA SE 8 PROGRAMMER",
             fontSize = 20.sp,
-            style = MaterialTheme.typography.bodyLarge,                )
+            style = MaterialTheme.typography.bodyLarge
+        )
         Text(
             "PRACTICE TESTS",
             color = Color.Red,

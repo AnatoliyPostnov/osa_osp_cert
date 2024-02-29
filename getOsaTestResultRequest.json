@@ -1,0 +1,49 @@
+{
+  "theme_id": 1,
+  "questions": [
+    {
+      "question_id": 1,
+      "type": "one_answer",
+      "answers": [
+        {
+          "answer_id": 1,
+          "user_answer": true
+        },
+        {
+          "answer_id": 2,
+          "user_answer": false
+        },
+        {
+          "answer_id": 3,
+          "user_answer": false
+        },
+        {
+          "answer_id": 4,
+          "user_answer": false
+        }
+      ]
+    },
+    {
+      "question_id": 2,
+      "type": "some_answer",
+      "answers": [
+        {
+          "answer_id": 1,
+          "user_answer": true
+        },
+        {
+          "answer_id": 2,
+          "user_answer": true
+        },
+        {
+          "answer_id": 3,
+          "user_answer": false
+        },
+        {
+          "answer_id": 4,
+          "user_answer": true
+        }
+      ]
+    }
+  ]
+}
