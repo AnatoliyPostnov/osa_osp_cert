@@ -1,0 +1,28 @@
+{
+  "themes": [
+    {
+      "id": 1,
+      "content": "Declarations and Access Control"
+    },
+    {
+      "id": 2,
+      "content": "Object Orientation"
+    },
+    {
+      "id": 3,
+      "content": "Assignments"
+    },
+    {
+      "id": 4,
+      "content": "Operations"
+    },
+    {
+      "id": 5,
+      "content": "Working with string, Arrays and ArrayLists"
+    },
+    {
+      "id": 6,
+      "content": "Flow Control and Exceptions"
+    }
+  ]
+}
