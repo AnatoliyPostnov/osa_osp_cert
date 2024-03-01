@@ -22,7 +22,7 @@ class MainMenuDto(
         fun createExamActivity(context: Context, savedInstanceState: Bundle?, exam: ExamsDomainDto): MainMenuDto {
             return MainMenuDto(
                 exam.content,
-                context.resources.getIdentifier(exam.pictureFileName, "drawable", null),
+                context.resources.getIdentifier(exam.pictureFileName, "drawable", context.packageName),
                 context,
                 Intent(context, OsaMainActivity::class.java),
                 savedInstanceState
