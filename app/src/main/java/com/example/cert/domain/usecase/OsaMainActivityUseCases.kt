@@ -15,8 +15,10 @@ class OsaMainActivityUseCases @Inject constructor(
         return osaMainActivityRepository.getAllExams(context)
     }
 
-    fun getAllThemesByExamId(examId: Long): ThemesDomainDto {
-        TODO()
+    fun getAllThemesByExamId(context: Context, examId: Int?): ThemesDomainDto {
+        if (examId == null) { return ThemesDomainDto(themes = listOf()) }
+        return osaMainActivityRepository.getAllThemesByExamId(context, examId)
+            ?: ThemesDomainDto(themes = listOf())
     }
 
     fun getQuestionsByThemeId(themeId: Long) {

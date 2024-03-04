@@ -52,7 +52,7 @@ fun MainWindowMenu(mainMenuDto: MainMenuDto) {
                         .padding(start = 5.dp, end = 10.dp)
                 ) {
                     Text(
-                        mainMenuDto.buttonName,
+                        mainMenuDto.examsDomainDto.content,
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
