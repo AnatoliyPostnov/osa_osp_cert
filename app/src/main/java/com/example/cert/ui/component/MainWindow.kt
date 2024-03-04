@@ -1,11 +1,11 @@
 package com.example.cert.ui.component
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cert.ui.viewmodel.MainActivityViewModel
 import com.example.cert.R
 import com.example.cert.ui.model.MainMenuDto
@@ -42,14 +41,15 @@ fun MainWindow(
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             "OCA/OCP JAVA SE 8 PROGRAMMER",
-            fontSize = 20.sp,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
         )
         Text(
             "PRACTICE TESTS",
             color = Color.Red,
             fontSize = 20.sp,
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
         )
         Text(
             """
