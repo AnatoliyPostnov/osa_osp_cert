@@ -1,10 +1,12 @@
 package com.example.cert.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import com.example.cert.R
 import com.example.cert.ui.theme.Brown
 import com.example.cert.ui.utils.getAppComponent
@@ -47,7 +50,8 @@ class OsaMainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val uiState by viewModel.uiState.collectAsState()
-            viewModel.getThemesByExamId(this.intent.extras?.getInt("exam_id"))
+            val activityContext = this
+            viewModel.getThemesByExamId(activityContext.intent.extras?.getInt("exam_id"))
             val themesState = uiState.themes
             Column(
                 modifier = Modifier.fillMaxSize()
@@ -96,6 +100,14 @@ class OsaMainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .size(35.dp)
                                 .padding(2.dp)
+                                .clickable {
+                                    val intent = Intent(activityContext, MainActivity::class.java)
+                                    ContextCompat.startActivity(
+                                        activityContext,
+                                        intent,
+                                        null
+                                    )
+                                }
                         )
                         Text("back", style = typography.titleMedium, textAlign = TextAlign.Start, modifier = Modifier.fillMaxWidth())
                     }
