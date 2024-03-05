@@ -3,8 +3,10 @@ package com.example.cert.domain.usecase
 import android.content.Context
 import com.example.cert.domain.model.ExamTestResultDto
 import com.example.cert.domain.model.ExamsDomainDto
+import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.model.ThemesDomainDto
 import com.example.cert.domain.repository.OsaMainActivityRepository
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 class OsaMainActivityUseCases @Inject constructor(
@@ -21,11 +23,12 @@ class OsaMainActivityUseCases @Inject constructor(
             ?: ThemesDomainDto(themes = listOf())
     }
 
-    fun getQuestionsByThemeId(themeId: Long) {
-        TODO()
+    fun getQuestionsByThemeId(context: Context, themeId: Int?): QuestionsForTestingDomainDto {
+        return themeId?.let { osaMainActivityRepository.getQuestionsByThemeId(context, themeId) }
+            ?: throw RuntimeException("themeId can`t be null")
     }
 
-    fun getOsaTestResult(examId: Long): ExamTestResultDto {
+    fun getOsaTestResult(examId: Int): ExamTestResultDto {
         TODO()
     }
 }

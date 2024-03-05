@@ -1,6 +1,8 @@
 package com.example.cert.domain.model
 
-data class ExamTestResultRequestDto(
+
+data class QuestionsForTestingDomainDto(
     val themeId: Int,
+    val themeContent: String,
     val questions: List<QuestionDomainDto>
 )

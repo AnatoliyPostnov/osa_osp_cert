@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -29,13 +30,19 @@ class TestActivity : ComponentActivity() {
         setContent {
             val uiState by viewModel.uiState.collectAsState()
             val activityContext = this
+            val themeId = activityContext.intent.extras?.getInt("theme_id")
 
-
+            viewModel.getQuestionsByThemeId(activityContext, themeId)
+            val questions = uiState.questions
 
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {
-
+                Column {
+                    questions?.questions?.forEach {
+                        Text(it.questionId.toString())
+                    }
+                }
             }
         }
     }

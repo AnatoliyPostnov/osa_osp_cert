@@ -25,4 +25,10 @@ class TestActivityViewModel (
             return TestActivityViewModel(osaMainActivityUseCases, context) as T
         }
     }
+
+    fun getQuestionsByThemeId(context: Context, themeId: Int?) {
+        val questions = osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
+        _testActivityViewModelState.value.questions = questions
+    }
+
 }

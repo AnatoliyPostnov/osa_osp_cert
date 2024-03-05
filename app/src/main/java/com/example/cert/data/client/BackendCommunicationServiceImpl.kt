@@ -2,6 +2,7 @@ package com.example.cert.data.client
 
 import android.content.Context
 import com.example.cert.data.repository.dto.ExamsDto
+import com.example.cert.data.repository.dto.QuestionsForTestingDto
 import com.example.cert.data.repository.dto.ThemesDto
 import com.example.cert.data.repository.itrf.BackendCommunicationService
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -22,6 +23,13 @@ class BackendCommunicationServiceImpl @Inject constructor(
         return context.assets.open("getOsaThemes.json").use {
             val json = objectMapper.readTree(it)
             objectMapper.treeToValue<ThemesDto>(json)
+        }
+    }
+
+    override fun getQuestionsByThemeId(context: Context, themeId: Int): QuestionsForTestingDto {
+        return context.assets.open("getQuestionsByThemeId.json").use {
+            val json = objectMapper.readTree(it)
+            objectMapper.treeToValue<QuestionsForTestingDto>(json)
         }
     }
 }

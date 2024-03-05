@@ -73,7 +73,13 @@ class OsaMainActivity : ComponentActivity() {
                             item {
                                 OutlinedButton(
                                     {
-
+                                        val intent = Intent(activityContext, TestActivity::class.java)
+                                        intent.putExtra("theme_id", it.id)
+                                        ContextCompat.startActivity(
+                                            activityContext,
+                                            intent,
+                                            null
+                                        )
                                     },
                                     colors = ButtonDefaults.buttonColors(Brown),
                                     modifier = Modifier
