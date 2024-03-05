@@ -8,7 +8,7 @@ import com.example.cert.domain.model.ExamsDomainDto
 import com.example.cert.ui.activity.OsaMainActivity
 import com.example.cert.ui.activity.OspMainActivity
 
-class MainMenuDto(
+data class MainMenuDto(
     val examsDomainDto: ExamsDomainDto,
     val pictureId: Int,
     val context: Context,

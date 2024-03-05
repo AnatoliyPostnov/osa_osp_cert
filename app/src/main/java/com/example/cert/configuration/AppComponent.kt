@@ -7,7 +7,7 @@ import com.example.cert.domain.repository.OsaMainActivityRepository
 import com.example.cert.ui.activity.MainActivity
 import com.example.cert.ui.activity.OsaMainActivity
 import com.example.cert.ui.activity.OspMainActivity
-import com.example.cert.ui.activity.QuestionsActivity
+import com.example.cert.ui.activity.question.QuestionsActivity
 import com.example.cert.ui.viewmodel.Factory
 import dagger.Binds
 import dagger.Component

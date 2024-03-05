@@ -24,7 +24,7 @@
             android:label="@string/title_activity_osp_main"
             android:theme="@style/Theme.Test" />
         <activity
-            android:name=".ui.activity.QuestionsActivity"
+            android:name=".ui.activity.question.QuestionsActivity"
             android:exported="false"
             android:label="@string/title_activity_test"
             android:theme="@style/Theme.Test" />

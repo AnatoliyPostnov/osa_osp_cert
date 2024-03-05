@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class TestActivityViewModel (
+class QuestionActivityViewModel (
     private val osaMainActivityUseCases: OsaMainActivityUseCases,
     private val applicationContext: Context
 ): ViewModel() {
@@ -21,8 +21,8 @@ class TestActivityViewModel (
     ): ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            require(modelClass == TestActivityViewModel::class.java)
-            return TestActivityViewModel(osaMainActivityUseCases, context) as T
+            require(modelClass == QuestionActivityViewModel::class.java)
+            return QuestionActivityViewModel(osaMainActivityUseCases, context) as T
         }
     }
 

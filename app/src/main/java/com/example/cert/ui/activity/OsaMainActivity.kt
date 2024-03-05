@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.cert.R
+import com.example.cert.ui.activity.question.QuestionsActivity
 import com.example.cert.ui.theme.Brown
 import com.example.cert.ui.utils.getAppComponent
 import com.example.cert.ui.viewmodel.Factory

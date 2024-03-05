@@ -15,7 +15,7 @@ class Factory @Inject constructor(
         return ThemesActivityViewModel.Factory(context, osaMainActivityUseCases)
     }
 
-    fun createTestActivityViewModel(context: Context): TestActivityViewModel.Factory {
-        return TestActivityViewModel.Factory(context, osaMainActivityUseCases)
+    fun createTestActivityViewModel(context: Context): QuestionActivityViewModel.Factory {
+        return QuestionActivityViewModel.Factory(context, osaMainActivityUseCases)
     }
 }
