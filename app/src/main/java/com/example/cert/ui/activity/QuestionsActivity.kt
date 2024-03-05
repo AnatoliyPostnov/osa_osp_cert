@@ -15,7 +15,7 @@ import com.example.cert.ui.viewmodel.Factory
 import com.example.cert.ui.viewmodel.TestActivityViewModel
 import javax.inject.Inject
 
-class TestActivity : ComponentActivity() {
+class QuestionsActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: Factory
