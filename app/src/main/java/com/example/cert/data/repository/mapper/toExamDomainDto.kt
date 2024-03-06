@@ -42,8 +42,7 @@ fun toQuestionsForTestingDomainDto(questionsForTestingDto: QuestionsForTestingDt
             themeContent = it.themeContent,
             questions = it.questions.map { question ->
                 QuestionDomainDto(
-                    questionPictureUri = question.questionPictureUri,
-                    name = question.name,
+                    content = question.content,
                     questionId = question.questionId,
                     type = question.type,
                     answers = question.answers.map { answer ->

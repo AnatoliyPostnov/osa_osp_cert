@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -46,6 +46,7 @@ import com.example.cert.ui.model.TopItem
 import com.example.cert.ui.utils.getAppComponent
 import com.example.cert.ui.viewmodel.Factory
 import com.example.cert.ui.viewmodel.QuestionActivityViewModel
+import dev.jeziellago.compose.markdowntext.MarkdownText
 import javax.inject.Inject
 
 class QuestionsActivity : ComponentActivity() {
@@ -71,26 +72,39 @@ class QuestionsActivity : ComponentActivity() {
             if (questions == null) {
                 Text(text = "questions were not found")
             } else {
-                Column(modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White)) {
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.3f)) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.White)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(0.3f)
+                    ) {
                         Column {
-                            Text(questions.themeContent, style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+                            Text(
+                                questions.themeContent,
+                                style = MaterialTheme.typography.titleLarge,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
                         }
                     }
 
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(5f)) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(5f)
+                    ) {
                         MainScreen(questions)
                     }
 
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.3f)) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(0.3f)
+                    ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
                                 painter = painterResource(id = R.drawable.backbutton),
@@ -109,7 +123,12 @@ class QuestionsActivity : ComponentActivity() {
                                         )
                                     }
                             )
-                            Text("back", style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Start, modifier = Modifier.fillMaxWidth())
+                            Text(
+                                "back",
+                                style = MaterialTheme.typography.titleMedium,
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier.fillMaxWidth()
+                            )
                         }
                     }
                 }
@@ -121,7 +140,7 @@ class QuestionsActivity : ComponentActivity() {
 @Composable
 fun MainScreen(questions: QuestionsForTestingDomainDto) {
     val navController = rememberNavController()
-    val items = questions.questions.map { TopItem(route = it.questionId) }
+    val items = questions.questions.map { TopItem(route = it.questionId, question = it) }
     Scaffold(
         modifier = Modifier
             .background(Color.Yellow)
@@ -148,13 +167,12 @@ fun TopNavigation(navController: NavController, items: List<TopItem>) {
         modifier = Modifier
             .fillMaxWidth()
             .height(35.dp)
-            .padding(5.dp)
-        ,
+            .padding(5.dp),
     ) {
         item {
             items.forEach { screen ->
                 if (currentRoute == screen.route.toString()) {
-                    Box (
+                    Box(
                         modifier = Modifier
                             .size(25.dp)
                             .padding(5.dp)
@@ -183,8 +201,11 @@ fun TopNavigation(navController: NavController, items: List<TopItem>) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            }
-                    )
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(screen.route.toString())
+                    }
                 }
             }
         }
@@ -196,10 +217,61 @@ fun NavigationGraph(navController: NavHostController, items: List<TopItem>) {
     val firstItemRoute = items.first().route.toString()
 
     NavHost(navController, startDestination = firstItemRoute) {
-        items.forEach {item ->
+        items.forEach { item ->
             composable(item.route.toString()) {
-                Text(text = item.toString())
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    item {
+                        LazyRow {
+                            item {
+                                MarkdownText(markdown = item.question.content.trimIndent(), style = MaterialTheme.typography.titleMedium)
+//                            MinimalExampleContent()
+                            }
+                        }
+                    }
+                    item.question.answers.forEach { answer ->
+                        item {
+                            Text(
+                                text = "${answer.answerId}. ${answer.content}",
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.fillMaxWidth(),
+                                textAlign = TextAlign.Start
+                            )
+                        }
+                    }
+                }
             }
         }
     }
+}
+
+
+val markdownContent5 = """ 
+        Given two files:
+    
+        ```
+        1. package pkgA;
+        2. public class Foo {
+        3.   int a = 5;
+        4.   protected int b = 6;
+        5.   public int c = 7;
+        6. }
+        3. package pkgB;
+        4. import pkgA.*;
+        5. public class Baz {
+        6.   public static void main(String[] args) {
+        7.     Foo f = new Foo();
+        8.     System.out.print(" " + f.a);
+        9.     System.out.print(" " + f.b);
+       10.     System.out.println(" " + f.c);
+       11.   }
+       12. }
+       ```
+       
+       What is the result? (Choose all that apply.)
+""".trimIndent()
+
+
+@Composable
+fun MinimalExampleContent() {
+    MarkdownText(markdown = markdownContent5, style = MaterialTheme.typography.titleMedium)
 }

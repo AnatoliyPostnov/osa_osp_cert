@@ -3,482 +3,153 @@
   "theme_content": "Declarations and Access Control",
   "questions": [
     {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "name": "question about java types",
+      "content": "Which are true? (Choose all that apply.)",
       "question_id": 1,
+      "type": "some_answer",
+      "answers": [
+        {
+          "answer_id": 1,
+          "content": "\"X extends Y\" is correct if and only if X is a class and Y is an interface."
+        },
+        {
+          "answer_id": 2,
+          "content": "\"X extends Y\" is correct if and only if X is an interface and Y is a class."
+        },
+        {
+          "answer_id": 3,
+          "content": "\"X extends Y\" is correct if X and Y are either both classes or both interfaces."
+        },
+        {
+          "answer_id": 4,
+          "content": "\"X extends Y\" is correct for all combinations of X and Y being classes and/or interfaces."
+        }
+      ]
+    },
+    {
+      "content": "        Given:\n        ``` java\n        class Rocket {\n            private void blastOff() { System.out.print(\"bang \"); }\n        }\n        public class Shuttle extends Rocket {\n            public static void main(String[] args) {\n                new Shuttle().go();\n            }\n        void go() {\n            blastOff();\n            // Rocket.blastOff();  // line A\n          }\n          private void blastOff() { System.out.print(\"sh-bang \"); }\n        }\n        ```\n        Which are true? (Choose all that apply.)",
+      "question_id": 2,
+      "type": "some_answer",
+      "answers": [
+        {
+          "answer_id": 1,
+          "content": "As the code stands, the output is bang."
+        },
+        {
+          "answer_id": 2,
+          "content": "As the code stands, the output is sh-bang."
+        },
+        {
+          "answer_id": 3,
+          "content": "As the code stands, compilation fails."
+        },
+        {
+          "answer_id": 4,
+          "content": "If line A is uncommented, the output is bang bang."
+        },
+        {
+          "answer_id": 5,
+          "content": "If line A is uncommented, the output is sh-bang bang."
+        },
+        {
+          "answer_id": 6,
+          "content": "If line A is uncommented, compilation fails."
+        }
+      ]
+    },
+    {
+      "content": "    Given that the for loop's syntax is correct, and given:\n    \n    ```\n    import static java.lang.System.*; \n    class _ {\n      static public void main(String[] __A_V_) {\n        String ${'$'} = \"\";\n        for(int x=0; ++x < __A_V_.length; )\n          ${'$'} += __A_V_[x];            \n        out.println(${'$'});\n      }\n    }\n    ```\n    \n    And the command line:\n    \n    ```    \n    java _ - A .\n    ```    \n    \n    What is the result?",
+      "question_id": 3,
+      "type": "some_answer",
+      "answers": [
+        {
+          "answer_id": 1,
+          "content": "-A"
+        },
+        {
+          "answer_id": 2,
+          "content": "A."
+        },
+        {
+          "answer_id": 3,
+          "content": "-A."
+        },
+        {
+          "answer_id": 4,
+          "content": "_A."
+        },
+        {
+          "answer_id": 5,
+          "content": "_-A."
+        },
+        {
+          "answer_id": 6,
+          "content": "Compilation fails"
+        },
+        {
+          "answer_id": 7,
+          "content": "An exception is thrown at runtime"
+        }
+      ]
+    },
+    {
+      "content": "    Given:\n    ```\n    1. enum Animals {\n    2.   DOG(\"woof\"), CAT(\"meow\"), FISH(\"burble\");\n    3.   String sound;\n    4.   Animals(String s) { sound = s; }\n    5. }\n    6. class TestEnum {\n    7.   static Animals a;\n    8.   public static void main(String[] args) {\n    9.     System.out.println(a.DOG.sound + \" \" + a.FISH.sound);\n   10. }\n   11. }\n    ```\n    What is the result?",
+      "question_id": 4,
       "type": "one_answer",
       "answers": [
         {
           "answer_id": 1,
-          "content": "content1"
+          "content": "woof burble"
         },
         {
           "answer_id": 2,
-          "content": "content2"
+          "content": "Multiple compilation errors"
         },
         {
           "answer_id": 3,
-          "content": "content3"
+          "content": "Compilation fails due to an error on line 2"
         },
         {
           "answer_id": 4,
-          "content": "content4"
+          "content": "Compilation fails due to an error on line 3"
+        },
+        {
+          "answer_id": 5,
+          "content": "Compilation fails due to an error on line 4"
+        },
+        {
+          "answer_id": 6,
+          "content": "Compilation fails due to an error on line 9"
         }
       ]
     },
     {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 2,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 3,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 4,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
+      "content": "        Given two files:\n    \n        ```\n        1. package pkgA;\n        2. public class Foo {\n        3.   int a = 5;\n        4.   protected int b = 6;\n        5.   public int c = 7;\n        6. }\n        3. package pkgB;\n        4. import pkgA.*;\n        5. public class Baz {\n        6.   public static void main(String[] args) {\n        7.     Foo f = new Foo();\n        8.     System.out.print(\" \" + f.a);\n        9.     System.out.print(\" \" + f.b);\n       10.     System.out.println(\" \" + f.c);\n       11.   }\n       12. }\n       ```\n       \n       What is the result? (Choose all that apply.)",
       "question_id": 5,
-      "name": "question about others",
-      "type": "some_answer",
+      "type": "",
       "answers": [
         {
           "answer_id": 1,
-          "content": "content1"
+          "content": "5 6 7"
         },
         {
           "answer_id": 2,
-          "content": "content2"
+          "content": "5 followed by an exception"
         },
         {
           "answer_id": 3,
-          "content": "content3"
+          "content": "Compilation fails with an error on line 7"
         },
         {
           "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 6,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
+          "content": "Compilation fails with an error on line 8"
         },
         {
-          "answer_id": 2,
-          "content": "content2"
+          "answer_id": 5,
+          "content": "Compilation fails with an error on line 9"
         },
         {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 7,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 8,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 9,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 10,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 11,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 12,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 13,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 14,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 15,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 16,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 17,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 18,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 19,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
-        }
-      ]
-    },
-    {
-      "question_picture_uri": "https://genrandom.com/api/cat",
-      "question_id": 20,
-      "name": "question about others",
-      "type": "some_answer",
-      "answers": [
-        {
-          "answer_id": 1,
-          "content": "content1"
-        },
-        {
-          "answer_id": 2,
-          "content": "content2"
-        },
-        {
-          "answer_id": 3,
-          "content": "content3"
-        },
-        {
-          "answer_id": 4,
-          "content": "content4"
+          "answer_id": 6,
+          "content": "Compilation fails with an error on line 10"
         }
       ]
     }

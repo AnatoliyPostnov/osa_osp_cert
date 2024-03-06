@@ -11,9 +11,7 @@ data class QuestionsForTestingDto(
 )
 
 data class QuestionDto(
-    @JsonProperty("question_picture_uri")
-    val questionPictureUri: String,
-    val name: String,
+    val content: String,
     @JsonProperty("question_id")
     val questionId: Int,
     val type: String,
