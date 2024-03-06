@@ -17,10 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -75,7 +73,7 @@ class QuestionsActivity : ComponentActivity() {
             } else {
                 Column(modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Red)) {
+                    .background(Color.White)) {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .weight(0.3f)) {
@@ -143,36 +141,52 @@ fun MainScreen(questions: QuestionsForTestingDomainDto) {
 
 @Composable
 fun TopNavigation(navController: NavController, items: List<TopItem>) {
-    NavigationBar(
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    LazyRow(
         modifier = Modifier
             .fillMaxWidth()
             .height(35.dp)
             .padding(5.dp)
-            .horizontalScroll(rememberScrollState())
         ,
-        containerColor = Color.Yellow
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-
-        items.forEach { screen ->
-            NavigationBarItem(
-                selected = currentRoute == screen.route.toString(),
-                onClick = {
-                    navController.navigate(screen.route.toString()) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                },
-                icon = { Box(
-                    modifier = Modifier
-                    .size(30.dp)
-                    .background(Color.DarkGray)
-                ) }
-            )
+        item {
+            items.forEach { screen ->
+                if (currentRoute == screen.route.toString()) {
+                    Box (
+                        modifier = Modifier
+                            .size(25.dp)
+                            .padding(5.dp)
+                            .background(Color.DarkGray)
+                            .clickable {
+                                navController.navigate(screen.route.toString()) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .size(27.dp)
+                            .padding(3.dp)
+                            .background(Color.LightGray)
+                            .clickable {
+                                navController.navigate(screen.route.toString()) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                    )
+                }
+            }
         }
     }
 }
