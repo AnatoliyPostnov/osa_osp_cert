@@ -81,6 +81,8 @@ dependencies {
 
     implementation("com.github.jeziellago:compose-markdown:0.4.1")
     implementation("io.coil-kt:coil-compose:2.6.0")
+    runtimeOnly("androidx.compose.material:material-icons-extended:1.6.2")
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

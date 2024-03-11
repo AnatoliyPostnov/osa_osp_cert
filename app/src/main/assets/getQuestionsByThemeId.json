@@ -59,7 +59,7 @@
     {
       "content": "    Given that the for loop's syntax is correct, and given:\n    \n    ```\n    import static java.lang.System.*; \n    class _ {\n      static public void main(String[] __A_V_) {\n        String ${'$'} = \"\";\n        for(int x=0; ++x < __A_V_.length; )\n          ${'$'} += __A_V_[x];            \n        out.println(${'$'});\n      }\n    }\n    ```\n    \n    And the command line:\n    \n    ```    \n    java _ - A .\n    ```    \n    \n    What is the result?",
       "question_id": 3,
-      "type": "some_answer",
+      "type": "one_answer",
       "answers": [
         {
           "answer_id": 1,
@@ -125,7 +125,7 @@
     {
       "content": "        Given two files:\n    \n        ```\n        1. package pkgA;\n        2. public class Foo {\n        3.   int a = 5;\n        4.   protected int b = 6;\n        5.   public int c = 7;\n        6. }\n        3. package pkgB;\n        4. import pkgA.*;\n        5. public class Baz {\n        6.   public static void main(String[] args) {\n        7.     Foo f = new Foo();\n        8.     System.out.print(\" \" + f.a);\n        9.     System.out.print(\" \" + f.b);\n       10.     System.out.println(\" \" + f.c);\n       11.   }\n       12. }\n       ```\n       \n       What is the result? (Choose all that apply.)",
       "question_id": 5,
-      "type": "",
+      "type": "some_answer",
       "answers": [
         {
           "answer_id": 1,

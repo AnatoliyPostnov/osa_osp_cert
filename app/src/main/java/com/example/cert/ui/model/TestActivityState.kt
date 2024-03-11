@@ -1,8 +1,10 @@
 package com.example.cert.ui.model
 
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 
 
 data class TestActivityState(
-    var questions: QuestionsForTestingDomainDto? = null
+    val questions: QuestionsForTestingDomainDto? = null,
+    val answerIcons: MutableMap<String, ImageVector> = mutableMapOf()
 )
