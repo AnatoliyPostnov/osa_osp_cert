@@ -2,11 +2,8 @@ package com.example.cert.ui.viewmodel
 
 import android.content.Context
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
@@ -37,36 +34,36 @@ class QuestionActivityViewModel (
 
     fun findQuestionsByThemeId(context: Context, themeId: Int?) {
         val questions = osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
-        val answerIcons = mutableStateMapOf<String, ImageVector>()
-        questions.questions.forEach { question -> question.answers.forEach { answerIcons["${question.questionId} ${it.answerId}"] = Icons.Sharp.Add } }
-        updateState(questions, answerIcons)
+        val answerSelected = mutableStateMapOf<String, Boolean>()
+        questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
+        updateState(questions, answerSelected)
     }
 
     fun setChooseAnswerButton(questionId: Int, answerId: Int) {
         val currentQuestions = _testActivityViewModelState.value.questions?.questions?.find { it.questionId == questionId }
         val questionType = currentQuestions?.type
 
-        val answerIcons = _testActivityViewModelState.value.answerIcons
+        val answerIcons = _testActivityViewModelState.value.answerSelected
 
         if (questionType == "one_answer") {
             currentQuestions.answers.forEach {
                 val isChose = it.answerId == answerId
                 it.userAnswer = isChose
-                answerIcons["$questionId ${it.answerId}"] = if (isChose) { Icons.Filled.Check } else { Icons.Filled.Add }
+                answerIcons["$questionId ${it.answerId}"] = isChose
             }
         } else {
             val answer = currentQuestions?.answers?.find { it.answerId == answerId }
             val isChose = answer?.userAnswer != true
             answer?.userAnswer = isChose
-            answerIcons["$questionId ${answer?.answerId}"] = if (isChose) { Icons.Filled.Check } else { Icons.Filled.Add }
+            answerIcons["$questionId ${answer?.answerId}"] = isChose
         }
 
         updateState(_testActivityViewModelState.value.questions, answerIcons)
     }
 
-    private fun updateState(questions: QuestionsForTestingDomainDto?, answerIcons: MutableMap<String, ImageVector>) {
+    private fun updateState(questions: QuestionsForTestingDomainDto?, answerSelected: MutableMap<String, Boolean>) {
         _testActivityViewModelState.update { currentState ->
-            currentState.copy(questions = questions, answerIcons = answerIcons)
+            currentState.copy(questions = questions, answerSelected = answerSelected)
         }
     }
 

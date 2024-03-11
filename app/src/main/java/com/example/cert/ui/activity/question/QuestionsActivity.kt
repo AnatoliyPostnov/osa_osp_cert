@@ -22,10 +22,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +49,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.cert.R
 import com.example.cert.domain.model.AnswerDomainDto
+import com.example.cert.domain.model.QuestionDomainDto
 import com.example.cert.ui.activity.OsaMainActivity
 import com.example.cert.ui.model.TestActivityState
 import com.example.cert.ui.model.TopItem
@@ -230,7 +233,7 @@ fun NavigationGraph(navigation: TopNavigation) {
                     item { Question(item) }
 
                     item.question.answers.forEach { answer ->
-                        item { Answers(answer, navigation.viewModel, item.question.questionId) }
+                        item { Answers(answer, navigation.viewModel, item.question) }
                     }
                 }
             }
@@ -249,30 +252,35 @@ fun Question(item: TopItem) {
 }
 
 @Composable
-fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, questionId: Int) {
+fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, question: QuestionDomainDto) {
     val state by viewModel.uiState.collectAsState()
 
     Card(modifier = Modifier.padding(3.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(
-                {
-                    viewModel.setChooseAnswerButton(questionId, answer.answerId)
-                },
-                modifier = Modifier.size(20.dp)
-            ) {
-                Icon(
-                    imageVector = state.answerIcons["$questionId ${answer.answerId}"] ?: Icons.Sharp.Add,
-                    contentDescription = "select button",
-                    tint = Color.Blue,
-                    modifier = Modifier.size(20.dp),
+            if (question.type == "one_answer") {
+                RadioButton(
+                    selected = state.answerSelected["${question.questionId} ${answer.answerId}"] ?: false,
+                    onClick = {
+                        viewModel.setChooseAnswerButton(question.questionId, answer.answerId)
+                    },
+                    modifier = Modifier.size(20.dp).padding(start = 8.dp)
+                )
+            } else {
+                Checkbox(
+                    checked = state.answerSelected["${question.questionId} ${answer.answerId}"] ?: false,
+                    onCheckedChange = {
+                        viewModel.setChooseAnswerButton(question.questionId, answer.answerId)
+                    },
+                    modifier = Modifier.size(20.dp).padding(start = 8.dp)
                 )
             }
+
             Text(
                 text = "${answer.answerId}. ${answer.content}",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 5.dp),
+                    .padding(start = 10.dp),
                 textAlign = TextAlign.Start
             )
         }
