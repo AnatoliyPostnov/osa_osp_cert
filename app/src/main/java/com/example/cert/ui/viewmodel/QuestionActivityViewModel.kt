@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.sharp.Add
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +37,7 @@ class QuestionActivityViewModel (
 
     fun findQuestionsByThemeId(context: Context, themeId: Int?) {
         val questions = osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
-        val answerIcons = mutableMapOf<String, ImageVector>()
+        val answerIcons = mutableStateMapOf<String, ImageVector>()
         questions.questions.forEach { question -> question.answers.forEach { answerIcons["${question.questionId} ${it.answerId}"] = Icons.Sharp.Add } }
         updateState(questions, answerIcons)
     }
@@ -65,7 +66,7 @@ class QuestionActivityViewModel (
 
     private fun updateState(questions: QuestionsForTestingDomainDto?, answerIcons: MutableMap<String, ImageVector>) {
         _testActivityViewModelState.update { currentState ->
-            currentState.copy(questions = questions)
+            currentState.copy(questions = questions, answerIcons = answerIcons)
         }
     }
 
