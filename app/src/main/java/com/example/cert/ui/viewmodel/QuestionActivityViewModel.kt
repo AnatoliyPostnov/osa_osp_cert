@@ -40,7 +40,7 @@ class QuestionActivityViewModel (
             questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
         }
         val topItems = _testActivityViewModelState.value.topItems
-        if(topItems.isEmpty()) {
+        if (topItems.isEmpty()) {
             questions.questions.forEach { topItems[it.questionId] = TopItem(route = it.questionId, question = it) }
         }
         updateState(questions)
@@ -68,8 +68,9 @@ class QuestionActivityViewModel (
 
     fun commitQuestion(questionId: Int?) {
         if (questionId == null) return
-        val commitQuestion = getCurrentQuestion(questionId) ?: throw RuntimeException("commit question can`t be null")
-        val questions = _testActivityViewModelState.value.questions ?: throw RuntimeException("questions can`t be null")
+        val commitQuestion = getCurrentQuestion(questionId)
+        if (commitQuestion?.answers?.find { it.userAnswer == true } == null) return
+        val questions = _testActivityViewModelState.value.questions ?: return
 
         val result = _testActivityViewModelState.value.examTestResultRequestDto
             ?: ExamTestResultRequestDto(questions.themeId, emptyList())
