@@ -158,10 +158,18 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
             Text("prev")
         }
         Spacer(modifier = Modifier.weight(0.5f))
-        Button(
-            onClick = { viewModel.commitQuestion(currentRoute) },
-        ) {
-            Text("commit answer")
+        if (!viewModel.getCommitButtonState(currentRoute)) {
+            Button(
+                onClick = { viewModel.commitQuestion(currentRoute) },
+            ) {
+                Text("commit answer")
+            }
+        } else {
+            Button(
+                onClick = { viewModel.uncommittedQuestion(currentRoute) },
+            ) {
+                Text("uncommitted answer")
+            }
         }
         Spacer(modifier = Modifier.weight(0.5f))
         Button(

@@ -72,16 +72,37 @@ class QuestionActivityViewModel (
         if (commitQuestion?.answers?.find { it.userAnswer == true } == null) return
         val questions = _testActivityViewModelState.value.questions ?: return
 
-        val result = _testActivityViewModelState.value.examTestResultRequestDto
+        val examTestResult = _testActivityViewModelState.value.examTestResultRequestDto
             ?: ExamTestResultRequestDto(questions.themeId, emptyList())
-        val currentCommittedQuestions = result.questions.toMutableSet()
+        val currentCommittedQuestions = examTestResult.questions.toMutableSet()
         currentCommittedQuestions.add(commitQuestion)
 
         val currentTopItem = _testActivityViewModelState.value.topItems[questionId]
             ?: throw RuntimeException("questionId can`t be null")
         _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = true, color = Color.Blue)
 
-        updateState(examTestResultRequestDto = result.copy(questions = currentCommittedQuestions.toList()))
+        updateState(examTestResultRequestDto = examTestResult.copy(questions = currentCommittedQuestions.toList()))
+    }
+
+    fun uncommittedQuestion(questionId: Int?) {
+        if (questionId == null) return
+        val commitQuestion = getCurrentQuestion(questionId)
+
+        val examTestResultOld = _testActivityViewModelState.value.examTestResultRequestDto
+            ?: throw RuntimeException("examTestResultRequest can`t be null")
+
+        val examTestResult = examTestResultOld.copy(questions = examTestResultOld.questions.filter { it == commitQuestion })
+
+        val currentTopItem = _testActivityViewModelState.value.topItems[questionId]
+            ?: throw RuntimeException("questionId can`t be null")
+        _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = false, color = Color.LightGray)
+
+        updateState(examTestResultRequestDto = examTestResult)
+    }
+
+    fun getCommitButtonState(questionId: Int?): Boolean {
+        if (questionId == null) return false
+        return _testActivityViewModelState.value.topItems[questionId]?.isCommitted == true
     }
 
     private fun updateState(questions: QuestionsForTestingDomainDto?) {
