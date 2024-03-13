@@ -33,7 +33,8 @@ class QuestionActivityViewModel (
     }
 
     fun findQuestionsByThemeId(context: Context, themeId: Int?) {
-        val questions = osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
+        val questions = _testActivityViewModelState.value.questions
+            ?: osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
         val answerSelected = _testActivityViewModelState.value.answerSelected
         if (answerSelected.isEmpty()) {
             questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
@@ -46,23 +47,24 @@ class QuestionActivityViewModel (
     }
 
     fun setChooseAnswerButton(questionId: Int, answerId: Int) {
-        val currentQuestions = getCurrentQuestion(questionId)
-        val questionType = currentQuestions?.type
+        val currentQuestion = getCurrentQuestion(questionId)
+        val questionType = currentQuestion?.type
 
         val answerIcons = _testActivityViewModelState.value.answerSelected
 
         if (questionType == "one_answer") {
-            currentQuestions.answers.forEach {
+            currentQuestion.answers.forEach {
                 val isChose = it.answerId == answerId
                 it.userAnswer = isChose
                 answerIcons["$questionId ${it.answerId}"] = isChose
             }
         } else {
-            val answer = currentQuestions?.answers?.find { it.answerId == answerId }
+            val answer = currentQuestion?.answers?.find { it.answerId == answerId }
             val isChose = answer?.userAnswer != true
             answer?.userAnswer = isChose
             answerIcons["$questionId ${answer?.answerId}"] = isChose
         }
+        updateState(_testActivityViewModelState.value.questions)
     }
 
     fun commitQuestion(questionId: Int?) {
@@ -82,9 +84,7 @@ class QuestionActivityViewModel (
         updateState(examTestResultRequestDto = result.copy(questions = currentCommittedQuestions.toList()))
     }
 
-    private fun updateState(
-        questions: QuestionsForTestingDomainDto?
-    ) {
+    private fun updateState(questions: QuestionsForTestingDomainDto?) {
         _testActivityViewModelState.update { currentState ->
             currentState.copy(
                 questions = questions
