@@ -64,7 +64,6 @@ class QuestionActivityViewModel (
             answer?.userAnswer = isChose
             answerIcons["$questionId ${answer?.answerId}"] = isChose
         }
-        updateState(_testActivityViewModelState.value.questions)
     }
 
     fun commitQuestion(questionId: Int?) {
