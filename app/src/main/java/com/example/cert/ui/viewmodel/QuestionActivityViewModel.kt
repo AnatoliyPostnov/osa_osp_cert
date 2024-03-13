@@ -1,14 +1,14 @@
 package com.example.cert.ui.viewmodel
 
 import android.content.Context
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Add
-import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cert.domain.model.ExamTestResultRequestDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.usecase.OsaMainActivityUseCases
 import com.example.cert.ui.model.TestActivityState
+import com.example.cert.ui.model.TopItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,13 +34,19 @@ class QuestionActivityViewModel (
 
     fun findQuestionsByThemeId(context: Context, themeId: Int?) {
         val questions = osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
-        val answerSelected = mutableStateMapOf<String, Boolean>()
-        questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
-        updateState(questions, answerSelected)
+        val answerSelected = _testActivityViewModelState.value.answerSelected
+        if (answerSelected.isEmpty()) {
+            questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
+        }
+        val topItems = _testActivityViewModelState.value.topItems
+        if(topItems.isEmpty()) {
+            questions.questions.forEach { topItems[it.questionId] = TopItem(route = it.questionId, question = it) }
+        }
+        updateState(questions)
     }
 
     fun setChooseAnswerButton(questionId: Int, answerId: Int) {
-        val currentQuestions = _testActivityViewModelState.value.questions?.questions?.find { it.questionId == questionId }
+        val currentQuestions = getCurrentQuestion(questionId)
         val questionType = currentQuestions?.type
 
         val answerIcons = _testActivityViewModelState.value.answerSelected
@@ -57,14 +63,44 @@ class QuestionActivityViewModel (
             answer?.userAnswer = isChose
             answerIcons["$questionId ${answer?.answerId}"] = isChose
         }
-
-        updateState(_testActivityViewModelState.value.questions, answerIcons)
     }
 
-    private fun updateState(questions: QuestionsForTestingDomainDto?, answerSelected: MutableMap<String, Boolean>) {
+    fun commitQuestion(questionId: Int?) {
+        if (questionId == null) return
+        val commitQuestion = getCurrentQuestion(questionId) ?: throw RuntimeException("commit question can`t be null")
+        val questions = _testActivityViewModelState.value.questions ?: throw RuntimeException("questions can`t be null")
+
+        val result = _testActivityViewModelState.value.examTestResultRequestDto
+            ?: ExamTestResultRequestDto(questions.themeId, emptyList())
+        val currentCommittedQuestions = result.questions.toMutableSet()
+        currentCommittedQuestions.add(commitQuestion)
+
+        val currentTopItem = _testActivityViewModelState.value.topItems[questionId]
+            ?: throw RuntimeException("questionId can`t be null")
+        _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = true, color = Color.Blue)
+
+        updateState(examTestResultRequestDto = result.copy(questions = currentCommittedQuestions.toList()))
+    }
+
+    private fun updateState(
+        questions: QuestionsForTestingDomainDto?
+    ) {
         _testActivityViewModelState.update { currentState ->
-            currentState.copy(questions = questions, answerSelected = answerSelected)
+            currentState.copy(
+                questions = questions
+            )
         }
     }
+
+    private fun updateState(examTestResultRequestDto: ExamTestResultRequestDto) {
+        _testActivityViewModelState.update { currentState ->
+            currentState.copy(
+                examTestResultRequestDto = examTestResultRequestDto,
+            )
+        }
+    }
+
+    private fun getCurrentQuestion(questionId: Int) =
+        _testActivityViewModelState.value.questions?.questions?.find { it.questionId == questionId }
 
 }

@@ -90,12 +90,12 @@ class QuestionsActivity : ComponentActivity() {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .weight(5f)) {
-                        QuestionMainScreen(navController, viewModel, activityContext)
+                        QuestionMainScreen(navController, viewModel, activityContext, state)
                     }
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .weight(0.3f)) {
-                        BottomMenu(navController, viewModel)
+                        BottomMenu(navController, viewModel, state)
                     }
                 }
             }
@@ -114,14 +114,14 @@ fun Header(state: TestActivityState) {
 }
 
 @Composable
-fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: Context) {
+fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: Context, state: TestActivityState) {
     val navigation = TopNavigation(navController = navController, viewModel = viewModel, activityContext = activityContext)
     Scaffold(
         modifier = Modifier
             .background(Color.Yellow)
             .fillMaxWidth(),
         topBar = {
-            TopNavigation(navigation)
+            TopNavigation(navigation, state)
         }
     ) { paddingValues ->
         Box(
@@ -133,10 +133,9 @@ fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivity
 }
 
 @Composable
-fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewModel) {
+fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewModel, state: TestActivityState) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route?.toInt()
-    val state by viewModel.uiState.collectAsState()
     val questionsSize = state.questions?.questions?.size ?: 0
     val prevRote = if (currentRoute != null && currentRoute > 1) { currentRoute - 1 } else { 1 }
     val nextRote = if (currentRoute != null && currentRoute < questionsSize) { currentRoute + 1 } else { questionsSize }
@@ -160,7 +159,7 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
         }
         Spacer(modifier = Modifier.weight(0.5f))
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { viewModel.commitQuestion(currentRoute) },
         ) {
             Text("commit answer")
         }
@@ -182,11 +181,9 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
 }
 
 @Composable
-fun TopNavigation(navigationState: TopNavigation) {
+fun TopNavigation(navigationState: TopNavigation, state: TestActivityState) {
     val navBackStackEntry by navigationState.navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val state by navigationState.viewModel.uiState.collectAsState()
-    val items = state.questions?.questions?.map { TopItem(route = it.questionId, question = it) }
 
     LazyRow(
         modifier = Modifier
@@ -195,13 +192,13 @@ fun TopNavigation(navigationState: TopNavigation) {
             .padding(5.dp),
     ) {
         item {
-            items?.forEach { screen ->
-                if (currentRoute == screen.route.toString()) {
+            state.topItems.forEach { (route, screen) ->
+                if (currentRoute == route.toString()) {
                     Box(
                         modifier = Modifier
                             .size(25.dp)
                             .padding(5.dp)
-                            .background(Color.DarkGray)
+                            .background(screen.color)
                             .clickable {
                                 navigationState.navController.navigate(screen.route.toString()) {
                                     popUpTo(navigationState.navController.graph.findStartDestination().id) {
@@ -217,7 +214,7 @@ fun TopNavigation(navigationState: TopNavigation) {
                         modifier = Modifier
                             .size(27.dp)
                             .padding(3.dp)
-                            .background(Color.LightGray)
+                            .background(screen.color)
                             .clickable {
                                 navigationState.navController.navigate(screen.route.toString()) {
                                     popUpTo(navigationState.navController.graph.findStartDestination().id) {
@@ -240,18 +237,17 @@ fun TopNavigation(navigationState: TopNavigation) {
 @Composable
 fun NavigationGraph(navigation: TopNavigation) {
     val state by navigation.viewModel.uiState.collectAsState()
-    val items = state.questions?.questions?.map { TopItem(route = it.questionId, question = it) }
 
-    val firstItemRoute = items?.firstOrNull()?.route?.toString() ?: throw RuntimeException("route can`t be null")
+    val firstItemRoute = state.topItems[1] ?: throw RuntimeException("route can`t be null")
 
-    NavHost(navigation.navController as NavHostController, startDestination = firstItemRoute) {
-        items.forEach { item ->
-            composable(item.route.toString()) {
+    NavHost(navigation.navController as NavHostController, startDestination = firstItemRoute.route.toString()) {
+        state.topItems.forEach { (route, item) ->
+            composable(route.toString()) {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     item { Question(item) }
 
                     item.question.answers.forEach { answer ->
-                        item { Answers(answer, navigation.viewModel, item.question) }
+                        item { Answers(answer, navigation.viewModel, item.question, state) }
                     }
                 }
             }
@@ -270,9 +266,7 @@ fun Question(item: TopItem) {
 }
 
 @Composable
-fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, question: QuestionDomainDto) {
-    val state by viewModel.uiState.collectAsState()
-
+fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, question: QuestionDomainDto, state: TestActivityState) {
     Card(modifier = Modifier.padding(3.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             if (question.type == "one_answer") {
