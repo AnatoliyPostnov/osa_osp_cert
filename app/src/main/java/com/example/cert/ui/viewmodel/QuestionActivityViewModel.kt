@@ -114,10 +114,18 @@ class QuestionActivityViewModel (
         val questionsSize = _testActivityViewModelState.value.questions?.questions?.size ?: 0
         var nextRoute = currentRoute
         if (currentRoute != null) {
-            for (i in currentRoute..< questionsSize) {
+            for (i in nextRoute!!..< questionsSize) {
                 if (_testActivityViewModelState.value.topItems[i + 1]?.isCommitted != true) {
                     nextRoute = i + 1
                     break
+                }
+            }
+            if (nextRoute == currentRoute) {
+                for (i in 0..< questionsSize) {
+                    if (_testActivityViewModelState.value.topItems[i + 1]?.isCommitted != true) {
+                        nextRoute = i + 1
+                        break
+                    }
                 }
             }
         }
@@ -125,12 +133,21 @@ class QuestionActivityViewModel (
     }
 
     fun getPrevRoute(currentRoute: Int?): Int? {
+        val questionsSize = _testActivityViewModelState.value.questions?.questions?.size ?: 0
         var prevRoute = currentRoute
         if (currentRoute != null) {
             for (i in currentRoute downTo 2 ) {
                 if (_testActivityViewModelState.value.topItems[i - 1]?.isCommitted != true) {
                     prevRoute = i - 1
                     break
+                }
+            }
+            if (prevRoute == currentRoute) {
+                for (i in questionsSize - 1 downTo 0) {
+                    if (_testActivityViewModelState.value.topItems[i + 1]?.isCommitted != true) {
+                        prevRoute = i + 1
+                        break
+                    }
                 }
             }
         }
