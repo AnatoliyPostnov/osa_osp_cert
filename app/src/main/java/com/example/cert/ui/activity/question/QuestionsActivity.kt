@@ -137,24 +137,8 @@ fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivity
 fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewModel, state: TestActivityState) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route?.toInt()
-    val questionsSize = state.questions?.questions?.size ?: 0
-    var nextRote = currentRoute
-    var prevRote = currentRoute
-    if (currentRoute != null) {
-        for (i in currentRoute..< questionsSize) {
-            if (state.topItems[i + 1]?.isCommitted != true) {
-                nextRote = i + 1
-                break
-            }
-        }
-
-        for (i in currentRoute downTo 2 ) {
-            if (state.topItems[i - 1]?.isCommitted != true) {
-                prevRote = i - 1
-                break
-            }
-        }
-    }
+    val nextRote = viewModel.getNextRoute(currentRoute)
+    val prevRote = viewModel.getPrevRoute(currentRoute)
 
     Row(
         modifier = Modifier.fillMaxWidth(),

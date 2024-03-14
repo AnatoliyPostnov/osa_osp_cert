@@ -110,6 +110,33 @@ class QuestionActivityViewModel (
         return _testActivityViewModelState.value.topItems.values.find { !it.isCommitted } == null
     }
 
+    fun getNextRoute(currentRoute: Int?): Int? {
+        val questionsSize = _testActivityViewModelState.value.questions?.questions?.size ?: 0
+        var nextRoute = currentRoute
+        if (currentRoute != null) {
+            for (i in currentRoute..< questionsSize) {
+                if (_testActivityViewModelState.value.topItems[i + 1]?.isCommitted != true) {
+                    nextRoute = i + 1
+                    break
+                }
+            }
+        }
+        return nextRoute
+    }
+
+    fun getPrevRoute(currentRoute: Int?): Int? {
+        var prevRoute = currentRoute
+        if (currentRoute != null) {
+            for (i in currentRoute downTo 2 ) {
+                if (_testActivityViewModelState.value.topItems[i - 1]?.isCommitted != true) {
+                    prevRoute = i - 1
+                    break
+                }
+            }
+        }
+        return prevRoute
+    }
+
     private fun updateState(questions: QuestionsForTestingDomainDto?) {
         _testActivityViewModelState.update { currentState ->
             currentState.copy(
