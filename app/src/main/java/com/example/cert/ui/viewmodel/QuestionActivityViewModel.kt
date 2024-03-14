@@ -66,11 +66,11 @@ class QuestionActivityViewModel (
         }
     }
 
-    fun commitQuestion(questionId: Int?) {
-        if (questionId == null) return
+    fun commitQuestion(questionId: Int?): Boolean {
+        if (questionId == null) return false
         val commitQuestion = getCurrentQuestion(questionId)
-        if (commitQuestion?.answers?.find { it.userAnswer == true } == null) return
-        val questions = _testActivityViewModelState.value.questions ?: return
+        if (commitQuestion?.answers?.find { it.userAnswer == true } == null) return false
+        val questions = _testActivityViewModelState.value.questions ?: return false
 
         val examTestResult = _testActivityViewModelState.value.examTestResultRequestDto
             ?: ExamTestResultRequestDto(questions.themeId, emptyList())
@@ -82,6 +82,7 @@ class QuestionActivityViewModel (
         _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = true, color = Color.Blue)
 
         updateState(examTestResultRequestDto = examTestResult.copy(questions = currentCommittedQuestions.toList()))
+        return true
     }
 
     fun uncommittedQuestion(questionId: Int?) {
@@ -103,6 +104,10 @@ class QuestionActivityViewModel (
     fun getCommitButtonState(questionId: Int?): Boolean {
         if (questionId == null) return false
         return _testActivityViewModelState.value.topItems[questionId]?.isCommitted == true
+    }
+
+    fun getSendResultButtonState(): Boolean {
+        return _testActivityViewModelState.value.topItems.values.find { !it.isCommitted } == null
     }
 
     private fun updateState(questions: QuestionsForTestingDomainDto?) {

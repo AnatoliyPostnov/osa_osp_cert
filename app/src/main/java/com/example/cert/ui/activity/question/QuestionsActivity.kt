@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -137,8 +138,23 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route?.toInt()
     val questionsSize = state.questions?.questions?.size ?: 0
-    val prevRote = if (currentRoute != null && currentRoute > 1) { currentRoute - 1 } else { 1 }
-    val nextRote = if (currentRoute != null && currentRoute < questionsSize) { currentRoute + 1 } else { questionsSize }
+    var nextRote = currentRoute
+    var prevRote = currentRoute
+    if (currentRoute != null) {
+        for (i in currentRoute..< questionsSize) {
+            if (state.topItems[i + 1]?.isCommitted != true) {
+                nextRote = i + 1
+                break
+            }
+        }
+
+        for (i in currentRoute downTo 2 ) {
+            if (state.topItems[i - 1]?.isCommitted != true) {
+                prevRote = i - 1
+                break
+            }
+        }
+    }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -160,7 +176,17 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
         Spacer(modifier = Modifier.weight(0.5f))
         if (!viewModel.getCommitButtonState(currentRoute)) {
             Button(
-                onClick = { viewModel.commitQuestion(currentRoute) },
+                onClick = {
+                    if (viewModel.commitQuestion(currentRoute)) {
+                        navController.navigate(nextRote.toString()) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
+                },
             ) {
                 Text("commit answer")
             }
@@ -168,7 +194,7 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
             Button(
                 onClick = { viewModel.uncommittedQuestion(currentRoute) },
             ) {
-                Text("uncommitted answer")
+                Text("uncommit answer")
             }
         }
         Spacer(modifier = Modifier.weight(0.5f))
@@ -251,11 +277,24 @@ fun NavigationGraph(navigation: TopNavigation) {
     NavHost(navigation.navController as NavHostController, startDestination = firstItemRoute.route.toString()) {
         state.topItems.forEach { (route, item) ->
             composable(route.toString()) {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
-                    item { Question(item) }
+                if (navigation.viewModel.getSendResultButtonState()) {
+                        Box(modifier = Modifier
+                            .fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Button(
+                                onClick = { TODO() },
+                            ) {
+                                Text("send result")
+                            }
+                        }
+                } else {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        item { Question(item) }
 
-                    item.question.answers.forEach { answer ->
-                        item { Answers(answer, navigation.viewModel, item.question, state) }
+                        item.question.answers.forEach { answer ->
+                            item { Answers(answer, navigation.viewModel, item.question, state) }
+                        }
                     }
                 }
             }
