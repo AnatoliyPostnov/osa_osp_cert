@@ -60,7 +60,7 @@ class OsaMainActivityRepositoryImpl @Inject constructor(
         }
         val rightAnswers = questionResults.count { it.isRight }
         val wrongAnswers = questionResults.count { !it.isRight }
-        val correctAnswersPercentage = (rightAnswers/(rightAnswers + wrongAnswers)) * 100
+        val correctAnswersPercentage = (((1.0 * rightAnswers)/(rightAnswers + wrongAnswers)) * 100).toInt()
         return ExamTestResultDomainDto(
             rightAnswers = rightAnswers,
             wrongAnswers = wrongAnswers,
