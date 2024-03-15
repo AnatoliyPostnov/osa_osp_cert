@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cert.domain.model.ExamTestResultRequestDto
+import com.example.cert.domain.model.ExamTestResultDomainDto
+import com.example.cert.domain.model.ExamTestResultRequestDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.usecase.OsaMainActivityUseCases
+import com.example.cert.ui.model.ResultItem
 import com.example.cert.ui.model.TestActivityState
+import com.example.cert.ui.model.TestResultState
 import com.example.cert.ui.model.TopItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -72,8 +75,8 @@ class QuestionActivityViewModel (
         if (commitQuestion?.answers?.find { it.userAnswer == true } == null) return false
         val questions = _testActivityViewModelState.value.questions ?: return false
 
-        val examTestResult = _testActivityViewModelState.value.examTestResultRequestDto
-            ?: ExamTestResultRequestDto(questions.themeId, emptyList())
+        val examTestResult = _testActivityViewModelState.value.examTestResultRequestDomainDto
+            ?: ExamTestResultRequestDomainDto(questions.themeId, emptyList())
         val currentCommittedQuestions = examTestResult.questions.toMutableSet()
         currentCommittedQuestions.add(commitQuestion)
 
@@ -81,7 +84,7 @@ class QuestionActivityViewModel (
             ?: throw RuntimeException("questionId can`t be null")
         _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = true, color = Color.Blue)
 
-        updateState(examTestResultRequestDto = examTestResult.copy(questions = currentCommittedQuestions.toList()))
+        updateState(examTestResultRequestDomainDto = examTestResult.copy(questions = currentCommittedQuestions.toList()))
         return true
     }
 
@@ -89,7 +92,7 @@ class QuestionActivityViewModel (
         if (questionId == null) return
         val commitQuestion = getCurrentQuestion(questionId)
 
-        val examTestResultOld = _testActivityViewModelState.value.examTestResultRequestDto
+        val examTestResultOld = _testActivityViewModelState.value.examTestResultRequestDomainDto
             ?: throw RuntimeException("examTestResultRequest can`t be null")
 
         val examTestResult = examTestResultOld.copy(questions = examTestResultOld.questions.filter { it == commitQuestion })
@@ -98,7 +101,7 @@ class QuestionActivityViewModel (
             ?: throw RuntimeException("questionId can`t be null")
         _testActivityViewModelState.value.topItems[questionId] = currentTopItem.copy(isCommitted = false, color = Color.LightGray)
 
-        updateState(examTestResultRequestDto = examTestResult)
+        updateState(examTestResultRequestDomainDto = examTestResult)
     }
 
     fun getCommitButtonState(questionId: Int?): Boolean {
@@ -162,10 +165,18 @@ class QuestionActivityViewModel (
         }
     }
 
-    private fun updateState(examTestResultRequestDto: ExamTestResultRequestDto) {
+    private fun updateState(examTestResultDomainDto: ExamTestResultDomainDto?) {
         _testActivityViewModelState.update { currentState ->
             currentState.copy(
-                examTestResultRequestDto = examTestResultRequestDto,
+                examTestResultDomainDto = examTestResultDomainDto
+            )
+        }
+    }
+
+    private fun updateState(examTestResultRequestDomainDto: ExamTestResultRequestDomainDto) {
+        _testActivityViewModelState.update { currentState ->
+            currentState.copy(
+                examTestResultRequestDomainDto = examTestResultRequestDomainDto,
             )
         }
     }
@@ -173,4 +184,26 @@ class QuestionActivityViewModel (
     private fun getCurrentQuestion(questionId: Int) =
         _testActivityViewModelState.value.questions?.questions?.find { it.questionId == questionId }
 
+    fun sendAnswersForResult() {
+        val examTestResultDomainDto = osaMainActivityUseCases.getOsaTestResult(applicationContext, _testActivityViewModelState.value.examTestResultRequestDomainDto)
+        _testActivityViewModelState.value.testResult.value = TestResultState(
+            rightAnswers = examTestResultDomainDto.rightAnswers,
+            wrongAnswers = examTestResultDomainDto.wrongAnswers,
+            correctAnswersPercentage = examTestResultDomainDto.correctAnswersPercentage
+        )
+
+        val questionsResult = examTestResultDomainDto.questionsResult
+        questionsResult.forEach {
+            _testActivityViewModelState.value.resultItems[it.id] = ResultItem(
+                id = it.id,
+                isRight = it.isRight,
+                yourAnswer = it.yourAnswer,
+                rightAnswer = it.rightAnswer,
+                explanation = it.explanation,
+                content = _testActivityViewModelState.value.questions?.questions?.find { q -> q.questionId == it.id }?.content ?: ""
+            )
+        }
+
+        updateState(examTestResultDomainDto)
+    }
 }

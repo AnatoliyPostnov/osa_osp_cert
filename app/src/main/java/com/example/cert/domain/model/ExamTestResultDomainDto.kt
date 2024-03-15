@@ -1,6 +1,6 @@
 package com.example.cert.domain.model
 
-data class ExamTestResultDto(
+data class ExamTestResultDomainDto(
     val rightAnswers: Int,
     val wrongAnswers: Int,
     val correctAnswersPercentage: String,

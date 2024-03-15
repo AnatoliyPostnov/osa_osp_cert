@@ -267,7 +267,7 @@ fun NavigationGraph(navigation: TopNavigation) {
                             contentAlignment = Alignment.Center
                         ) {
                             Button(
-                                onClick = { TODO() },
+                                onClick = { navigation.viewModel.sendAnswersForResult() },
                             ) {
                                 Text("send result")
                             }

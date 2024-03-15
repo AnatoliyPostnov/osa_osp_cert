@@ -3,6 +3,7 @@ package com.example.cert.data.client
 import android.content.Context
 import com.example.cert.data.repository.dto.ExamsDto
 import com.example.cert.data.repository.dto.QuestionsForTestingDto
+import com.example.cert.data.repository.dto.ResultAnswersDto
 import com.example.cert.data.repository.dto.ThemesDto
 import com.example.cert.data.repository.itrf.BackendCommunicationService
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -30,6 +31,13 @@ class BackendCommunicationServiceImpl @Inject constructor(
         return context.assets.open("getQuestionsByThemeId.json").use {
             val json = objectMapper.readTree(it)
             objectMapper.treeToValue<QuestionsForTestingDto>(json)
+        }
+    }
+
+    override fun getAnswersByThemeId(context: Context, themeId: Int): ResultAnswersDto {
+        return context.assets.open("getAnswersByThemeId.json").use {
+            val json = objectMapper.readTree(it)
+            objectMapper.treeToValue<ResultAnswersDto>(json)
         }
     }
 }
