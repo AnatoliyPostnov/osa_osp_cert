@@ -261,7 +261,15 @@ fun NavigationGraph(navigation: TopNavigation) {
     NavHost(navigation.navController as NavHostController, startDestination = firstItemRoute.route.toString()) {
         state.topItems.forEach { (route, item) ->
             composable(route.toString()) {
-                if (navigation.viewModel.getSendResultButtonState()) {
+                if (navigation.viewModel.getShowResultState()) {
+                    LazyColumn {
+                        navigation.viewModel.uiState.value.resultItems.values.forEach {
+                            item {
+                              Text(it.content)
+                            }
+                        }
+                    }
+                } else if (navigation.viewModel.getSendResultButtonState()) {
                         Box(modifier = Modifier
                             .fillMaxSize(),
                             contentAlignment = Alignment.Center

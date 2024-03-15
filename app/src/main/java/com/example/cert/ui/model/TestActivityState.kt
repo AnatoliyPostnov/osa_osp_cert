@@ -14,6 +14,7 @@ data class TestActivityState(
     val topItems: MutableMap<Int, TopItem> = mutableStateMapOf(),
     val resultItems: MutableMap<Int, ResultItem> = mutableStateMapOf(),
     val testResult: MutableState<TestResultState> = mutableStateOf(TestResultState(0, 0, "0")),
+    val showResultState: MutableState<Boolean> = mutableStateOf(false),
 
     // domain
     val questions: QuestionsForTestingDomainDto? = null,

@@ -113,6 +113,10 @@ class QuestionActivityViewModel (
         return _testActivityViewModelState.value.topItems.values.find { !it.isCommitted } == null
     }
 
+    fun getShowResultState(): Boolean {
+        return _testActivityViewModelState.value.showResultState.value
+    }
+
     fun getNextRoute(currentRoute: Int?): Int? {
         val questionsSize = _testActivityViewModelState.value.questions?.questions?.size ?: 0
         var nextRoute = currentRoute
@@ -203,7 +207,7 @@ class QuestionActivityViewModel (
                 content = _testActivityViewModelState.value.questions?.questions?.find { q -> q.questionId == it.id }?.content ?: ""
             )
         }
-
+        _testActivityViewModelState.value.showResultState.value = true
         updateState(examTestResultDomainDto)
     }
 }
