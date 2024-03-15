@@ -1,13 +1,13 @@
 package com.example.cert.ui.activity.question
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,13 +17,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
@@ -36,9 +34,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -46,7 +44,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.cert.R
+import com.example.cert.configuration.JacksonConfig.Companion.objectMapper
 import com.example.cert.domain.model.AnswerDomainDto
 import com.example.cert.domain.model.QuestionDomainDto
 import com.example.cert.ui.model.TestActivityState
@@ -361,39 +359,19 @@ fun NavigationGraph(navigation: TopNavigation) {
                                 Box(modifier = Modifier.fillMaxWidth().weight(0.5f),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Button(onClick = { TODO() }) {
+                                    Button(onClick = {
+                                        val intent = Intent(navigation.activityContext, QuestionsResultActivity::class.java)
+                                        intent.putExtra("test_result", objectMapper.writeValueAsString(state.resultItems.values))
+                                        ContextCompat.startActivity(
+                                            navigation.activityContext,
+                                            intent,
+                                            null
+                                        )
+                                    }) {
                                         Text("show result")
                                     }
                                 }
                             }
-
-//                        LazyColumn {
-//                            state.resultItems.values.forEach {
-//                                item {
-//                                    Card(
-//                                        modifier = Modifier
-//                                            .fillMaxWidth()
-//                                            .padding(10.dp),
-//                                        shape = RoundedCornerShape(15.dp),
-//                                        elevation = CardDefaults.cardElevation(10.dp),
-//                                        colors = CardDefaults.cardColors(
-//                                            containerColor = if (it.isRight) {
-//                                                colorResource(R.color.light_green)
-//                                            } else {
-//                                                colorResource(R.color.light_red)
-//                                            }
-//                                        )
-//                                    ) {
-//                                        Column(modifier = Modifier.padding(15.dp)) {
-//                                            MarkdownText(markdown = it.content.trimIndent(), style = MaterialTheme.typography.titleMedium)
-//                                            Text(text = "Your answer: ${it.yourAnswer}")
-//                                            Text(text = "Correct answer: ${it.rightAnswer}")
-//                                            Text(text = "Explanation: ${it.explanation}")
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
                         }
                     }
                 } else if (navigation.viewModel.getSendResultButtonState()) {

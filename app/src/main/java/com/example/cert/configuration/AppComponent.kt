@@ -8,6 +8,7 @@ import com.example.cert.ui.activity.MainActivity
 import com.example.cert.ui.activity.OsaMainActivity
 import com.example.cert.ui.activity.OspMainActivity
 import com.example.cert.ui.activity.question.QuestionsActivity
+import com.example.cert.ui.activity.question.QuestionsResultActivity
 import com.example.cert.ui.viewmodel.Factory
 import dagger.Binds
 import dagger.Component
@@ -20,6 +21,7 @@ interface AppComponent {
     fun inject(activity: OsaMainActivity)
     fun inject(activity: OspMainActivity)
     fun inject(activity: QuestionsActivity)
+    fun inject(activity: QuestionsResultActivity)
 
     val factory: Factory
 }

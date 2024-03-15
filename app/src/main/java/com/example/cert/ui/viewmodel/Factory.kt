@@ -18,4 +18,8 @@ class Factory @Inject constructor(
     fun createTestActivityViewModel(context: Context): QuestionActivityViewModel.Factory {
         return QuestionActivityViewModel.Factory(context, osaMainActivityUseCases)
     }
+
+    fun createQuestionsResultViewModel(context: Context): QuestionsResultViewModel.Factory {
+        return QuestionsResultViewModel.Factory(context, osaMainActivityUseCases)
+    }
 }
