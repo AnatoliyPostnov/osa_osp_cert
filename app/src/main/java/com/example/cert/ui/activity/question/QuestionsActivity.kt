@@ -215,17 +215,16 @@ fun TopNavigation(navigationState: TopNavigation, state: TestActivityState) {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .height(35.dp)
-            .padding(5.dp),
+            .height(44.dp),
     ) {
         item {
             state.topItems.forEach { (route, screen) ->
                 if (currentRoute == route.toString()) {
                     Box(
                         modifier = Modifier
-                            .size(25.dp)
-                            .padding(5.dp)
-                            .background(screen.color)
+                            .size(40.dp)
+                            .padding(2.dp)
+                            .background(Color.DarkGray)
                             .clickable {
                                 navigationState.navController.navigate(screen.route.toString()) {
                                     popUpTo(navigationState.navController.graph.findStartDestination().id) {
@@ -234,13 +233,16 @@ fun TopNavigation(navigationState: TopNavigation, state: TestActivityState) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            }
-                    )
+                            },
+                        contentAlignment = Alignment.Center
+                    ){
+                        Text(screen.route.toString())
+                    }
                 } else {
                     Box(
                         modifier = Modifier
-                            .size(27.dp)
-                            .padding(3.dp)
+                            .size(40.dp)
+                            .padding(2.dp)
                             .background(screen.color)
                             .clickable {
                                 navigationState.navController.navigate(screen.route.toString()) {

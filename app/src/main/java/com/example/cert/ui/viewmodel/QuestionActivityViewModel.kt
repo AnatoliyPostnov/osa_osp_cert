@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.cert.R
 import com.example.cert.domain.model.ExamTestResultDomainDto
 import com.example.cert.domain.model.ExamTestResultRequestDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
