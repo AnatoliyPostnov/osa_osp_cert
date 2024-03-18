@@ -1,5 +1,7 @@
 package com.example.cert.ui.model
 
+import com.example.cert.domain.model.AnswerDomainDto
+
 
 data class ResultItem(
     val id: Int,
@@ -7,5 +9,6 @@ data class ResultItem(
     val yourAnswer: String,
     val rightAnswer: String,
     val explanation: String,
-    val content: String
+    val question: String,
+    val answers: List<AnswerDomainDto>
 )

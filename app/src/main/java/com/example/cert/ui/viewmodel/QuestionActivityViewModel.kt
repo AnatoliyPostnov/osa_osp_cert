@@ -161,6 +161,10 @@ class QuestionActivityViewModel (
         return prevRoute
     }
 
+    fun clearViewModel() {
+        _testActivityViewModelState.value = TestActivityState()
+    }
+
     private fun updateState(questions: QuestionsForTestingDomainDto?) {
         _testActivityViewModelState.update { currentState ->
             currentState.copy(
@@ -198,13 +202,15 @@ class QuestionActivityViewModel (
 
         val questionsResult = examTestResultDomainDto.questionsResult
         questionsResult.forEach {
+            val question = _testActivityViewModelState.value.questions?.questions?.find { q -> q.questionId == it.id }
             _testActivityViewModelState.value.resultItems[it.id] = ResultItem(
                 id = it.id,
                 isRight = it.isRight,
                 yourAnswer = it.yourAnswer,
                 rightAnswer = it.rightAnswer,
                 explanation = it.explanation,
-                content = _testActivityViewModelState.value.questions?.questions?.find { q -> q.questionId == it.id }?.content ?: ""
+                question = question?.content ?: "",
+                answers = question?.answers ?: emptyList()
             )
         }
         _testActivityViewModelState.value.showResultState.value = true

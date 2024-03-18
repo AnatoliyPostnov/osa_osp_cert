@@ -1,6 +1,5 @@
 package com.example.cert.ui.activity.question
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -50,6 +50,7 @@ import com.example.cert.domain.model.QuestionDomainDto
 import com.example.cert.ui.model.TestActivityState
 import com.example.cert.ui.model.TopItem
 import com.example.cert.ui.model.TopNavigation
+import com.example.cert.ui.theme.Brown
 import com.example.cert.ui.utils.getAppComponent
 import com.example.cert.ui.viewmodel.Factory
 import com.example.cert.ui.viewmodel.QuestionActivityViewModel
@@ -119,7 +120,7 @@ fun Header(state: TestActivityState) {
 }
 
 @Composable
-fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: Context, state: TestActivityState) {
+fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: QuestionsActivity, state: TestActivityState) {
     val navigation = TopNavigation(navController = navController, viewModel = viewModel, activityContext = activityContext)
     Scaffold(
         modifier = Modifier
@@ -158,6 +159,7 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
                     restoreState = true
                 }
             },
+            colors = ButtonDefaults.buttonColors(Brown)
         ) {
             Text("prev")
         }
@@ -175,12 +177,14 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
                         }
                     }
                 },
+                colors = ButtonDefaults.buttonColors(Brown)
             ) {
                 Text("commit answer")
             }
         } else {
             Button(
                 onClick = { viewModel.uncommittedQuestion(currentRoute) },
+                colors = ButtonDefaults.buttonColors(Brown)
             ) {
                 Text("uncommit answer")
             }
@@ -196,6 +200,7 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
                     restoreState = true
                 }
             },
+            colors = ButtonDefaults.buttonColors(Brown)
         ) {
             Text("next")
         }
@@ -351,7 +356,12 @@ fun NavigationGraph(navigation: TopNavigation) {
                                 Box(modifier = Modifier.fillMaxWidth().weight(0.5f),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    Button(onClick = { TODO() }) {
+                                    Button(onClick = {
+                                        navigation.viewModel.clearViewModel()
+                                        navigation.activityContext.recreate()
+                                    },
+                                        colors = ButtonDefaults.buttonColors(Brown),
+                                    ) {
                                         Text("start again")
                                     }
                                 }
@@ -367,7 +377,9 @@ fun NavigationGraph(navigation: TopNavigation) {
                                             intent,
                                             null
                                         )
-                                    }) {
+                                    },
+                                        colors = ButtonDefaults.buttonColors(Brown),
+                                    ) {
                                         Text("show result")
                                     }
                                 }
@@ -379,7 +391,10 @@ fun NavigationGraph(navigation: TopNavigation) {
                         .fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Button(onClick = { navigation.viewModel.sendAnswersForResult() }) {
+                        Button(
+                            onClick = { navigation.viewModel.sendAnswersForResult() },
+                            colors = ButtonDefaults.buttonColors(Brown),
+                        ) {
                             Text("send result")
                         }
                     }
