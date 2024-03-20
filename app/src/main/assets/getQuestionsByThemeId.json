@@ -339,9 +339,245 @@
     "theme_content": "Object Orientation",
     "questions": [
       {
-        "content": "",
+        "content": "    Given:\n    ```\n    public abstract interface Frobnicate { \n        public void twiddle(String s); \n    }\n    ```\n    Which is a correct class?",
         "question_id": 1,
-        "type": "some_answer",
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```\n    public abstract class Frob implements Frobnicate { \n        public abstract void twiddle(String s) { }\n    }\n    ```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```\n    public abstract class Frob implements Frobnicate { }\n    ```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```\n    public class Frob extends Frobnicate { \n        public void twiddle(Integer i) { }\n    }\n    ```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```\n    public class Frob implements Frobnicate { \n        public void twiddle(Integer i) { }\n    }\n    ```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```\n    public class Frob implements Frobnicate { \n        public void twiddle(String i) { } \n        public void twiddle(Integer s) { }\n    }\n    ```"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    class Top {\n        public Top(String s) { System.out.print(\"B\"); }\n    }\n    public class Bottom2 extends Top {\n        public Bottom2(String s) { System.out.print(\"D\"); }\n        public static void main(String [] args) {\n            new Bottom2(\"C\");\n            System.out.println(\" \");\n        }\n    }\n    ```\n    What is the result?",
+        "question_id": 2,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "BD"
+          },
+          {
+            "answer_id": 2,
+            "content": "DB"
+          },
+          {
+            "answer_id": 3,
+            "content": "BDC"
+          },
+          {
+            "answer_id": 4,
+            "content": "DBC"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    class Clidder {\n        private final void flipper() { System.out.println(\"Clidder\"); }\n    }\n    public class Clidlet extends Clidder {\n        public final void flipper() { System.out.println(\"Clidlet\");  }\n        public static void main(String [] args) {\n            new Clidlet().flipper();\n        }\n    }   \n    ```\n    What is the result?",
+        "question_id": 3,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Clidlet"
+          },
+          {
+            "answer_id": 2,
+            "content": "Clidder"
+          },
+          {
+            "answer_id": 3,
+            "content": "Clidder \nClidlet"
+          },
+          {
+            "answer_id": 4,
+            "content": "Clidlet \nClidder"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "       Given:\n       ```\n       class Bird {\n         { System.out.print(\"b1 \"); }\n         public Bird() { System.out.print(\"b2 \"); }\n       }\n       class Raptor extends Bird {\n         static { System.out.print(\"r1 \"); }\n         public Raptor() { System.out.print(\"r2 \"); }\n         { System.out.print(\"r3 \"); }\n         static { System.out.print(\"r4 \"); }\n       }\n       class Hawk extends Raptor {\n         public static void main(String[] args) {\n           System.out.print(\"pre \");\n           new Hawk();\n           System.out.println(\"hawk \");\n         } \n       }\n       ```\n       What is the result?",
+        "question_id": 4,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "pre b1 b2 r3 r2 hawk"
+          },
+          {
+            "answer_id": 2,
+            "content": "pre b2 b1 r2 r3 hawk"
+          },
+          {
+            "answer_id": 3,
+            "content": "pre b2 b1 r2 r3 hawk r1 r4"
+          },
+          {
+            "answer_id": 4,
+            "content": "r1 r4 pre b1 b2 r3 r2 hawk"
+          },
+          {
+            "answer_id": 5,
+            "content": "r1 r4 pre b2 b1 r2 r3 hawk"
+          },
+          {
+            "answer_id": 6,
+            "content": "pre r1 r4 b1 b2 r3 r2 hawk"
+          },
+          {
+            "answer_id": 7,
+            "content": "pre r1 r4 b2 b1 r2 r3 hawk"
+          },
+          {
+            "answer_id": 8,
+            "content": "The order of output cannot be predicted"
+          },
+          {
+            "answer_id": 9,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given the following:\n    ```\n    1. class X { void do1() { } }\n    2. class Y extends X { void do2() { } }\n    3.\n    4. class Chrome {\n    5.   public static void main(String [] args) {\n    6.     X x1 = new X();                        \n    7.     X x2 = new Y();                        \n    8.     Y y1 = new Y();                        \n    9.     // insert code here                    \n    10.  } \n    11.}\n    ```\n    Which of the following, inserted at line 9, will compile? (Choose all that apply.)",
+        "question_id": 5,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```x2.do2();```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```(Y)x2.do2();```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```((Y)x2).do2();```"
+          },
+          {
+            "answer_id": 4,
+            "content": "None of the above statements will compile"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Locomotive {\n      Locomotive() { main(\"hi\"); }\n      public static void main(String[] args) {\n        System.out.print(\"2 \");\n      }\n      public static void main(String args) {\n        System.out.print(\"3 \" + args);\n      }\n    }\n    ```   \n    What is the result? (Choose all that apply.)",
+        "question_id": 6,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2 will be included in the output"
+          },
+          {
+            "answer_id": 2,
+            "content": "3 will be included in the output"
+          },
+          {
+            "answer_id": 3,
+            "content": "hi will be included in the output"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. class Dog {\n    4.   public void bark() { System.out.print(\"woof \"); }\n    5. }\n    6. class Hound extends Dog {\n    7.   public void sniff() { System.out.print(\"sniff \"); }\n    8.   public void bark() { System.out.print(\"howl \"); }\n    9. }\n    10.public class DogShow {\n    11.  public static void main(String[] args) { new DogShow().go(); } \n    12.  void go() {                                                    \n    13.    new Hound().bark();                                          \n    14.    ((Dog) new Hound()).bark();                                  \n    15.    ((Dog) new Hound()).sniff();                                 \n    16.  }                                                              \n    17.}\n    ```\n    What is the result? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```howl howl sniff```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```howl woof sniff```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```howl howl``` followed by an exception"
+          },
+          {
+            "answer_id": 4,
+            "content": "```howl woof``` followed by an exception"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails with an error at line 14"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails with an error at line 15"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. public class Redwood extends Tree {\n    4.   public static void main(String[] args) {\n    5.     new Redwood().go();\n    6.   }\n    7.   void go() {                                \n    8.     go2(new Tree(), new Redwood());          \n    9.     go2((Redwood) new Tree(), new Redwood());\n    10.  }\n    11.  void go2(Tree t1, Redwood r1) {\n    12.  Redwood r2 = (Redwood)t1;      \n    13.     Tree t2 = (Tree)r1;         \n    14.  }                              \n    15. }\n    16. class Tree { }\n    ```\n    What is the result? (Choose all that apply.)",
+        "question_id": 8,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "An exception is thrown at runtime"
+          },
+          {
+            "answer_id": 2,
+            "content": "The code compiles and runs with no output"
+          },
+          {
+            "answer_id": 3,
+            "content": "Compilation fails with an error at line 8"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails with an error at line 9"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails with an error at line 12"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails with an error at line 13"
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 9,
+        "type": "",
         "answers": [
           {
             "answer_id": 1,
@@ -362,9 +598,140 @@
           {
             "answer_id": 5,
             "content": ""
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 10,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ""
           },
           {
-            "answer_id": 6,
+            "answer_id": 2,
+            "content": ""
+          },
+          {
+            "answer_id": 3,
+            "content": ""
+          },
+          {
+            "answer_id": 4,
+            "content": ""
+          },
+          {
+            "answer_id": 5,
+            "content": ""
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 11,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ""
+          },
+          {
+            "answer_id": 2,
+            "content": ""
+          },
+          {
+            "answer_id": 3,
+            "content": ""
+          },
+          {
+            "answer_id": 4,
+            "content": ""
+          },
+          {
+            "answer_id": 5,
+            "content": ""
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 12,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ""
+          },
+          {
+            "answer_id": 2,
+            "content": ""
+          },
+          {
+            "answer_id": 3,
+            "content": ""
+          },
+          {
+            "answer_id": 4,
+            "content": ""
+          },
+          {
+            "answer_id": 5,
+            "content": ""
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 13,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ""
+          },
+          {
+            "answer_id": 2,
+            "content": ""
+          },
+          {
+            "answer_id": 3,
+            "content": ""
+          },
+          {
+            "answer_id": 4,
+            "content": ""
+          },
+          {
+            "answer_id": 5,
+            "content": ""
+          }
+        ]
+      },
+      {
+        "content": "",
+        "question_id": 14,
+        "type": "",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ""
+          },
+          {
+            "answer_id": 2,
+            "content": ""
+          },
+          {
+            "answer_id": 3,
+            "content": ""
+          },
+          {
+            "answer_id": 4,
+            "content": ""
+          },
+          {
+            "answer_id": 5,
             "content": ""
           }
         ]

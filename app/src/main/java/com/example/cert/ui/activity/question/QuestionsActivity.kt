@@ -37,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -461,37 +462,67 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
                         .padding(start = 8.dp)
                 )
             }
-
-            Text(
-                text = "${answer.answerId}. ${answer.content}",
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp),
-                textAlign = TextAlign.Start
-            )
+            LazyRow {
+                item {
+                    MarkdownText(
+                        markdown = "${answer.answerId}. ${answer.content}".trimIndent(),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 10.dp),
+                        textAlign = TextAlign.Start
+                    )
+                }
+            }
         }
     }
 }
 
 
 val markdownContent5 = """ 
-    Given that the Integer class is in the java.lang 
-    package, and given:
+    Given:
     ```
-    1. // insert code here
-    2. class StatTest {
-    3.   public static void main(String[] args) {
-    4.     System.out.println(Integer.MAX_VALUE);
-    5.   } 
-    6. }
+    3. public class Redwood extends Tree {
+    4.   public static void main(String[] args) {
+    5.     new Redwood().go();
+    6.   }
+    7.   void go() {                                
+    8.     go2(new Tree(), new Redwood());          
+    9.     go2((Redwood) new Tree(), new Redwood());
+    10.  }
+    11.  void go2(Tree t1, Redwood r1) {
+    12.  Redwood r2 = (Redwood)t1;      
+    13.     Tree t2 = (Tree)r1;         
+    14.  }                              
+    15. }
+    16. class Tree { }
     ```
-    Which, inserted independently at line 1, compiles? 
-    (Choose all that apply.)
+    What is the result? (Choose all that apply.)
 """.trimIndent()
 
 
 @Composable
 fun MinimalExampleContent() {
     MarkdownText(markdown = markdownContent5, style = MaterialTheme.typography.titleMedium)
+}
+
+@Composable
+fun MinimalExampleContentPreview() {
+    MarkdownText(markdown = markdownContent5, style = MaterialTheme.typography.titleMedium)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun QuestionPreview() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        LazyRow {
+            item {
+//            MarkdownText(markdown = item.question.content.trimIndent(), style = MaterialTheme.typography.titleMedium)
+                MinimalExampleContentPreview()
+            }
+        }
+    }
 }
