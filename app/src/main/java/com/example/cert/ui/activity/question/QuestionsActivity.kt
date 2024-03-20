@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -72,7 +74,7 @@ class QuestionsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val activityContext = this
-            val themeId = activityContext.intent.extras?.getInt("theme_id")
+            val themeId = activityContext.intent.extras?.getLong("theme_id")?.toInt()
 
             viewModel.findQuestionsByThemeId(activityContext, themeId)
 
@@ -128,7 +130,8 @@ fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivity
             .fillMaxWidth(),
         topBar = {
             TopNavigation(navigation, state)
-        }
+        },
+
     ) { paddingValues ->
         Box(
             modifier = Modifier.padding(paddingValues)
@@ -269,7 +272,11 @@ fun NavigationGraph(navigation: TopNavigation) {
 
     val firstItemRoute = state.topItems[1] ?: throw RuntimeException("route can`t be null")
 
-    NavHost(navigation.navController as NavHostController, startDestination = firstItemRoute.route.toString()) {
+    NavHost(
+        navigation.navController as NavHostController,
+        startDestination = firstItemRoute.route.toString(),
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None }) {
         state.topItems.forEach { (route, item) ->
             composable(route.toString()) {
                 if (navigation.viewModel.getShowResultState()) {
@@ -288,7 +295,8 @@ fun NavigationGraph(navigation: TopNavigation) {
                             ) {
                                 Row {
                                     Box(
-                                        modifier = Modifier.padding(10.dp)
+                                        modifier = Modifier
+                                            .padding(10.dp)
                                             .fillMaxSize()
                                             .weight(0.3f),
                                         contentAlignment = Alignment.CenterStart
@@ -355,7 +363,9 @@ fun NavigationGraph(navigation: TopNavigation) {
                                 }
                             }
                             Row(modifier = Modifier.fillMaxWidth()) {
-                                Box(modifier = Modifier.fillMaxWidth().weight(0.5f),
+                                Box(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(0.5f),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Button(onClick = {
@@ -368,7 +378,9 @@ fun NavigationGraph(navigation: TopNavigation) {
                                     }
                                 }
 
-                                Box(modifier = Modifier.fillMaxWidth().weight(0.5f),
+                                Box(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(0.5f),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Button(onClick = {
@@ -464,28 +476,18 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 
 val markdownContent5 = """ 
-        Given two files:
-    
-        ```
-        1. package pkgA;
-        2. public class Foo {
-        3.   int a = 5;
-        4.   protected int b = 6;
-        5.   public int c = 7;
-        6. }
-        3. package pkgB;
-        4. import pkgA.*;
-        5. public class Baz {
-        6.   public static void main(String[] args) {
-        7.     Foo f = new Foo();
-        8.     System.out.print(" " + f.a);
-        9.     System.out.print(" " + f.b);
-       10.     System.out.println(" " + f.c);
-       11.   }
-       12. }
-       ```
-       
-       What is the result? (Choose all that apply.)
+    Given that the Integer class is in the java.lang 
+    package, and given:
+    ```
+    1. // insert code here
+    2. class StatTest {
+    3.   public static void main(String[] args) {
+    4.     System.out.println(Integer.MAX_VALUE);
+    5.   } 
+    6. }
+    ```
+    Which, inserted independently at line 1, compiles? 
+    (Choose all that apply.)
 """.trimIndent()
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">test</string>
+    <string name="app_name">oca/ocp java</string>
     <string name="title_activity_osp_main">OspMainActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_osa_main">OsaMainActivity</string>
