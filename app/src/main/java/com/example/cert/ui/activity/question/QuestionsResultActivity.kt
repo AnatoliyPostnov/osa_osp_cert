@@ -136,13 +136,17 @@ class QuestionsResultActivity : ComponentActivity() {
 
     @Composable
     fun Answers(answer: AnswerDomainDto) {
-        Text(
-            text = "${answer.answerId}. ${answer.content}",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 10.dp),
-            textAlign = TextAlign.Start
-        )
+        LazyRow {
+            item {
+                MarkdownText(
+                    markdown = "${answer.answerId}. ${answer.content}".trimIndent(),
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 10.dp),
+                    textAlign = TextAlign.Start
+                )
+            }
+        }
     }
 }
