@@ -480,14 +480,24 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 
 val markdownContent5 = """ 
+    Given:
     ```
-    import java.util.*;
-        interface Jammer extends Quizel { }
-        interface Klakker { }
-        interface Quizel extends Klakker { } 
-        interface Floozel extends Jammer, Floozet { } 
-        interface Floozet { }
+    3. public class Dark {
+    4.   int x = 3;
+    5.   public static void main(String[] args) {
+    6.     new Dark().go1();
+    7.   }
+    8.   void go1() {
+    9.     int x;
+    10.    go2(++x); 
+    11.  }
+    12.  void go2(int y) {
+    13.    int x = ++y;
+    14.    System.out.println(x);
+    15.  }
+    16.}
     ```
+    What is the result?
 """.trimIndent()
 
 

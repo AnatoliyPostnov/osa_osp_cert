@@ -726,5 +726,410 @@
         ]
       }
     ]
+  },
+  {
+    "theme_id": 3,
+    "theme_content": "Assignments",
+    "questions": [
+      {
+        "content": "    Given:\n    ```\n    class CardBoard {\n      Short story = 200;\n      CardBoard go(CardBoard cb) {\n        cb = null;\n        return cb; \n      }\n      public static void main(String[] args) {\n        CardBoard c1 = new CardBoard();\n        CardBoard c2 = new CardBoard();\n        CardBoard c3 = c1.go(c2);\n        c1 = null;\n        // do Stuff \n      }\n    }\n    ```\n    When // do Stuff is reached, how many objects \n    are eligible for garbage collection?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "0"
+          },
+          {
+            "answer_id": 2,
+            "content": "1"
+          },
+          {
+            "answer_id": 3,
+            "content": "2"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "It is not possible to know"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Fishing {\n      byte b1 = 4;\n      int i1 = 123456;\n      long L1 = (long)i1;    // line A\n      short s2 = (short)i1;  // line B\n      byte b2 = (byte)i1;    // line C\n      int i2 = (int)123.456; // line D\n      byte b3 = b1 + 7;      // line E\n    }\n    ```\n    Which lines WILL NOT compile? (Choose all that apply.)",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Line A"
+          },
+          {
+            "answer_id": 2,
+            "content": "Line B"
+          },
+          {
+            "answer_id": 3,
+            "content": "Line C"
+          },
+          {
+            "answer_id": 4,
+            "content": "Line D"
+          },
+          {
+            "answer_id": 5,
+            "content": "Line E"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Literally {\n      public static void main(String[] args) {\n        int i1 = 1_000;      // line A\n        int i2 = 10_00;      // line B\n        int i3 = _10_000;    // line C\n        int i4 = 0b101010;   // line D\n        int i5 = 0B10_1010;  // line E\n        int i6 = 0x2_a;      // line F\n      } \n    }\n    ```\n    Which lines WILL NOT compile? (Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Line A"
+          },
+          {
+            "answer_id": 2,
+            "content": "Line B"
+          },
+          {
+            "answer_id": 3,
+            "content": "Line C"
+          },
+          {
+            "answer_id": 4,
+            "content": "Line D"
+          },
+          {
+            "answer_id": 5,
+            "content": "Line E"
+          },
+          {
+            "answer_id": 6,
+            "content": "Line F"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    class Mixer {\n      Mixer() { }\n      Mixer(Mixer m) { m1 = m; }\n      Mixer m1;\n      public static void main(String[] args) {\n        Mixer m2 = new Mixer();\n        Mixer m3 = new Mixer(m2);  m3.go();\n        Mixer m4 = m3.m1;          m4.go();\n        Mixer m5 = m2.m1;          m5.go();\n      }\n      void go() { System.out.print(\"hi \"); }\n    }\n    ```\n    What is the result?",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "hi"
+          },
+          {
+            "answer_id": 2,
+            "content": "hi hi"
+          },
+          {
+            "answer_id": 3,
+            "content": "hi hi hi"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "hi, followed by an exception"
+          },
+          {
+            "answer_id": 6,
+            "content": "hi hi, followed by an exception"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    class Fizz {\n      int x = 5;\n      public static void main(String[] args) {\n        final Fizz f1 = new Fizz();\n        Fizz f2 = new Fizz();\n        Fizz f3 = FizzSwitch(f1,f2);\n        System.out.println((f1 == f3) + \" \" + (f1.x == f3.x));\n      }\n      static Fizz FizzSwitch(Fizz x, Fizz y) {\n        final Fizz z = x;\n        z.x = 6;\n        return z;\n      }\n    }\n    ```\n    What is the result?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "true true"
+          },
+          {
+            "answer_id": 2,
+            "content": "false true"
+          },
+          {
+            "answer_id": 3,
+            "content": "true false"
+          },
+          {
+            "answer_id": 4,
+            "content": "false false"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Mirror {\n      int size = 7;\n      public static void main(String[] args) {\n        Mirror m1 = new Mirror();\n        Mirror m2 = m1;\n        int i1 = 10;\n        int i2 = i1;\n        go(m2, i2);\n        System.out.println(m1.size + \" \" + i1);\n      }\n      static void go(Mirror m, int i) {\n        m.size = 8;\n        i = 12;\n      } \n    }\n    ```\n    What is the result? ",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "7 10"
+          },
+          {
+            "answer_id": 2,
+            "content": "8 10"
+          },
+          {
+            "answer_id": 3,
+            "content": "7 12"
+          },
+          {
+            "answer_id": 4,
+            "content": "8 12"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Wind {\n      int id;\n      Wind(int i) { id = i; }\n      public static void main(String[] args) {\n        new Wind(3).go();\n        // commented line\n      }\n      void go() {\n        Wind w1 = new Wind(1);\n        Wind w2 = new Wind(2);\n        System.out.println(w1.id + \" \" + w2.id);\n      } \n    }\n    ```\n    When execution reaches the commented line, \n    which are true? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The output contains 1"
+          },
+          {
+            "answer_id": 2,
+            "content": "The output contains 2"
+          },
+          {
+            "answer_id": 3,
+            "content": "The output contains 3"
+          },
+          {
+            "answer_id": 4,
+            "content": "Zero objects are eligible for garbage collection"
+          },
+          {
+            "answer_id": 5,
+            "content": "One object is eligible for garbage collection"
+          },
+          {
+            "answer_id": 6,
+            "content": "Two objects are eligible for garbage collection"
+          },
+          {
+            "answer_id": 7,
+            "content": "Three objects are eligible for garbage collection"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. public class Ouch {\n    4.   static int ouch = 7;\n    5.   public static void main(String[] args) {\n    6.     new Ouch().go(ouch);\n    7.     System.out.print(\" \" + ouch);\n    8.   }\n    9.   void go(int ouch) {                  \n   10.     ouch++;                            \n   11.     for(int ouch = 3; ouch < 6; ouch++)\n   12.       ;                                \n   13.     System.out.print(\" \" + ouch);      \n   14.   }                                    \n   15. }   \n   ```                                   \n   What is the result?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "5 7"
+          },
+          {
+            "answer_id": 2,
+            "content": "5 8"
+          },
+          {
+            "answer_id": 3,
+            "content": "8 7"
+          },
+          {
+            "answer_id": 4,
+            "content": "8 8"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Happy {\n      int id;\n      Happy(int i) { id = i; }\n      public static void main(String[] args) {\n        Happy h1 = new Happy(1);\n        Happy h2 = h1.go(h1);\n        System.out.println(h2.id);\n      }\n      Happy go(Happy h) {\n        Happy h3 = h;\n        h3.id = 2;\n        h1.id = 3;\n        return h1;\n      } \n    }\n    ```\n    What is the result?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "1"
+          },
+          {
+            "answer_id": 2,
+            "content": "2"
+          },
+          {
+            "answer_id": 3,
+            "content": "3"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Network {\n       Network(int x, Network n) {\n         id = x;\n         p = this;\n         if(n != null) p = n;\n       }\n       int id;\n       Network p;\n       public static void main(String[] args) {\n         Network n1 = new Network(1, null);\n         n1.go(n1); \n       }\n       void go(Network n1) {\n         Network n2 = new Network(2, n1);\n         Network n3 = new Network(3, n2);\n         System.out.println(n3.p.p.id);\n       } \n    }\n    ```\n    What is the result?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "1"
+          },
+          {
+            "answer_id": 2,
+            "content": "2"
+          },
+          {
+            "answer_id": 3,
+            "content": "3"
+          },
+          {
+            "answer_id": 4,
+            "content": "null"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     3. class Beta { }\n     4. class Alpha {\n     5.   static Beta b1;\n     6. Beta b2;\n     7. }\n     8. public class Tester {\n     9.   public static void main(String[] args) {\n    10.     Beta b1 = new Beta();     Beta b2 = new Beta();\n    11.     Alpha a1 = new Alpha();   Alpha a2 = new Alpha();\n    12.     a1.b1 = b1;\n    13.     a1.b2 = b1;\n    14.     a2.b2 = b2;\n    15.     a1 = null;  b1 = null;  b2 = null;\n    16.     // do stuff\n    17. }\n    18. }\n    ```\n    When line 16 is reached, how many objects \n    will be eligible for garbage collection?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "0"
+          },
+          {
+            "answer_id": 2,
+            "content": "1"
+          },
+          {
+            "answer_id": 3,
+            "content": "2"
+          },
+          {
+            "answer_id": 4,
+            "content": "3"
+          },
+          {
+            "answer_id": 5,
+            "content": "4"
+          },
+          {
+            "answer_id": 6,
+            "content": "5"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Telescope {\n      static int magnify = 2;\n      public static void main(String[] args) {\n        go(); \n      }\n      static void go() {\n        int magnify = 3;\n        zoomIn();\n      }\n      static void zoomIn() {\n        magnify *= 5;\n        zoomMore(magnify);\n        System.out.println(magnify);\n      }\n      static void zoomMore(int magnify) {\n        magnify *= 7;\n      }\n    }\n    ```\n    What is the result?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2"
+          },
+          {
+            "answer_id": 2,
+            "content": "10"
+          },
+          {
+            "answer_id": 3,
+            "content": "15"
+          },
+          {
+            "answer_id": 4,
+            "content": "30"
+          },
+          {
+            "answer_id": 5,
+            "content": "70"
+          },
+          {
+            "answer_id": 6,
+            "content": "105"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. public class Dark {\n    4.   int x = 3;\n    5.   public static void main(String[] args) {\n    6.     new Dark().go1();\n    7.   }\n    8.   void go1() {\n    9.     int x;\n    10.    go2(++x); \n    11.  }\n    12.  void go2(int y) {\n    13.    int x = ++y;\n    14.    System.out.println(x);\n    15.  }\n    16.}\n    ```\n    What is the result?",
+        "question_id": 13,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2"
+          },
+          {
+            "answer_id": 2,
+            "content": "3"
+          },
+          {
+            "answer_id": 3,
+            "content": "4"
+          },
+          {
+            "answer_id": 4,
+            "content": "5"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      }
+    ]
   }
 ]
