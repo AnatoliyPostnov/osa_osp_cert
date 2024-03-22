@@ -1271,7 +1271,7 @@
       {
         "content": "    Given:\n    ```\n    public class Cowboys {\n      public static void main(String[] args) {\n        int x = 12;\n        int a = 5;\n        int b = 7;\n        System.out.println(x/a + \" \" + x/b);\n      } \n    }\n    ```\n    What is the result? (Choose all that apply.)",
         "question_id": 5,
-        "type": "one_answer",
+        "type": "some_answer",
         "answers": [
           {
             "answer_id": 1,
@@ -1333,7 +1333,7 @@
       {
         "content": "    Given:\n    ```\n     4. public class SpecialOps {\n     5.   public static void main(String[] args) {\n     6.     String s = \"\";\n     7.     boolean b1 = true;\n     8.     boolean b2 = false;\n     9.     if((b2 = false) | (21%5) > 2) s += \"x\";\n    10.     if(b1 || (b2 == true))        s += \"y\";\n    11.     if(b2 == true)                s += \"z\";\n    12.     System.out.println(s);\n    13.   }\n    14. }\n    ```\n    Which are true? (Choose all that apply.)",
         "question_id": 7,
-        "type": "one_answer",
+        "type": "some_answer",
         "answers": [
           {
             "answer_id": 1,
@@ -1360,7 +1360,7 @@
       {
         "content": "    Given:\n    ```\n     3. public class Spock {\n     4.   public static void main(String[] args) {                       \n     5.     int mask = 0;                                                  \n     6.     int count = 0;                                                \n     7.     if( ((5<7) || (++count < 10)) | mask++ < 10 )   mask = mask + 1;\n     8.     if( (6>8)^false)                                mask=mask+10;\n     9.     if( !(mask > 1) && ++count > 1)                 mask = mask + 100;\n    10.     System.out.println(mask + \" \" + count);             \n    11.   }\n    12. }\n    ```\n    Which two are true about the value of mask and the value of count at line 10? (Choose two.)",
         "question_id": 8,
-        "type": "one_answer",
+        "type": "some_answer",
         "answers": [
           {
             "answer_id": 1,
@@ -1427,12 +1427,914 @@
   },
   {
     "theme_id": 5,
-    "theme_content": "Working with string, Arrays and ArrayLists",
-    "questions": []
+    "theme_content": "String, Arrays and ArrayLists",
+    "questions": [
+      {
+        "content": "    Given:\n    ```\n    public class Mutant {\n      public static void main(String[] args) {\n        StringBuilder sb = new StringBuilder(\"abc\");\n        String s = \"abc\";\n        sb.reverse().append(\"d\");\n        s.toUpperCase().concat(\"d\");\n        System.out.println(\".\" + sb + \". .\" + s + \".\");\n      } \n    }\n    ```\n    Which two substrings will be included in the result? (Choose two.)",
+        "question_id": 1,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": ".abc."
+          },
+          {
+            "answer_id": 2,
+            "content": ".ABCd."
+          },
+          {
+            "answer_id": 3,
+            "content": ".ABCD."
+          },
+          {
+            "answer_id": 4,
+            "content": ".cbad."
+          },
+          {
+            "answer_id": 5,
+            "content": ".dcba."
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Hilltop {\n      public static void main(String[] args) {\n        String[] horses = new String[5];\n        horses[4] = null;\n        for(int i = 0; i < horses.length; i++) {\n          if(i < args.length)\n            horses[i] = args[i];\n          System.out.print(horses[i].toUpperCase() + \" \");\n        }\n      } \n    }\n    ```    \n    And, if the code compiles, the command line:\n    ```\n    java Hilltop eyra vafi draumur kara\n    ```\n    What is the result?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "EYRA VAFI DRAUMUR KARA"
+          },
+          {
+            "answer_id": 2,
+            "content": "EYRA VAFI DRAUMUR KARA null"
+          },
+          {
+            "answer_id": 3,
+            "content": "An exception is thrown with no other output"
+          },
+          {
+            "answer_id": 4,
+            "content": "EYRA VAFI DRAUMUR KARA, and then a NullPointerException"
+          },
+          {
+            "answer_id": 5,
+            "content": "EYRA VAFI DRAUMUR KARA, and then an ArrayIndexOutOfBoundsException"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Actors {\n      public static void main(String[] args) {\n        char[] ca = {0x4e, \\u004e, 78};\n        System.out.println((ca[0] == ca[1]) + \" \" + (ca[0] == ca[2]));\n      }\n    }\n    ```\n    What is the result?",
+        "question_id": 3,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "true true"
+          },
+          {
+            "answer_id": 2,
+            "content": "true false"
+          },
+          {
+            "answer_id": 3,
+            "content": "false true"
+          },
+          {
+            "answer_id": 4,
+            "content": "false false"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    1. class Dims {\n    2.   public static void main(String[] args) {\n    3.     int[][] a = {{1,2}, {3,4}};\n    4.     int[] b = (int[]) a[1];    \n    5.     Object o1 = a;             \n    6.     int[][] a2 = (int[][]) o1;\n    7.     int[] b2 = (int[]) o1;\n    8.     System.out.println(b[1]);\n    9. } }\n    ```\n    What is the result? (Choose all that apply.)",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2"
+          },
+          {
+            "answer_id": 2,
+            "content": "4"
+          },
+          {
+            "answer_id": 3,
+            "content": "An exception is thrown at runtime"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due to an error on line 4"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due to an error on line 5"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails due to an error on line 6"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails due to an error on line 7"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    import java.util.*;\n    public class Sequence {\n      public static void main(String[] args) {\n        ArrayList<String> myList = new ArrayList<String>();\n        myList.add(\"apple\");\n        myList.add(\"carrot\");\n        myList.add(\"banana\");\n        myList.add(1, \"plum\");\n        System.out.print(myList);\n      } \n    }\n    ```\n    What is the result?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "[apple, banana, carrot, plum]"
+          },
+          {
+            "answer_id": 2,
+            "content": "[apple, plum, carrot, banana]"
+          },
+          {
+            "answer_id": 3,
+            "content": "[apple, plum, banana, carrot]"
+          },
+          {
+            "answer_id": 4,
+            "content": "[plum, banana, carrot, apple]"
+          },
+          {
+            "answer_id": 5,
+            "content": "[plum, apple, carrot, banana]"
+          },
+          {
+            "answer_id": 6,
+            "content": "[banana, plum, carrot, apple]"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     3. class Dozens {\n     4.   int[] dz = {1,2,3,4,5,6,7,8,9,10,11,12};\n     5. }\n     6. public class Eggs {\n     7.   public static void main(String[] args) {\n     8.     Dozens [] da = new Dozens[3];\n     9.     da[0] = new Dozens();\n    10.     Dozens d = new Dozens();\n    11.     da[1] = d;\n    12.     d = null;\n    13.     da[1] = null;\n    14.     // do stuff\n    15.   }\n    16. }\n    ```\n    Which two are true about the objects created within \n    main(), and which are eligible for garbage collection \n    when line 14 is reached?",
+        "question_id": 6,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Three objects were created"
+          },
+          {
+            "answer_id": 2,
+            "content": "Four objects were created"
+          },
+          {
+            "answer_id": 3,
+            "content": "Five objects were created"
+          },
+          {
+            "answer_id": 4,
+            "content": "Zero objects are eligible for GC"
+          },
+          {
+            "answer_id": 5,
+            "content": "One object is eligible for GC"
+          },
+          {
+            "answer_id": 6,
+            "content": "Two objects are eligible for GC"
+          },
+          {
+            "answer_id": 7,
+            "content": "Three objects are eligible for GC"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Tailor {\n      public static void main(String[] args) {\n        byte[][] ba = {{1,2,3,4}, {1,2,3}};\n        System.out.println(ba[1].length + \" \" + ba.length);\n      }\n    }\n    ```\n    What is the result?",
+        "question_id": 7,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2 4"
+          },
+          {
+            "answer_id": 2,
+            "content": "2 7"
+          },
+          {
+            "answer_id": 3,
+            "content": "3 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "3 7"
+          },
+          {
+            "answer_id": 5,
+            "content": "4 2"
+          },
+          {
+            "answer_id": 6,
+            "content": "4 7"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. public class Theory {\n    4.   public static void main(String[] args) {\n    5.     String s1 = \"abc\";\n    6.     String s2 = s1;\n    7.     s1 += \"d\";\n    8.     System.out.println(s1 + \" \" + s2 + \" \" + (s1==s2));\n    9.\n   10.     StringBuilder sb1 = new StringBuilder(\"abc\");\n   11.     StringBuilder sb2 = sb1;\n   12.     sb1.append(\"d\");\n   13.     System.out.println(sb1 + \" \" + sb2 + \" \" + (sb1==sb2));\n   14.   }\n   15. }\n    ```\n    Which are true? (Choose all that apply.)",
+        "question_id": 8,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "The first line of output is abc abc true"
+          },
+          {
+            "answer_id": 3,
+            "content": "The first line of output is abc abc false"
+          },
+          {
+            "answer_id": 4,
+            "content": "The first line of output is abcd abc false"
+          },
+          {
+            "answer_id": 5,
+            "content": "The second line of output is abcd abc false"
+          },
+          {
+            "answer_id": 6,
+            "content": "The second line of output is abcd abcd true"
+          },
+          {
+            "answer_id": 7,
+            "content": "The second line of output is abcd abcd false"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Mounds {\n      public static void main(String[] args) {\n        StringBuilder sb = new StringBuilder();\n        String s = new String();\n        for(int i = 0; i < 1000; i++) {\n          s = \" \" + i;\n          sb.append(s);\n        }\n        // done with loop\n      }\n    }\n    ```\n    If the garbage collector does NOT run while \n    this code is executing, approximately how many \n    objects will exist in memory when the loop is done?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Less than 10"
+          },
+          {
+            "answer_id": 2,
+            "content": "About 1000"
+          },
+          {
+            "answer_id": 3,
+            "content": "About 2000"
+          },
+          {
+            "answer_id": 4,
+            "content": "About 3000"
+          },
+          {
+            "answer_id": 5,
+            "content": "About 4000"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. class Box {\n    4.   int size;\n    5.   Box(int s) { size = s; }\n    6. }\n    7. public class Laser {\n    8.   public static void main(String[] args) {\n    9.     Box b1 = new Box(5);                  \n    10.    Box[] ba = go(b1, new Box(6));        \n    11.    ba[0] = b1;                           \n    12.    for(Box b : ba) System.out.print(b.size + \" \");\n    13.  }\n    14.  static Box[] go(Box b1, Box b2) {\n    15.     b1.size = 4;                  \n    16.     Box[] ma = {b2, b1};          \n    17.     return ma;                      \n    18.  }\n    19. }\n    ```\n    What is the result?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "4 4"
+          },
+          {
+            "answer_id": 2,
+            "content": "5 4"
+          },
+          {
+            "answer_id": 3,
+            "content": "6 4"
+          },
+          {
+            "answer_id": 4,
+            "content": "4 5"
+          },
+          {
+            "answer_id": 5,
+            "content": "5 5"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Hedges {\n      public static void main(String[] args) {\n        String s = \"JAVA\";\n        s = s + \"rocks\";\n        s = s.substring(4,8);\n        s.toUpperCase();\n        System.out.println(s);\n      } \n    }\n    ```\n    What is the result?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "JAVA"
+          },
+          {
+            "answer_id": 2,
+            "content": "JAVAROCKS"
+          },
+          {
+            "answer_id": 3,
+            "content": "rocks"
+          },
+          {
+            "answer_id": 4,
+            "content": "rock"
+          },
+          {
+            "answer_id": 5,
+            "content": "ROCKS"
+          },
+          {
+            "answer_id": 5,
+            "content": "ROCK"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     1. import java.util.*;\n     2. class Fortress {\n     3.   private String name;\n     4.   private ArrayList<Integer> list;\n     5.   Fortress() { list = new ArrayList<Integer>(); }\n     6.\n     7.   String getName() { return name; }\n     8.   void addToList(int x) { list.add(x); }\n     9.   ArrayList getList() { return list; }\n    10. }\n    ```\n    Which lines of code (if any) break encapsulation? (Choose all that apply.)",
+        "question_id": 12,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Line 3"
+          },
+          {
+            "answer_id": 2,
+            "content": "Line 4"
+          },
+          {
+            "answer_id": 3,
+            "content": "Line 5"
+          },
+          {
+            "answer_id": 4,
+            "content": "Line 7"
+          },
+          {
+            "answer_id": 5,
+            "content": "Line 8"
+          },
+          {
+            "answer_id": 6,
+            "content": "Line 9"
+          },
+          {
+            "answer_id": 7,
+            "content": "The class is already well encapsulated"
+          }
+        ]
+      }
+    ]
   },
   {
     "theme_id": 6,
     "theme_content": "Flow Control and Exceptions",
-    "questions": []
+    "questions": [
+      {
+        "content": "    Given:\n    ```\n    public class Flipper {\n      public static void main(String[] args) {\n        String o = \"-\";\n        switch(\"FRED\".toLowerCase().substring(1,3)) {\n          case \"yellow\":\n            o += \"y\";\n          case \"red\":\n            o += \"r\";\n          case \"green\":\n            o += \"g\";\n        }\n        System.out.println(o);\n      }\n    }\n    ```\n    What is the result? ",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "-"
+          },
+          {
+            "answer_id": 2,
+            "content": "-r"
+          },
+          {
+            "answer_id": 3,
+            "content": "-rg"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass Plane {\n  static String s = \"-\";\n  public static void main(String[] args) {\n    new Plane().s1();\n    System.out.println(s);\n  }\n  void s1() {\n    try { s2(); }\n    catch (Exception e) { s += \"c\"; }\n  }\n  void s2() throws Exception  {\n    s3();  s += \"2\";\n    s3();  s += \"2b\";\n  }\n  void s3() throws Exception {\n    throw new Exception();\n  } \n}\n```       \nWhat is the result?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "-"
+          },
+          {
+            "answer_id": 2,
+            "content": "-c"
+          },
+          {
+            "answer_id": 3,
+            "content": "-c2"
+          },
+          {
+            "answer_id": 4,
+            "content": "-2c"
+          },
+          {
+            "answer_id": 5,
+            "content": "-c22b"
+          },
+          {
+            "answer_id": 6,
+            "content": "-2c2b"
+          },
+          {
+            "answer_id": 7,
+            "content": "-2c2bc"
+          },
+          {
+            "answer_id": 8,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry { int x = Integer.parseInt(\"two\"); }\n```\nWhich could be used to create an appropriate \ncatch block? (Choose all that apply.)  ",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "ClassCastException"
+          },
+          {
+            "answer_id": 2,
+            "content": "IllegalStateException"
+          },
+          {
+            "answer_id": 3,
+            "content": "NumberFormatException"
+          },
+          {
+            "answer_id": 4,
+            "content": "IllegalArgumentException"
+          },
+          {
+            "answer_id": 5,
+            "content": "ExceptionInInitializerError"
+          },
+          {
+            "answer_id": 6,
+            "content": "ArrayIndexOutOfBoundsException"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Flip2 {\n  public static void main(String[] args) {\n    String o = \"-\";\n    String[] sa = new String[4];\n    for(int i = 0; i < args.length; i++)\n      sa[i] = args[i];\n    for(String n: sa) {\n      switch(n.toLowerCase()) {\n        case \"yellow\": o += \"y\";\n        case \"red\":    o += \"r\";\n        case \"green\":  o += \"g\";\n      } \n    }\n    System.out.print(o);\n  }\n}\n```\nAnd given the command-line invocation:\n```\nJava Flip2 RED Green YeLLow \n```\nWhich are true? (Choose all that apply.)",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The string rgy will appear somewhere in the output"
+          },
+          {
+            "answer_id": 2,
+            "content": "The string rgg will appear somewhere in the output"
+          },
+          {
+            "answer_id": 3,
+            "content": "The string gyr will appear somewhere in the output\n"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n1. class Loopy {\n2.  public static void main(String[] args) {                                    \n3.    int[] x = {7,6,5,4,3,2,1};                                                \n4.       // insert code here                                                       \n5.       System.out.print(y + \" \");                                  \n6.    }\n7.  }\n8.}\n```\nWhich, inserted independently at line 4, compiles? (Choose all that apply.)",
+        "question_id": 5,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "for(int y : x) {"
+          },
+          {
+            "answer_id": 2,
+            "content": "for(x : int y) {"
+          },
+          {
+            "answer_id": 3,
+            "content": "int y = 0; for(y : x) {"
+          },
+          {
+            "answer_id": 4,
+            "content": "for(int y=0, z=0; z<x.length; z++) { y = x[z];"
+          },
+          {
+            "answer_id": 5,
+            "content": "for(int y=0, int z=0; z<x.length; z++) { y = x[z];"
+          },
+          {
+            "answer_id": 6,
+            "content": "int y = 0; for(int z=0; z<x.length; z++) { y = x[z];"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass Emu {\n  static String s = \"-\";\n  public static void main(String[] args) {\n    try {\n      throw new Exception();\n    } catch (Exception e) {\n        try {\n          try { throw new Exception();\n          } catch (Exception ex) { s += \"ic \"; }\n          throw new Exception(); }\n        catch (Exception x) { s += \"mc \"; }\n        finally { s += \"mf \"; }\n    } finally { s += \"of \"; }\n    System.out.println(s);\n  }\n}\n```     \nWhat is the result?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "-ic of"
+          },
+          {
+            "answer_id": 2,
+            "content": "-mf of"
+          },
+          {
+            "answer_id": 3,
+            "content": "-mc mf"
+          },
+          {
+            "answer_id": 4,
+            "content": "-ic mf of"
+          },
+          {
+            "answer_id": 5,
+            "content": "-ic mc mf of"
+          },
+          {
+            "answer_id": 6,
+            "content": "-ic mc of mf"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. class SubException extends Exception { }\n 4. class SubSubException extends SubException { }\n 5.\n 6. public class CC { void doStuff() throws SubException { } }\n 7.\n 8. class CC2 extends CC { void doStuff() throws SubSubException { } }\n 9.\n10. class CC3 extends CC { void doStuff() throws Exception { } }\n11.\n12. class CC4 extends CC { void doStuff(int x) throws Exception { } }\n13.\n14. class CC5 extends CC {  void doStuff()  { } }\n```\nWhat is the result? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation succeeds"
+          },
+          {
+            "answer_id": 2,
+            "content": "Compilation fails due to an error on line 8"
+          },
+          {
+            "answer_id": 3,
+            "content": "Compilation fails due to an error on line 10"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due to an error on line 12"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due to an error on line 14"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Ebb {\n 4.   static int x = 7;\n 5.   public static void main(String[] args) {\n 6.     String s = \"\";\n 7.     for(int y = 0; y < 3; y++) {\n 8.       x++;\n 9.       switch(x) {\n10.         case 8: s += \"8 \";\n11.         case 9: s += \"9 \";\n12.         case 10: { s+= \"10 \"; break; }\n13.         default: s += \"d \";\n14.         case 13: s+= \"13 \";\n15.       }\n16.     }              \n17.     System.out.println(s);\n18.   }              \n19.   static { x++; }\n20. }\n``` \nWhat is the result?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "9 10 d"
+          },
+          {
+            "answer_id": 2,
+            "content": "8 9 10 d"
+          },
+          {
+            "answer_id": 3,
+            "content": "9 10 10 d"
+          },
+          {
+            "answer_id": 4,
+            "content": "9 10 10 d 13"
+          },
+          {
+            "answer_id": 5,
+            "content": "8 9 10 10 d 13"
+          },
+          {
+            "answer_id": 6,
+            "content": "8 9 10 9 10 10 d 13"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. class Infinity { }\n4. public class Beyond extends Infinity {\n5.   static Integer i;                       \n6.   public static void main(String[] args) {\n7.     int sw = (int)(Math.random() * 3);    \n8.     switch(sw) {                          \n9.       case 0: { for(int x = 10; x > 5; x++)                                                                   \n10.                   if(x > 10000000) x = 10;\n11.                break; }     \n12.      case 1: { int y = 7 * i;  break;  }                               \n13.      case 2: {  Infinity inf = new Beyond();              \n14.                 Beyond b = (Beyond)inf;  }             \n15.    }                               \n16.  }    \n17.} \n```\nAnd given that line 7 will assign the value \n0, 1, or 2 to sw, which are true?",
+        "question_id": 9,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "A ClassCastException might be thrown"
+          },
+          {
+            "answer_id": 3,
+            "content": "A StackOverflowError might be thrown"
+          },
+          {
+            "answer_id": 4,
+            "content": "A NullPointerException might be thrown"
+          },
+          {
+            "answer_id": 5,
+            "content": "An IllegalStateException might be thrown"
+          },
+          {
+            "answer_id": 6,
+            "content": "The program might hang without ever completing"
+          },
+          {
+            "answer_id": 7,
+            "content": "The program will always complete without exception"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Circles {\n 4.   public static void main(String[] args) {\n 5.     int[] ia = {1,3,5,7,9};               \n 6.     for(int x : ia) {                     \n 7.       for(int j = 0; j < 3; j++) {        \n 8.         if(x > 4 && x < 8) continue;      \n 9.         System.out.print(\" \" + x);        \n10.         if(j == 1) break;                 \n11.         continue;                         \n12.       }                                   \n13.       continue;                           \n14.     }                                     \n15.   }                                       \n16. }\n```\nWhat is the result?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "1 3 9"
+          },
+          {
+            "answer_id": 2,
+            "content": "5 5 7 7"
+          },
+          {
+            "answer_id": 3,
+            "content": "1 3 3 9 9"
+          },
+          {
+            "answer_id": 4,
+            "content": "1 1 3 3 9 9"
+          },
+          {
+            "answer_id": 5,
+            "content": "1 1 1 3 3 3 9 9 9"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class OverAndOver {\n 4.   static String s = \"\";\n 5.   public static void main(String[] args) {\n 6.     try {\n 7.       s += \"1\";\n 8.       throw new Exception();\n 9.     } catch (Exception e) { s += \"2\";\n10.     } finally { s += \"3\"; doStuff(); s += \"4\";\n11.     }\n12.     System.out.println(s);\n13.   }\n14.   static void doStuff() { int x = 0; int y = 7/x; }\n15. }\n```        \nWhat is the result?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "12"
+          },
+          {
+            "answer_id": 2,
+            "content": "13"
+          },
+          {
+            "answer_id": 3,
+            "content": "123"
+          },
+          {
+            "answer_id": 4,
+            "content": "1234"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "123 followed by an exception"
+          },
+          {
+            "answer_id": 7,
+            "content": "1234 followed by an exception"
+          },
+          {
+            "answer_id": 8,
+            "content": "An exception is thrown with no other output"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Wind {\n 4.   public static void main(String[] args) {\n 5.     foreach:                              \n 6.     for(int j=0; j<5; j++) {              \n 7.       for(int k=0; k< 3; k++) {           \n 8.         System.out.print(\" \" + j);        \n 9.         if(j==3 && k==1) break foreach;   \n10.         if(j==0 || j==2) break;           \n11.       }                                     \n12.     }                                       \n13.   }\n14. }\n```\nWhat is the result?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "0 1 2 3"
+          },
+          {
+            "answer_id": 2,
+            "content": "1 1 1 3 3"
+          },
+          {
+            "answer_id": 3,
+            "content": "0 1 1 1 2 3 3"
+          },
+          {
+            "answer_id": 4,
+            "content": "1 1 1 3 3 4 4 4"
+          },
+          {
+            "answer_id": 5,
+            "content": "0 1 1 1 2 3 3 4 4 4"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. public class Gotcha {\n4.   public static void main(String[] args) {\n5.     // insert code here\n6.   \n7.   }\n8.   void go() {\n9.     go();\n10.  }\n11.}\n```\nAnd given the following three code fragments:    \n```\nI.   new Gotcha().go();\nII.  try { new Gotcha().go(); }\n     catch (Error e) { System.out.println(\"ouch\"); }\nIII. try { new Gotcha().go(); }\n     catch (Exception e) { System.out.println(\"ouch\"); }\n```\nWhen fragments I–III are added, independently, \nat line 5, which are true?\n(Choose all that apply.)",
+        "question_id": 13,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Some will not compile"
+          },
+          {
+            "answer_id": 2,
+            "content": "They will all compile"
+          },
+          {
+            "answer_id": 3,
+            "content": "All will complete normally"
+          },
+          {
+            "answer_id": 4,
+            "content": "None will complete normally"
+          },
+          {
+            "answer_id": 5,
+            "content": "Only one will complete normally"
+          },
+          {
+            "answer_id": 6,
+            "content": "Two of them will complete normally"
+          }
+        ]
+      },
+      {
+        "content": "Given the code snippet:\n```\nString s = \"bob\";\nString[] sa = {\"a\", \"bob\"};\nfinal String s2 = \"bob\";\nStringBuilder sb = new StringBuilder(\"bob\");\n// switch(sa[1]) {          // line 1\n// switch(\"b\" + \"ob\") {     // line 2\n// switch(sb.toString()) {  // line 3\n\n// case \"ann\":  ;           // line 4\n// case s:      ;           // line 5\n// case s2:     ;           // line 6\n}\n```\nAnd given that the numbered lines will all be \ntested by un-commenting one switch statement \nand one case statement together, which line(s) \nwill FAIL to compile? (Choose all that apply.)",
+        "question_id": 14,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "line 1"
+          },
+          {
+            "answer_id": 2,
+            "content": "line 2"
+          },
+          {
+            "answer_id": 3,
+            "content": "line 3"
+          },
+          {
+            "answer_id": 4,
+            "content": "line 4"
+          },
+          {
+            "answer_id": 5,
+            "content": "line 5"
+          },
+          {
+            "answer_id": 6,
+            "content": "line6"
+          },
+          {
+            "answer_id": 7,
+            "content": "All six lines of code will compile"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n1. public class Frisbee {\n2.   // insert code here        \n3.     int x = 0;               \n4.     System.out.println(7/x); \n5.   }\n6. }\n```\nAnd given the following four code fragments:\n```\nI.   public static void main(String[] args) {\nII.  public static void main(String[] args) throws Exception {\nIII. public static void main(String[] args) throws IOException {\nIV.  public static void main(String[] args) throws RuntimeException {\n```\nIf the four fragments are inserted independently \nat line 2, which are true? (Choose all that apply.)",
+        "question_id": 15,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "All four will compile and execute without exception"
+          },
+          {
+            "answer_id": 2,
+            "content": "All four will compile and execute and throw an exception"
+          },
+          {
+            "answer_id": 3,
+            "content": "Some, but not all, will compile and execute without exception\n"
+          },
+          {
+            "answer_id": 4,
+            "content": "Some, but not all, will compile and execute and throw an exception\n"
+          },
+          {
+            "answer_id": 5,
+            "content": "When considering fragments II, III, and IV, of those that will compile, adding a try/catch\nblock around line 4 will cause compilation to fail"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n2. class MyException extends Exception { }\n3. class Tire {\n4.   void doStuff() {  }\n5. }\n6. public class Retread extends Tire {\n7.   public static void main(String[] args) {\n8.     new Retread().doStuff();\n9.   }\n10.  // insert code here \n11.     System.out.println(7/0);\n12.   }\n13. }\n```\nAnd given the following four code fragments:\n```\nI.   void doStuff() {\nII.  void doStuff() throws MyException {\nIII. void doStuff() throws RuntimeException {\nIV.  void doStuff() throws ArithmeticException {  \n```\nWhen fragments I–IV are added, independently, \nat line 10, which are true? (Choose all that apply.)",
+        "question_id": 16,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "None will compile"
+          },
+          {
+            "answer_id": 2,
+            "content": "They will all compile"
+          },
+          {
+            "answer_id": 3,
+            "content": "Some, but not all, will compile"
+          },
+          {
+            "answer_id": 4,
+            "content": "All of those that compile will throw an exception at runtime"
+          },
+          {
+            "answer_id": 5,
+            "content": "None of those that compile will throw an exception at runtime"
+          },
+          {
+            "answer_id": 6,
+            "content": "Only some of those that compile will throw an exception at runtime"
+          }
+        ]
+      }
+    ]
   }
 ]

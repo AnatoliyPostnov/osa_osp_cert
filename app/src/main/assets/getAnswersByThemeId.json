@@ -253,5 +253,157 @@
         "explanation": "4 is correct. First, remember that instanceof can look up through multiple levels of an inheritance tree. Also remember that instanceof is commonly used before attempt- ing a downcast, so in this case, after line 15, it would be possible to say Speedboat s3 = (Speedboat)b2;. 1, 2, 3, 5, and 6 are incorrect based on the above. "
       }
     ]
+  },
+  {
+    "theme_id": 5,
+    "theme_content": "Working with string, Arrays and ArrayLists",
+    "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [1, 4],
+        "explanation": "1 and 4 are correct. The String operations are working on a new (lost) String not String s. The StringBuilder operations work from left to right. 2, 3, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The horses array's first four elements contain Strings, but the fifth is null, so the toUpperCase() invocation for the fifth element throws a NullPointerException. 1, 2, 3, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [5],
+        "explanation": "5 is correct. The Unicode declaration must be enclosed in single quotes: '\\u004e'. If this were done, the answer would be A, but knowing that equality isn't on the OCA exam. 1, 2, 3, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [3],
+        "explanation": "3 is correct. A ClassCastException is thrown at line 7 because o1 refers to an int[][], not an int[]. If line 7 were removed, the output would be 4. 1, 2, 4, 5, 6, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [2],
+        "explanation": "2 is correct. ArrayList elements are automatically inserted in the order of entry; they are not automatically sorted. ArrayLists use zero-based indexes and the last add() inserts a new element and shifts the remaining elements back. 1, 3, 4, 5, 6, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [3, 6],
+        "explanation": "3 and 6 are correct. da refers to an object of type \"Dozens array\" and each Dozens object that is created comes with its own \"int array\" object. When line 14 is reached, only the second Dozens object (and its \"int array\" object) are not reachable. 1, 2, 4, 5, and 7 are incorrect based on the above. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [3],
+        "explanation": "3 is correct. A two-dimensional array is an \"array of arrays.\" The length of ba is 2 because it contains two, one-dimensional arrays. Array indexes are zero-based, so ba[1] refers to ba's second array. 1, 2, 4, 5, 6, and 7 are incorrect based on the above. "
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [4, 6],
+        "explanation": "4 and 6 are correct. Although String objects are immutable, references to Strings are mutable. The code s1 += \"d\"; creates a new String object. StringBuilder objects are mutable, so the append() is changing the single StringBuilder object to which both StringBuilder references refer. 1, 2, 3, 5, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [2],
+        "explanation": "2 is correct. StringBuilders are mutable, so all of the append() invocations are acting upon the same StringBuilder object over and over. Strings, however, are immutable, so every String concatenation operation results in a new String object. Also, the string \" \" is created once and reused in every loop iteration. 1, 3, 4, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [1],
+        "explanation": "1 is correct. Although main()'s b1 is a different reference variable than go()'s b1, they refer to the same Box object. 2, 3, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The substring() invocation uses a zero-based index and the second argument is exclusive, so the character at index 8 is NOT included. The toUpperCase() invocation makes a new String object that is instantly lost. The toUpperCase() invocation does NOT affect the String referred to by s. 1, 2, 3, 5, 6, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [6],
+        "explanation": "6 is correct. When encapsulating a mutable object like an ArrayList, your getter must return a reference to a copy of the object, not just the reference to the original object. 1, 2, 3, 4, 5, and 7 are incorrect based on the above."
+      }
+    ]
+  },
+  {
+    "theme_id": 6,
+    "theme_content": "Flow Control and Exceptions",
+    "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [1],
+        "explanation": "1 is correct. As of Java 7 the code is legal, but the substring() method's second argument is exclusive. If the invocation had been substring(1,4), the output would have been –rg. Note: We hope you won't have too many exam questions that focus on API trivia like this one. If you knew the switch was legal, give yourself \"almost full credit.\" 2, 3, 4, and 5 are incorrect based on the above."
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [2],
+        "explanation": "2 is correct. Once s3() throws the exception to s2(), s2() throws it to s1(), and no more of s2()'s code will be executed. 1, 3, 4, 5, 6, 7, and 8 are incorrect based on the above."
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [3, 4],
+        "explanation": "3 and 4 are correct. Integer.parseInt can throw a NumberFormatException, and IllegalArgumentException is its superclass (that is, a broader exception). 1, 2, 5, and 6 are not in NumberFormatException's class hierarchy."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [5],
+        "explanation": "5 is correct. As of Java 7 the syntax is legal. The sa[] array receives only three arguments from the command line, so on the last iteration through sa[], a NullPointerException is thrown. 1, 2, 3, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [1, 4, 6],
+        "explanation": "1, 4, and 6 are correct. 1 is an example of the enhanced for loop. 4 and 6 are examples of the basic for loop. 2, 3, and 5 are incorrect. 2 is incorrect because its operands are swapped. 3 is incorrect because the enhanced for must declare its first operand. 5 is incorrect syntax to declare two variables in a for statement."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [5],
+        "explanation": "5 is correct. There is no problem nesting try/catch blocks. As is normal, when an exception is thrown, the code in the catch block runs, and then the code in the finally block runs. 1, 2, 3, 4, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [3],
+        "explanation": "3 is correct. An overriding method cannot throw a broader exception than the method it's overriding. Class CC4's method is an overload, not an override. 1, 2, 4, and 5 are incorrect based on the above."
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [4],
+        "explanation": "4 is correct. Did you catch the static initializer block? Remember that switches work on \"fall-through\" logic, and that fall-through logic also applies to the default case, which is used when no other case matches. 1, 2, 3, 5, 6, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [4, 5],
+        "explanation": "4 and 5 are correct. Because i was not initialized, case 1 will throw a NullPointerException. Case 0 will initiate an endless loop, not a stack overflow. Case 2's downcast will not cause an exception. 1, 2, 3, 5, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The basic rule for unlabeled continue statements is that the current iteration stops early and execution jumps to the next iteration. The last two continue statements are redundant! 1, 2, 3, 5, and 6 are incorrect based on the above."
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [8],
+        "explanation": "8 is correct. It's true that the value of String s is 123 at the time that the divide-by-zero exception is thrown, but finally() is not guaranteed to complete, and in this case finally() never completes, so the System.out.println (S.O.P) never executes. 1, 2, 3, 4, 5, 6, and 7 are incorrect based on the above. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [3],
+        "explanation": "3 is correct. A break breaks out of the current innermost loop and carries on. A labeled break breaks out of and terminates the labeled loops. 1, 2, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 13,
+        "correct_answers": [2, 5],
+        "explanation": "2 and 5 are correct. First off, go() is a badly designed recursive method, guaranteed to cause a StackOverflowError. Since Exception is not a superclass of Error, catching an Exception will not help handle an Error, so fragment III will not complete normally. Only fragment II will catch the Error. 1, 3, 4, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 14,
+        "correct_answers": [5],
+        "explanation": "5 is correct. A switch's cases must be compile-time constants or enum values. 1, 2, 3, 4, 6, and 7 are incorrect based on the above. "
+      },
+      {
+        "question_id": 15,
+        "correct_answers": [4],
+        "explanation": "4 is correct. This is kind of sneaky, but remember that we're trying to toughen you up for the real exam. If you're going to throw an IOException, you have to import the java.io package or declare the exception with a fully qualified name. 1, 2, 3, and 5 are incorrect. 1, 2, and 3 are incorrect based on the above. 5 is incorrect because it's okay both to handle and declare an exception. "
+      },
+      {
+        "question_id": 16,
+        "correct_answers": [3, 4],
+        "explanation": "3 and 4 are correct. An overriding method cannot throw checked exceptions that are broader than those thrown by the overridden method. However, an overriding method can throw RuntimeExceptions not thrown by the overridden method. 1, 2, 5, and 6 are incorrect based on the above. "
+      }
+    ]
   }
 ]

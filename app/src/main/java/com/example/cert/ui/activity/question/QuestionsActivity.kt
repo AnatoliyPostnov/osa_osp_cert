@@ -480,26 +480,28 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 
 val markdownContent5 = """ 
-    Given:
-    ```
-     3. interface Vessel { }
-     4. interface Toy { }
-     5. class Boat implements Vessel { }
-     6. class Speedboat extends Boat implements Toy { }
-     7. public class Tree {
-     8.   public static void main(String[] args) {
-     9.     String s = "0";
-    10.     Boat b = new Boat();
-    11.     Boat b2 = new Speedboat();
-    12.     Speedboat s2 = new Speedboat();
-    13.     if((b instanceof Vessel) && (b2 instanceof Toy))  s += "1";
-    14.     if((s2 instanceof Vessel) && (s2 instanceof Toy)) s += "2";
-    15.     System.out.println(s);
-    16.   }
-    17. }
-    ```
-    What is the result?
-
+Given:
+```
+class Plane {
+  static String s = "-";
+  public static void main(String[] args) {
+    new Plane().s1();
+    System.out.println(s);
+  }
+  void s1() {
+    try { s2(); }
+    catch (Exception e) { s += "c"; }
+  }
+  void s2() throws Exception  {
+    s3();  s += "2";
+    s3();  s += "2b";
+  }
+  void s3() throws Exception {
+    throw new Exception();
+  } 
+}
+```       
+What is the result?
 """.trimIndent()
 
 
