@@ -201,5 +201,57 @@
         "explanation": "5 is correct. In go1() the local variable x is not initialized. 1, 2, 3, 4, and 6 are incorrect based on the above."
       }
     ]
+  },
+  {
+    "theme_id": 4,
+    "theme_content": "Operations",
+    "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [4],
+        "explanation": "4 is correct. This is a ternary nested in a ternary. Both of the ternary expressions are false. 1, 2, 3, 5, and 6 are incorrect based on the above."
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [3],
+        "explanation": "3 is correct. The == operator tests for reference variable equality, not object equality. 1, 2, 4, 5, and 6 are incorrect based on the above."
+      },
+
+      {
+        "question_id": 3,
+        "correct_answers": [5],
+        "explanation": "5 is correct. Because the short circuit (||) is not used, both operands are evaluated. Since args[1] is past the args array bounds, an ArrayIndexOutOfBoundsException is thrown. 1, 2, 3, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [7],
+        "explanation": "7 is correct. Concatenation runs from left to right, and if either operand is a String, the operands are concatenated. If both operands are numbers, they are added together. 1, 2, 3, 4, 5, 6, 8, and 9 are incorrect based on the above."
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [1],
+        "explanation": "1 is correct. When dividing ints, remainders are always rounded down. 2, 3, 4, and 5 are incorrect based on the above."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [1],
+        "explanation": "1 is correct. All of this syntax is correct. The for-each iterates through the enum using the values() method to return an array. An enum can be compared using either equals() or ==. An enum can be used in a ternary operator's boolean test. 2, 3, 4, 5, 6, and 7 are incorrect based on the above."
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [3],
+        "explanation": "3 is correct. Line 9 uses the modulus operator, which returns the remainder of the divi- sion, which in this case is 1. Also, line 9 sets b2 to false, and it doesn't test b2's value. Line 10 sets b2 to true, and it doesn’t test its value; however, the short-circuit operator keeps the expression b2 = true from being executed. 1, 2, 4, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [3, 6],
+        "explanation": "3 and 6 are correct. At line 7 the || keeps count from being incremented, but the | allows mask to be incremented. At line 8 the ^ returns true only if exactly one operand is true. At line 9 mask is 2 and the && keeps count from being incremented. 1, 2, 4, 5, and 7 are incorrect based on the above. "
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [4],
+        "explanation": "4 is correct. First, remember that instanceof can look up through multiple levels of an inheritance tree. Also remember that instanceof is commonly used before attempt- ing a downcast, so in this case, after line 15, it would be possible to say Speedboat s3 = (Speedboat)b2;. 1, 2, 3, 5, and 6 are incorrect based on the above. "
+      }
+    ]
   }
 ]

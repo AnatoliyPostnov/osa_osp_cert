@@ -482,22 +482,24 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 val markdownContent5 = """ 
     Given:
     ```
-    3. public class Dark {
-    4.   int x = 3;
-    5.   public static void main(String[] args) {
-    6.     new Dark().go1();
-    7.   }
-    8.   void go1() {
-    9.     int x;
-    10.    go2(++x); 
-    11.  }
-    12.  void go2(int y) {
-    13.    int x = ++y;
-    14.    System.out.println(x);
-    15.  }
-    16.}
+     3. interface Vessel { }
+     4. interface Toy { }
+     5. class Boat implements Vessel { }
+     6. class Speedboat extends Boat implements Toy { }
+     7. public class Tree {
+     8.   public static void main(String[] args) {
+     9.     String s = "0";
+    10.     Boat b = new Boat();
+    11.     Boat b2 = new Speedboat();
+    12.     Speedboat s2 = new Speedboat();
+    13.     if((b instanceof Vessel) && (b2 instanceof Toy))  s += "1";
+    14.     if((s2 instanceof Vessel) && (s2 instanceof Toy)) s += "2";
+    15.     System.out.println(s);
+    16.   }
+    17. }
     ```
     What is the result?
+
 """.trimIndent()
 
 

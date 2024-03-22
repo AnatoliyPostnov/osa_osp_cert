@@ -1131,5 +1131,308 @@
         ]
       }
     ]
+  },
+  {
+    "theme_id": 4,
+    "theme_content": "Operations",
+    "questions": [
+      {
+        "content": "    Given:\n    ```\n    class Hexy {\n      public static void main(String[] args) {\n        int i = 42;\n        String s = (i<40)?\"life\":(i>50)?\"universe\":\"everything\";\n        System.out.println(s);\n      } \n    }\n    ```    \n    What is the result?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "null"
+          },
+          {
+            "answer_id": 2,
+            "content": "life"
+          },
+          {
+            "answer_id": 3,
+            "content": "universe"
+          },
+          {
+            "answer_id": 4,
+            "content": "everything"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Dog {\n      String name;\n      Dog(String s) { name = s; }\n      public static void main(String[] args) {\n         Dog d1 = new Dog(\"Boi\");\n         Dog d2 = new Dog(\"Tyri\");\n         System.out.print((d1 == d2) + \" \");\n         Dog d3 = new Dog(\"Boi\");\n         d2 = d1;\n         System.out.print((d1 == d2) + \" \");\n         System.out.print((d1 == d3) + \" \");\n      } \n    }\n    ```\n    What is the result?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "true true true"
+          },
+          {
+            "answer_id": 2,
+            "content": "true true false"
+          },
+          {
+            "answer_id": 3,
+            "content": "false true false"
+          },
+          {
+            "answer_id": 4,
+            "content": "false true true"
+          },
+          {
+            "answer_id": 5,
+            "content": "false false false"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception will be thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n    ```\n    class Fork {\n      public static void main(String[] args) {\n        if(args.length == 1 | args[1].equals(\"test\")) {\n          System.out.println(\"test case\");\n        } else {\n          System.out.println(\"production \" + args[0]);\n        } \n      }\n    }\n    ```    \n    And the command-line invocation:\n    ```\n    java Fork live2\n    ```\n    What is the result?",
+        "question_id": 3,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "test case"
+          },
+          {
+            "answer_id": 2,
+            "content": "production live2"
+          },
+          {
+            "answer_id": 3,
+            "content": "test case live2"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    class Feline {\n      public static void main(String[] args) {\n        long x = 42L;\n        long y = 44L;\n        System.out.print(\" \" + 7 + 2 + \" \");\n        System.out.print(foo() + x + 5 + \" \");\n        System.out.println(x + y + foo());\n      }\n      static String foo() { return \"foo\"; }\n    }\n    ```\n    What is the result?",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "9 foo47 86foo"
+          },
+          {
+            "answer_id": 2,
+            "content": "9 foo47 4244foo"
+          },
+          {
+            "answer_id": 3,
+            "content": "9 foo425 86foo"
+          },
+          {
+            "answer_id": 4,
+            "content": "9 foo425 4244foo"
+          },
+          {
+            "answer_id": 5,
+            "content": "72 foo47 86foo"
+          },
+          {
+            "answer_id": 6,
+            "content": "72 foo47 4244foo"
+          },
+          {
+            "answer_id": 7,
+            "content": "72 foo425 86foo"
+          },
+          {
+            "answer_id": 8,
+            "content": "72 foo425 4244foo"
+          },
+          {
+            "answer_id": 9,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    public class Cowboys {\n      public static void main(String[] args) {\n        int x = 12;\n        int a = 5;\n        int b = 7;\n        System.out.println(x/a + \" \" + x/b);\n      } \n    }\n    ```\n    What is the result? (Choose all that apply.)",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2 1"
+          },
+          {
+            "answer_id": 2,
+            "content": "2 2"
+          },
+          {
+            "answer_id": 3,
+            "content": "3 1"
+          },
+          {
+            "answer_id": 4,
+            "content": "3 2"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n    3. public class McGee {\n    4.   public static void main(String[] args) {\n    5.     Days d1 = Days.TH;\n    6.     Days d2 = Days.M;\n    7.     for(Days d: Days.values()) {\n    8.       if(d.equals(Days.F)) break;\n    9.       d2 = d;\n    10.    }\n    11.    System.out.println((d1 == d2)?\"same old\" : \"newly new\");\n    12.  }\n    13.  enum Days {M, T, W, TH, F, SA, SU};\n    14.}\n    ```\n    What is the result?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "same old"
+          },
+          {
+            "answer_id": 2,
+            "content": "newly new"
+          },
+          {
+            "answer_id": 3,
+            "content": "Compilation fails due to multiple errors"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due only to an error on line 7"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due only to an error on line 8"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails due only to an error on line 11"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails due only to an error on line 13"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     4. public class SpecialOps {\n     5.   public static void main(String[] args) {\n     6.     String s = \"\";\n     7.     boolean b1 = true;\n     8.     boolean b2 = false;\n     9.     if((b2 = false) | (21%5) > 2) s += \"x\";\n    10.     if(b1 || (b2 == true))        s += \"y\";\n    11.     if(b2 == true)                s += \"z\";\n    12.     System.out.println(s);\n    13.   }\n    14. }\n    ```\n    Which are true? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "x will be included in the output"
+          },
+          {
+            "answer_id": 3,
+            "content": "y will be included in the output"
+          },
+          {
+            "answer_id": 4,
+            "content": "z will be included in the output"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     3. public class Spock {\n     4.   public static void main(String[] args) {                       \n     5.     int mask = 0;                                                  \n     6.     int count = 0;                                                \n     7.     if( ((5<7) || (++count < 10)) | mask++ < 10 )   mask = mask + 1;\n     8.     if( (6>8)^false)                                mask=mask+10;\n     9.     if( !(mask > 1) && ++count > 1)                 mask = mask + 100;\n    10.     System.out.println(mask + \" \" + count);             \n    11.   }\n    12. }\n    ```\n    Which two are true about the value of mask and the value of count at line 10? (Choose two.)",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "mask is 0"
+          },
+          {
+            "answer_id": 2,
+            "content": "mask is 1"
+          },
+          {
+            "answer_id": 3,
+            "content": "mask is 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "mask is 10"
+          },
+          {
+            "answer_id": 5,
+            "content": "mask is greater than 10"
+          },
+          {
+            "answer_id": 6,
+            "content": "count is 0"
+          },
+          {
+            "answer_id": 7,
+            "content": "count is greater than 0"
+          }
+        ]
+      },
+      {
+        "content": "    Given:\n    ```\n     3. interface Vessel { }\n     4. interface Toy { }\n     5. class Boat implements Vessel { }\n     6. class Speedboat extends Boat implements Toy { }\n     7. public class Tree {\n     8.   public static void main(String[] args) {\n     9.     String s = \"0\";\n    10.     Boat b = new Boat();\n    11.     Boat b2 = new Speedboat();\n    12.     Speedboat s2 = new Speedboat();\n    13.     if((b instanceof Vessel) && (b2 instanceof Toy))  s += \"1\";\n    14.     if((s2 instanceof Vessel) && (s2 instanceof Toy)) s += \"2\";\n    15.     System.out.println(s);\n    16.   }\n    17. }\n    ```\n    What is the result?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "0"
+          },
+          {
+            "answer_id": 2,
+            "content": "01"
+          },
+          {
+            "answer_id": 3,
+            "content": "02"
+          },
+          {
+            "answer_id": 4,
+            "content": "012"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "theme_id": 5,
+    "theme_content": "Working with string, Arrays and ArrayLists",
+    "questions": []
+  },
+  {
+    "theme_id": 6,
+    "theme_content": "Flow Control and Exceptions",
+    "questions": []
   }
 ]
