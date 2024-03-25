@@ -6,12 +6,12 @@ import com.example.cert.domain.model.ExamTestResultRequestDomainDto
 import com.example.cert.domain.model.ExamsDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.model.ThemesDomainDto
-import com.example.cert.domain.repository.OsaMainActivityRepository
+import com.example.cert.domain.repository.QuestionActivityRepository
 import javax.inject.Inject
 import kotlin.RuntimeException
 
 class OsaMainActivityUseCases @Inject constructor(
-    private val osaMainActivityRepository: OsaMainActivityRepository
+    private val osaMainActivityRepository: QuestionActivityRepository
 ) {
 
     fun getAllExams(context: Context): List<ExamsDomainDto> {
@@ -19,14 +19,16 @@ class OsaMainActivityUseCases @Inject constructor(
     }
 
     fun getAllThemesByExamId(context: Context, examId: Int?): ThemesDomainDto {
-        if (examId == null) { return ThemesDomainDto(themes = listOf()) }
+        if (examId == null) { return ThemesDomainDto(themes = listOf(), examId = null) }
         return osaMainActivityRepository.getAllThemesByExamId(context, examId)
-            ?: ThemesDomainDto(themes = listOf())
+            ?: ThemesDomainDto(themes = listOf(), examId = null)
     }
 
-    fun getQuestionsByThemeId(context: Context, themeId: Int?): QuestionsForTestingDomainDto {
-        return themeId?.let { osaMainActivityRepository.getQuestionsByThemeId(context, themeId) }
-            ?: throw RuntimeException("themeId can`t be null")
+    fun getQuestionsByThemeIdAndExamId(context: Context, themeId: Int?, examId: Int?): QuestionsForTestingDomainDto {
+        if (themeId == null || examId == null) {
+            throw RuntimeException("themeId or examId can`t be null")
+        }
+        return osaMainActivityRepository.getQuestionsByThemeIdAndExamId(context, themeId, examId)
     }
 
     fun getOsaTestResult(context: Context, request: ExamTestResultRequestDomainDto?): ExamTestResultDomainDto {

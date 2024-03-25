@@ -76,8 +76,9 @@ class QuestionsActivity : ComponentActivity() {
         setContent {
             val activityContext = this
             val themeId = activityContext.intent.extras?.getLong("theme_id")?.toInt()
+            val examId = activityContext.intent.extras?.getLong("exam_id")?.toInt()
 
-            viewModel.findQuestionsByThemeId(activityContext, themeId)
+            viewModel.findQuestionsByThemeIdAndExamId(activityContext, themeId, examId)
 
             val state by viewModel.uiState.collectAsState()
 

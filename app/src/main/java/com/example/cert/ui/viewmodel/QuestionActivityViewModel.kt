@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cert.R
 import com.example.cert.domain.model.ExamTestResultDomainDto
 import com.example.cert.domain.model.ExamTestResultRequestDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
@@ -36,9 +35,9 @@ class QuestionActivityViewModel (
         }
     }
 
-    fun findQuestionsByThemeId(context: Context, themeId: Int?) {
+    fun findQuestionsByThemeIdAndExamId(context: Context, themeId: Int?, examId: Int?) {
         val questions = _testActivityViewModelState.value.questions
-            ?: osaMainActivityUseCases.getQuestionsByThemeId(context, themeId)
+            ?: osaMainActivityUseCases.getQuestionsByThemeIdAndExamId(context, themeId, examId)
         val answerSelected = _testActivityViewModelState.value.answerSelected
         if (answerSelected.isEmpty()) {
             questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }

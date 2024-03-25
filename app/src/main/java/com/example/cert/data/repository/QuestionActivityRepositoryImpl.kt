@@ -11,12 +11,12 @@ import com.example.cert.domain.model.ExamsDomainDto
 import com.example.cert.domain.model.QuestionResult
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.model.ThemesDomainDto
-import com.example.cert.domain.repository.OsaMainActivityRepository
+import com.example.cert.domain.repository.QuestionActivityRepository
 import javax.inject.Inject
 
-class OsaMainActivityRepositoryImpl @Inject constructor(
+class QuestionActivityRepositoryImpl @Inject constructor(
     private val backendCommunicationService: BackendCommunicationService
-): OsaMainActivityRepository {
+): QuestionActivityRepository {
     override fun getAllExams(context: Context): List<ExamsDomainDto> {
         return backendCommunicationService
             .getAllExams(context)
@@ -29,14 +29,14 @@ class OsaMainActivityRepositoryImpl @Inject constructor(
             .let { toThemesDomainDto(it) }
     }
 
-    override fun getQuestionsByThemeId(
+    override fun getQuestionsByThemeIdAndExamId(
         context: Context,
-        themeId: Int
-    ): QuestionsForTestingDomainDto? {
+        themeId: Int,
+        examId: Int
+    ): QuestionsForTestingDomainDto {
         return backendCommunicationService
             .getQuestionsByThemeId(context, themeId)
-            .let { toQuestionsForTestingDomainDto(it) }
-    }
+            .let { toQuestionsForTestingDomainDto(it) }    }
 
     override fun getOsaTestResult(
         context: Context,

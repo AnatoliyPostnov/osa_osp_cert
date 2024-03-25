@@ -37,7 +37,7 @@ import com.example.cert.ui.viewmodel.Factory
 import com.example.cert.ui.viewmodel.ThemesActivityViewModel
 import javax.inject.Inject
 
-class OsaMainActivity : ComponentActivity() {
+class ThemesMainActivity : ComponentActivity() {
 
     @Inject
     lateinit var factory: Factory
@@ -52,7 +52,8 @@ class OsaMainActivity : ComponentActivity() {
         setContent {
             val uiState by viewModel.uiState.collectAsState()
             val activityContext = this
-            viewModel.getThemesByExamId(activityContext.intent.extras?.getInt("exam_id"))
+            val examId = activityContext.intent.extras?.getInt("exam_id")
+            viewModel.getThemesByExamId(examId)
             val themesState = uiState.themes
             Column(
                 modifier = Modifier.fillMaxSize()
@@ -76,6 +77,7 @@ class OsaMainActivity : ComponentActivity() {
                                     {
                                         val intent = Intent(activityContext, QuestionsActivity::class.java)
                                         intent.putExtra("theme_id", it.id)
+                                        intent.putExtra("exam_id", examId)
                                         ContextCompat.startActivity(
                                             activityContext,
                                             intent,

@@ -24,7 +24,9 @@ class BackendCommunicationServiceImpl @Inject constructor(
 
     override fun getAllThemesByExamId(context: Context, examId: Int): ThemesDto {
         return context.assets.open("getOsaThemes.json").use {
-            val json = objectMapper.readTree(it)
+            val json = (objectMapper.readTree(it) as? ArrayNode)
+                ?.find { item ->  (item as? ObjectNode)?.get("exam_id")?.asInt() == examId }
+                ?: throw RuntimeException("Exam id $examId wasn't found in data")
             objectMapper.treeToValue<ThemesDto>(json)
         }
     }

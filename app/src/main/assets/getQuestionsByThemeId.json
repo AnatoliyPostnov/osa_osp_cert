@@ -1,5 +1,6 @@
 [
   {
+    "exam_id": 1,
     "theme_id": 1,
     "theme_content": "Declarations and Access Control",
     "questions": [
@@ -335,6 +336,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 2,
     "theme_content": "Object Orientation",
     "questions": [
@@ -728,6 +730,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 3,
     "theme_content": "Assignments",
     "questions": [
@@ -1133,6 +1136,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 4,
     "theme_content": "Operations",
     "questions": [
@@ -1426,6 +1430,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 5,
     "theme_content": "String, Arrays and ArrayLists",
     "questions": [
@@ -1773,11 +1778,11 @@
             "content": "ROCKS"
           },
           {
-            "answer_id": 5,
+            "answer_id": 6,
             "content": "ROCK"
           },
           {
-            "answer_id": 5,
+            "answer_id": 7,
             "content": "Compilation fails"
           }
         ]
@@ -1820,6 +1825,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 6,
     "theme_content": "Flow Control and Exceptions",
     "questions": [

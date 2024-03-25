@@ -1,28 +1,72 @@
-{
-  "themes": [
-    {
-      "id": 1,
-      "content": "Declarations and Access Control"
-    },
-    {
-      "id": 2,
-      "content": "Object Orientation"
-    },
-    {
-      "id": 3,
-      "content": "Assignments"
-    },
-    {
-      "id": 4,
-      "content": "Operations"
-    },
-    {
-      "id": 5,
-      "content": "Working with string, Arrays and ArrayLists"
-    },
-    {
-      "id": 6,
-      "content": "Flow Control and Exceptions"
-    }
-  ]
-}
+[
+  {
+    "exam_id": 1,
+    "themes": [
+      {
+        "id": 1,
+        "content": "Declarations and Access Control"
+      },
+      {
+        "id": 2,
+        "content": "Object Orientation"
+      },
+      {
+        "id": 3,
+        "content": "Assignments"
+      },
+      {
+        "id": 4,
+        "content": "Operations"
+      },
+      {
+        "id": 5,
+        "content": "Working with string, Arrays and ArrayLists"
+      },
+      {
+        "id": 6,
+        "content": "Flow Control and Exceptions"
+      }
+    ]
+  },
+  {
+    "exam_id": 2,
+    "themes": [
+      {
+        "id": 7,
+        "content": "Assertions and Java 7 Exceptions"
+      },
+      {
+        "id": 8,
+        "content": "String Processing, Data Formatting, Resource Bundles"
+      },
+      {
+        "id": 9,
+        "content": "I/O and NIO"
+      },
+      {
+        "id": 10,
+        "content": "Advanced OO and Design Patterns"
+      },
+      {
+        "id": 11,
+        "content": "Generics and Collections"
+      },
+      {
+        "id": 12,
+        "content": "Inner Classes"
+      },
+      {
+        "id": 13,
+        "content": "Threads"
+      },
+      {
+        "id": 14,
+        "content": "Concurrency"
+      },
+      {
+        "id": 15,
+        "content": "JDBC"
+      }
+    ]
+  }
+]

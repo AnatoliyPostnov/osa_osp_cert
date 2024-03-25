@@ -1,6 +1,7 @@
 package com.example.cert.domain.model
 
 data class ThemesDomainDto(
+    val examId: Int?,
     val themes: List<ThemeDomainDto>
 )
 

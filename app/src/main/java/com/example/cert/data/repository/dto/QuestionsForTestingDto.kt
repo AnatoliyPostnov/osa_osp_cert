@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class QuestionsForTestingDto(
     @JsonProperty("theme_id")
     val themeId: Int,
+    @JsonProperty("exam_id")
+    val examId: Int,
     @JsonProperty("theme_content")
     val themeContent: String,
     val questions: List<QuestionDto>

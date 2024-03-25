@@ -23,6 +23,7 @@ fun toExamDomainDto(examsDto: ExamsDto?): ExamsDomainDto? {
 fun toThemesDomainDto(themesDto: ThemesDto?): ThemesDomainDto? {
     return themesDto?.let {
         ThemesDomainDto(
+            examId = themesDto.examId,
             themes = themesDto
                 .themes
                 .map {
@@ -35,10 +36,11 @@ fun toThemesDomainDto(themesDto: ThemesDto?): ThemesDomainDto? {
     }
 }
 
-fun toQuestionsForTestingDomainDto(questionsForTestingDto: QuestionsForTestingDto?): QuestionsForTestingDomainDto? {
-    return questionsForTestingDto?.let {
+fun toQuestionsForTestingDomainDto(questionsForTestingDto: QuestionsForTestingDto): QuestionsForTestingDomainDto {
+    return questionsForTestingDto.let {
         QuestionsForTestingDomainDto(
             themeId = it.themeId,
+            examId = it.examId,
             themeContent = it.themeContent,
             questions = it.questions.map { question ->
                 QuestionDomainDto(

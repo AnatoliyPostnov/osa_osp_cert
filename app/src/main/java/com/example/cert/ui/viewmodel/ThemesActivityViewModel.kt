@@ -19,6 +19,7 @@ class ThemesActivityViewModel (
     fun getThemesByExamId(examId: Int?) {
         val themes = osaMainActivityUseCases.getAllThemesByExamId(context = applicationContext, examId = examId)
         _mainActivityViewModelState.value.themes = themes.themes
+        _mainActivityViewModelState.value.examId = themes.examId
     }
 
     class Factory (

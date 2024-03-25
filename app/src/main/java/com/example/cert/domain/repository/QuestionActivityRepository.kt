@@ -7,9 +7,9 @@ import com.example.cert.domain.model.ExamsDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
 import com.example.cert.domain.model.ThemesDomainDto
 
-interface OsaMainActivityRepository {
+interface QuestionActivityRepository {
     fun getAllExams(context: Context): List<ExamsDomainDto>
     fun getAllThemesByExamId(context: Context, examId: Int): ThemesDomainDto?
-    fun getQuestionsByThemeId(context: Context, themeId: Int): QuestionsForTestingDomainDto?
+    fun getQuestionsByThemeIdAndExamId(context: Context, themeId: Int, examId: Int): QuestionsForTestingDomainDto
     fun getOsaTestResult(context: Context, request: ExamTestResultRequestDomainDto): ExamTestResultDomainDto?
 }
