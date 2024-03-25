@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cert.domain.model.ExamTestResultDomainDto
 import com.example.cert.domain.model.ExamTestResultRequestDomainDto
 import com.example.cert.domain.model.QuestionsForTestingDomainDto
-import com.example.cert.domain.usecase.OsaMainActivityUseCases
+import com.example.cert.domain.usecase.QuestionActivityUseCases
 import com.example.cert.ui.model.ResultItem
 import com.example.cert.ui.model.TestActivityState
 import com.example.cert.ui.model.TestResultState
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class QuestionActivityViewModel (
-    private val osaMainActivityUseCases: OsaMainActivityUseCases,
+    private val questionActivityUseCases: QuestionActivityUseCases,
     private val applicationContext: Context
 ): ViewModel() {
     private val _testActivityViewModelState = MutableStateFlow(TestActivityState())
@@ -26,18 +26,18 @@ class QuestionActivityViewModel (
 
     class Factory (
         private val context: Context,
-        private val osaMainActivityUseCases: OsaMainActivityUseCases,
+        private val questionActivityUseCases: QuestionActivityUseCases,
     ): ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == QuestionActivityViewModel::class.java)
-            return QuestionActivityViewModel(osaMainActivityUseCases, context) as T
+            return QuestionActivityViewModel(questionActivityUseCases, context) as T
         }
     }
 
     fun findQuestionsByThemeIdAndExamId(context: Context, themeId: Int?, examId: Int?) {
         val questions = _testActivityViewModelState.value.questions
-            ?: osaMainActivityUseCases.getQuestionsByThemeIdAndExamId(context, themeId, examId)
+            ?: questionActivityUseCases.getQuestionsByThemeIdAndExamId(context, themeId, examId)
         val answerSelected = _testActivityViewModelState.value.answerSelected
         if (answerSelected.isEmpty()) {
             questions.questions.forEach { question -> question.answers.forEach { answerSelected["${question.questionId} ${it.answerId}"] = false } }
@@ -193,7 +193,7 @@ class QuestionActivityViewModel (
         _testActivityViewModelState.value.questions?.questions?.find { it.questionId == questionId }
 
     fun sendAnswersForResult() {
-        val examTestResultDomainDto = osaMainActivityUseCases.getOsaTestResult(applicationContext, _testActivityViewModelState.value.examTestResultRequestDomainDto)
+        val examTestResultDomainDto = questionActivityUseCases.getQuestionsTestResult(applicationContext, _testActivityViewModelState.value.examTestResultRequestDomainDto)
         _testActivityViewModelState.value.testResult.value = TestResultState(
             rightAnswers = examTestResultDomainDto.rightAnswers,
             wrongAnswers = examTestResultDomainDto.wrongAnswers,

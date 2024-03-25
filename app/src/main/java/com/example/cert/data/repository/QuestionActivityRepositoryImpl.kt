@@ -38,7 +38,7 @@ class QuestionActivityRepositoryImpl @Inject constructor(
             .getQuestionsByThemeId(context, themeId)
             .let { toQuestionsForTestingDomainDto(it) }    }
 
-    override fun getOsaTestResult(
+    override fun getQuestionsTestResult(
         context: Context,
         request: ExamTestResultRequestDomainDto
     ): ExamTestResultDomainDto {

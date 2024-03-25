@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.cert.configuration.JacksonConfig.Companion.objectMapper
-import com.example.cert.domain.usecase.OsaMainActivityUseCases
+import com.example.cert.domain.usecase.QuestionActivityUseCases
 import com.example.cert.ui.model.ResultItem
 import com.example.cert.ui.model.TestActivityState
 import com.fasterxml.jackson.databind.node.ArrayNode
@@ -16,19 +16,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class QuestionsResultViewModel(
-    private val osaMainActivityUseCases: OsaMainActivityUseCases,
+    private val questionActivityUseCases: QuestionActivityUseCases,
     private val applicationContext: Context
 ): ViewModel() {
     private val _testActivityViewModelState = MutableStateFlow(TestActivityState())
     val uiState: StateFlow<TestActivityState> = _testActivityViewModelState.asStateFlow()
     class Factory (
         private val context: Context,
-        private val osaMainActivityUseCases: OsaMainActivityUseCases,
+        private val questionActivityUseCases: QuestionActivityUseCases,
     ): ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == QuestionsResultViewModel::class.java)
-            return QuestionsResultViewModel(osaMainActivityUseCases, context) as T
+            return QuestionsResultViewModel(questionActivityUseCases, context) as T
         }
     }
     fun setTestResult(testResult: String?) {

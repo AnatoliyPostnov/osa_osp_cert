@@ -35,7 +35,7 @@ abstract class BindsModule {
     ): BackendCommunicationService
 
     @Binds
-    abstract fun bindOsaMainActivityRepositoryImpl(
-        osaMainActivityRepositoryImpl: QuestionActivityRepositoryImpl
+    abstract fun bindQuestionActivityRepositoryImpl(
+        questionActivityRepositoryImpl: QuestionActivityRepositoryImpl
     ): QuestionActivityRepository
 }
