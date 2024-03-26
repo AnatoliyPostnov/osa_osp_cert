@@ -483,22 +483,20 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 val markdownContent5 = """ 
 Given:
 ```
-public class Concert {
-  static class PowerOutage extends Exception {}
-  static class Thunderstorm extends Exception {}
-  public static void main(String[] args) {
-    try {
-    new Concert().listen();
-    System.out.println("a");
-    } catch(PowerOutage | Thunderstorm e) {
-      e = new PowerOutage();
-      System.out.println("b");
-    } finally { System.out.println("c"); }
-  }
-  public void listen() throws PowerOutage, Thunderstorm{ }
-}
-```
-What will this code print?       
+3. import java.util.*;
+4. public class Looking {
+5.   public static void main(String[] args) {
+6.     String input = "1 2 a 3 45 6";
+7.     Scanner sc = new Scanner(input);
+8.     int x = 0;
+9.     do {
+10.      x = sc.nextInt();
+11.      System.out.print(x + " ");  
+12.    } while (x!=0);
+13.  }
+14.}       
+```        
+What is the result?
 """.trimIndent()
 
 

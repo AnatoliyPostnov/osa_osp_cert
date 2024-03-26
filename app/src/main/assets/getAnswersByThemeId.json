@@ -486,63 +486,63 @@
     "questions": [
       {
         "question_id": 1,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [5],
+        "explanation": "5 is correct. The \\d is looking for digits. The * is a quantifier that looks for 0 to many occurrences of the pattern that precedes it. Because we specified *, the group()method returns empty strings until consecutive digits are found, so the only time group() returns a value is when it returns 34, when the matcher finds digits starting in position 2. The start() method returns the starting position of the previous match because, again, we said find 0 to many occurrences. 1, 2, 3, 4, 6, and 7 are incorrect based on the above. "
       },
       {
         "question_id": 2,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [1, 3, 4, 5],
+        "explanation": "1, 3, 4, and 5 are correct. The default Locale is irrelevant here since none of the choices use Italian. 1 is the default resource bundle. 3 and 4 use the language but not the country from the requested locale. 5 uses the exact match of the requested locale. 2 is incorrect because the language code of CA does not match en. And CA isn't a valid language code. 6 is incorrect because the language code \"fr\" does not match en. Even though the country code of CA does match, the language code is more important."
       },
       {
         "question_id": 3,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [2],
+        "explanation": "2 is correct. Remember that the boundary metacharacters (\\b and \\B), act as though the string being searched is bounded with invisible, non-word characters. Then remember that \\B reports on boundaries between word to word or non-word to non-word characters. 1, 3, 4, 5, 6, and 7 are incorrect based on the above. "
       },
       {
         "question_id": 4,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [2],
+        "explanation": "2 is correct. In the second case, the first token is empty. Remember that in the first case, the delimiter is a space, and in the second case, the delimiter is any numeric digit. 1, 3, 4, and 5 are incorrect based on the above. "
       },
       {
         "question_id": 5,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [4],
+        "explanation": "4 is correct. As is, the code finds resource bundle Train_en_US.properties, which uses Train_en.properties as a parent. Choice 4 finds resource bundle Train_en_UK.properties, which uses Train_en.properties as a parent. 1 is incorrect because both the parent and child have the same property. In this scenario, the more specific one (child) gets used. 2 is incorrect because the default locale only gets used if the requested resource bundle can't be found. 3 is incorrect because it finds the resource bundle Train_en.properties, which does not have any \"train\" key. 5 is incorrect because there is no \"ride\" key once we delete the parent. 6 is incorrect based on the above. "
       },
       {
         "question_id": 6,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [3],
+        "explanation": "3 is correct. The append()method appends to the end of the StringBuilder's current value, and if you append past the current capacity, the capacity is automatically increased. Note: Invoking insert() past the current capacity will cause an exception to be thrown. 1, 2, 4, 5, and 6 are incorrect based on the above. "
       },
       {
         "question_id": 7,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [3, 5],
+        "explanation": "3 and 5 are correct. When getting a key from a resource bundle, the key must be a string. The returned result must be a string or an object. While that object may happen to be an integer, the API is still getObject(). 5 will throw a ClassCastException since 456 is not a string, but it will compile. 1, 2, 4, and 6 are incorrect because of the above."
       },
       {
         "question_id": 8,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [4, 6],
+        "explanation": "4 and 6 are correct. While String objects are immutable, references to Strings are mutable. The code s1 += \"d\"; creates a new String object. StringBuffer objects are mutable, so the append() is changing the single StringBuffer object to which both StringBuffer references refer. 1, 2, 3, 5, and 7 are incorrect based on the above. "
       },
       {
         "question_id": 9,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [3],
+        "explanation": "3 is correct. The concat() method adds to the end of the String, not the front. The trickier part is the return statement. Remember that Strings are immutable. The String referred to by \"s\" in doStuff() is not changed by the trim() method. Instead, a new String object is created via the trim() method, and a reference to that new String is returned to main(). 1, 2, 4, and 5 are incorrect based on the above."
       },
       {
         "question_id": 10,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [4,6,7],
+        "explanation": "4, 6, and 7 are correct. The setMaximumFractionDigits() applies to the formatting, but not the parsing. The try/catch block is placed appropriately. This one might scare you into thinking that you'll need to memorize more than you really do. If you can remember that you're formatting the number and parsing the string, you should be fine for the exam. 1, 2, 3, and 5 are incorrect based on the above."
       },
       {
         "question_id": 11,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [2],
+        "explanation": "2 is correct. The \"\\d\" metacharacter looks for digits, and the + quantifier says look for \"one or more\" occurrences. The find() method will find three sets of one or more consecutive digits: 2, 4, and 67. 1, 3, 4, 5, and 6 are incorrect based on the above. "
       },
       {
         "question_id": 12,
-        "correct_answers": [],
-        "explanation": ""
+        "correct_answers": [6],
+        "explanation": "6 is correct. The nextXxx() methods are typically invoked after a call to a hasNextXxx(), which determines whether the next token is of the correct type. 1, 2, 3, 4, and 5 are incorrect based on the above. "
       }
     ]
   },

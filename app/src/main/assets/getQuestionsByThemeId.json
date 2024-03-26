@@ -2745,5 +2745,388 @@
         ]
       }
     ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 8,
+    "theme_content": "String, Data Formatting, Resource",
+    "questions": [
+      {
+        "content": "Given:\n```\nimport java.util.regex.*;\nclass Regex2 {\n  public static void main(String[] args) {\n    Pattern p = Pattern.compile(args[0]);\n    Matcher m = p.matcher(args[1]);\n    boolean b = false;\n    while(b = m.find()) {\n      System.out.print(m.start() + m.group());\n    } \n  }\n}\n```\nAnd the command line:\n```\njava Regex2 \"\\d*\" ab34ef\n```\nWhat is the result?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "234"
+          },
+          {
+            "answer_id": 2,
+            "content": "334"
+          },
+          {
+            "answer_id": 3,
+            "content": "2334"
+          },
+          {
+            "answer_id": 4,
+            "content": "0123456"
+          },
+          {
+            "answer_id": 5,
+            "content": "01234456"
+          },
+          {
+            "answer_id": 6,
+            "content": "12334567"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Canada {\n  public static void main(String[] args) {\n    ResourceBundle rb = ResourceBundle.getBundle(\"Flag\",\n      new Locale(\"en_CA\"));\n    System.out.println(rb.getString(\"key\"));\n  }\n}\n```\nAssume the default Locale is Italian. If each of the \nfollowing is the only resource bundle on the \nclasspath and contains key=value, which will be \nused? (Choose all that apply.)",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Flag.java"
+          },
+          {
+            "answer_id": 2,
+            "content": "Flag_CA.properties"
+          },
+          {
+            "answer_id": 3,
+            "content": "Flag_en.java"
+          },
+          {
+            "answer_id": 4,
+            "content": "Flag_en.properties"
+          },
+          {
+            "answer_id": 5,
+            "content": "Flag_en_CA.properties"
+          },
+          {
+            "answer_id": 6,
+            "content": "Flag_fr_CA.properties"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nimport java.util.regex.*;\nclass Quetico {\n  public static void main(String [] args) {\n    Pattern p = Pattern.compile(args[0]);\n    Matcher m = p.matcher(args[1]);\n    System.out.print(\"match positions: \");\n    while(m.find()) {\n      System.out.print(m.start() + \" \");\n    }\n    System.out.println(\"\");\n  }\n}\n```     \nWhich invocation(s) will produce the output: \n0 2 4 8 ? (Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```java Quetico \"\\b\" \"^23 *$76 bc\"```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```java Quetico \"\\B\" \"^23 *$76 bc\"```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```java Quetico \"\\S\" \"^23 *$76 bc\"```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```java Quetico \"\\W\" \"^23 *$76 bc\"```"
+          },
+          {
+            "answer_id": 5,
+            "content": "None of the above"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 7,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Banana {\n  public static void main(String[] args) {\n    String in = \"1 a2 b 3 c4d 5e\";\n    String[] chunks = in.split(args[0]);\n    System.out.println(\"count \" + chunks.length);\n    for(String s : chunks)\n      System.out.print(\">\" + s + \"<  \");\n  }\n}\n```  \nAnd two invocations:\n```\njava Banana \" \" \njava Banana \"\\d\"\n```     \nWhat is the result? (Choose all that apply.)",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "In both cases, the count will be 5"
+          },
+          {
+            "answer_id": 2,
+            "content": "In both cases, the count will be 6"
+          },
+          {
+            "answer_id": 3,
+            "content": "In one case, the count will be 5, and in the other case, 6"
+          },
+          {
+            "answer_id": 4,
+            "content": "Banana cannot be invoked because it will not compile"
+          },
+          {
+            "answer_id": 5,
+            "content": "At least one of the invocations will throw an exception"
+          }
+        ]
+      },
+      {
+        "content": "Given three resource bundles and a Java class:\n```\nTrain_en_US.properties: train=subway\nTrain_en_UK.properties: train=underground\nTrain_en.properties: ride = ride\n\n1: public class ChooChoo {\n2:   public static void main(String[] args) {                \n3:     Locale.setDefault(new Locale(\"en\", \"US\"));            \n4:     ResourceBundle rb = ResourceBundle.getBundle(\"Train\", \n5:       new Locale(\"en\", \"US\"));                            \n6:     System.out.print(rb.getString(\"ride\")                 \n         + \" \" + rb.getString(\"train\"));                     \n7    } \n8: }\n```      \nWhich of the following, when made independently, \nwill change the output to \"ride underground\"? \n(Choose all that apply.)",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Add ```train=underground``` to ```Train_en.properties```"
+          },
+          {
+            "answer_id": 2,
+            "content": "Change line 1 to ```Locale.setDefault(new Locale(\"en\", \"UK\"));```"
+          },
+          {
+            "answer_id": 3,
+            "content": "Change line 5 ```to Locale.ENGLISH);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "Change line 5 to ```new Locale(\"en\", \"UK\"));```"
+          },
+          {
+            "answer_id": 5,
+            "content": "Delete file ```Train_en_US.properties```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Legos {\n  public static void main(String[] args) {\n    StringBuilder sb = new StringBuilder(8);\n    System.out.print(sb.length() + \" \" + sb + \" \");\n    sb.insert(0, \"abcdef\");\n    sb.append(\"789\");\n    System.out.println(sb.length() + \" \" + sb);\n  } \n}\n```\nWhat is the result?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```0 8 abcdef78```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```0 8 789abcde```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```0 9 abcdef789```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```0 9 789abcdef```"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilations fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "0, followed by an exception"
+          }
+        ]
+      },
+      {
+        "content": "Given two files:\n```\npackage rb;\npublic class Bundle extends java.util.ListResourceBundle {\n  protected Object[][] getContents() {\n    return new Object[][] { { \"123\", 456 } };\n  } \n}\n\npackage rb;\nimport java.util.*;\npublic class KeyValue {\n  public static void main(String[] args) {\n    ResourceBundle rb = ResourceBundle.getBundle(\"rb.Bundle\",\n      Locale.getDefault());\n    // insert code here\n  } \n}\n```\nWhich, inserted independently, will compile? \n(Choose all that apply.) ",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Object obj = rb.getInteger(\"123\");"
+          },
+          {
+            "answer_id": 2,
+            "content": "Object obj = rb.getInteger(123);"
+          },
+          {
+            "answer_id": 3,
+            "content": "Object obj = rb.getObject(\"123\");"
+          },
+          {
+            "answer_id": 4,
+            "content": "Object obj = rb.getObject(123);"
+          },
+          {
+            "answer_id": 5,
+            "content": "Object obj = rb.getString(\"123\");"
+          },
+          {
+            "answer_id": 6,
+            "content": "Object obj = rb.getString(123);"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. public class Theory {\n4.   public static void main(String[] args) {\n5.     String s1 = \"abc\";\n6.     String s2 = s1;\n7.     s1 += \"d\";\n8.     System.out.println(s1 + \" \" + s2 + \" \" + (s1==s2));\n9.\n10.    StringBuffer sb1 = new StringBuffer(\"abc\");\n11.    StringBuffer sb2 = sb1;\n12.    sb1.append(\"d\");\n13.    System.out.println(sb1 + \" \" + sb2 + \" \" + (sb1==sb2));\n14.  }\n15.}\n```    \nWhich are true? (Choose all that apply.) ",
+        "question_id": 8,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "The first line of output is ```abc abc true```"
+          },
+          {
+            "answer_id": 3,
+            "content": "The first line of output is ```abc abc false```"
+          },
+          {
+            "answer_id": 4,
+            "content": "The first line of output is ```abcd abc false```"
+          },
+          {
+            "answer_id": 5,
+            "content": "The second line of output is ```abcd abc false```"
+          },
+          {
+            "answer_id": 6,
+            "content": "The second line of output is ```abcd abcd true```"
+          },
+          {
+            "answer_id": 7,
+            "content": "The second line of output is ```abcd abcd false```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Stone {\n  public static void main(String[] args) {\n    String s = \"abc\";\n    System.out.println(\">\" + doStuff(s) + \"<\");\n  }\n  static String doStuff(String s) {\n    s = s.concat(\" ef h \");\n    return s.trim();\n  } \n}\n``` \nWhat is the result?  ",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```>abcefh<```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```>efhabc<```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```>abc ef h<```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```\\>>ef h abc<```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```>abc ef h <```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. import java.text.*;\n 4. public class Slice {\n 5.   public static void main(String[] args) {\n 6.     String s = \"987.123456\";\n 7.     double d  = 987.123456d;\n 8.     NumberFormat nf = NumberFormat.getInstance();\n 9.     nf.setMaximumFractionDigits(5);\n10.     System.out.println(nf.format(d) + \" \");\n11.     try {\n12.       System.out.println(nf.parse(s));\n13.     } catch (Exception e) { System.out.println(\"got exc\"); }\n14.   }\n15. }\n```     \nWhich are true? (Choose all that apply.) ",
+        "question_id": 10,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The output is ```987.12345 987.12345```"
+          },
+          {
+            "answer_id": 2,
+            "content": "The output is ```987.12346 987.12345```"
+          },
+          {
+            "answer_id": 3,
+            "content": "The output is ```987.12345 987.123456```"
+          },
+          {
+            "answer_id": 4,
+            "content": "The output is ```987.12346 987.123456```"
+          },
+          {
+            "answer_id": 5,
+            "content": "The try/catch block is unnecessary"
+          },
+          {
+            "answer_id": 6,
+            "content": "The code compiles and runs without exception"
+          },
+          {
+            "answer_id": 7,
+            "content": "The invocation of parse() must be placed within a try/catch block"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. import java.util.regex.*;\n4. public class Archie {\n5.   public static void main(String[] args) {\n6.     Pattern p = Pattern.compile(args[0]);\n7.     Matcher m = p.matcher(args[1]);\n8.     int count = 0;\n9.     while(m.find())\n10. count++;\n11.     System.out.print(count);\n12. }\n13. }\n```     \nAnd given the command-line invocation:\n```\njava Archie \"\\d+\" ab2c4d67\n```       \nWhat is the result?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "0"
+          },
+          {
+            "answer_id": 2,
+            "content": "3"
+          },
+          {
+            "answer_id": 3,
+            "content": "4"
+          },
+          {
+            "answer_id": 4,
+            "content": "8"
+          },
+          {
+            "answer_id": 5,
+            "content": "9"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. import java.util.*;\n4. public class Looking {\n5.   public static void main(String[] args) {\n6.     String input = \"1 2 a 3 45 6\";\n7.     Scanner sc = new Scanner(input);\n8.     int x = 0;\n9.     do {\n10.      x = sc.nextInt();\n11.      System.out.print(x + \" \");  \n12.    } while (x!=0);\n13.  }\n14.}       \n```        \nWhat is the result?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "1 2"
+          },
+          {
+            "answer_id": 2,
+            "content": "1 2 3 45 6"
+          },
+          {
+            "answer_id": 3,
+            "content": "1 2 3 4 5 6"
+          },
+          {
+            "answer_id": 4,
+            "content": "1 2 a 3 45 6"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "1 2 followed by an exception"
+          }
+        ]
+      }
+    ]
   }
 ]
