@@ -42,7 +42,7 @@ class QuestionActivityRepositoryImpl @Inject constructor(
         context: Context,
         request: ExamTestResultRequestDomainDto
     ): ExamTestResultDomainDto {
-        val resultAnswersDto = backendCommunicationService.getAnswersByThemeId(context, request.themeId)
+        val resultAnswersDto = backendCommunicationService.getAnswersByThemeId(context, request.themeId, request.examId)
         val questionResults = resultAnswersDto.questions.map {
             val userAnswer = request.questions.find { q -> q.questionId == it.questionId }?.answers
                 ?.filter { answer -> answer.userAnswer == true }

@@ -483,26 +483,22 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 val markdownContent5 = """ 
 Given:
 ```
-class Plane {
-  static String s = "-";
+public class Concert {
+  static class PowerOutage extends Exception {}
+  static class Thunderstorm extends Exception {}
   public static void main(String[] args) {
-    new Plane().s1();
-    System.out.println(s);
+    try {
+    new Concert().listen();
+    System.out.println("a");
+    } catch(PowerOutage | Thunderstorm e) {
+      e = new PowerOutage();
+      System.out.println("b");
+    } finally { System.out.println("c"); }
   }
-  void s1() {
-    try { s2(); }
-    catch (Exception e) { s += "c"; }
-  }
-  void s2() throws Exception  {
-    s3();  s += "2";
-    s3();  s += "2b";
-  }
-  void s3() throws Exception {
-    throw new Exception();
-  } 
+  public void listen() throws PowerOutage, Thunderstorm{ }
 }
-```       
-What is the result?
+```
+What will this code print?       
 """.trimIndent()
 
 

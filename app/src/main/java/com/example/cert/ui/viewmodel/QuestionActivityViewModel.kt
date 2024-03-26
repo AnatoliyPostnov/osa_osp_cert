@@ -76,7 +76,7 @@ class QuestionActivityViewModel (
         val questions = _testActivityViewModelState.value.questions ?: return false
 
         val examTestResult = _testActivityViewModelState.value.examTestResultRequestDomainDto
-            ?: ExamTestResultRequestDomainDto(questions.themeId, emptyList())
+            ?: ExamTestResultRequestDomainDto(questions.themeId, questions.examId, emptyList())
         val currentCommittedQuestions = examTestResult.questions.toMutableSet()
         currentCommittedQuestions.add(commitQuestion)
 

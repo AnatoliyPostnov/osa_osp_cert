@@ -40,10 +40,15 @@ class BackendCommunicationServiceImpl @Inject constructor(
         }
     }
 
-    override fun getAnswersByThemeId(context: Context, themeId: Int): ResultAnswersDto {
+    override fun getAnswersByThemeId(context: Context, themeId: Int, examId: Int): ResultAnswersDto {
         return context.assets.open("getAnswersByThemeId.json").use {
             val json = (objectMapper.readTree(it) as? ArrayNode)
-                ?.find { item ->  (item as? ObjectNode)?.get("theme_id")?.asInt() == themeId }
+                ?.find { item ->
+                    (item as? ObjectNode)
+                        ?.let { node ->
+                            node.get("theme_id")?.asInt() == themeId && node.get("exam_id")?.asInt() == examId
+                        } == true
+                }
                 ?: throw RuntimeException("Theme id $themeId wasn't found in data")
             objectMapper.treeToValue<ResultAnswersDto>(json)
         }

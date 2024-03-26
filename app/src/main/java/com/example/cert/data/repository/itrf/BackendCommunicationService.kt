@@ -10,5 +10,5 @@ interface BackendCommunicationService {
     fun getAllExams(context: Context): List<ExamsDto>
     fun getAllThemesByExamId(context: Context, examId: Int): ThemesDto
     fun getQuestionsByThemeId(context: Context, themeId: Int): QuestionsForTestingDto
-    fun getAnswersByThemeId(context: Context, themeId: Int): ResultAnswersDto
+    fun getAnswersByThemeId(context: Context, themeId: Int, examId: Int): ResultAnswersDto
 }

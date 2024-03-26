@@ -2342,5 +2342,408 @@
         ]
       }
     ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 7,
+    "theme_content": "Assertions and Java 7 Exceptions",
+    "questions": [
+      {
+        "content": "Given two files:\n```\n1. class One {\n2.   public static void main(String[] args) {\n3.     int assert = 0;\n4.   } \n5. }\n\n1. class Two {\n2.   public static void main(String[] args) {\n3.     assert(false);\n4.   } \n5. }\n```\nAnd the four command-line invocations:\n```\njavac -source 1.3 One.java\njavac -source 1.4 One.java\njavac -source 1.3 Two.java\njavac -source 1.4 Two.java\n```   \nWhat is the result? (Choose all that apply.)",
+        "question_id": 1,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Only one compilation will succeed"
+          },
+          {
+            "answer_id": 2,
+            "content": "Exactly two compilations will succeed"
+          },
+          {
+            "answer_id": 3,
+            "content": "Exactly three compilations will succeed"
+          },
+          {
+            "answer_id": 4,
+            "content": "All four compilations will succeed"
+          },
+          {
+            "answer_id": 5,
+            "content": "No compiler warnings will be produced"
+          },
+          {
+            "answer_id": 6,
+            "content": "At least one compiler warning will be produced"
+          }
+        ]
+      },
+      {
+        "content": "Which are true? (Choose all that apply.)",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "It is appropriate to use assertions to validate arguments to methods marked public"
+          },
+          {
+            "answer_id": 2,
+            "content": "It is appropriate to catch and handle assertion errors"
+          },
+          {
+            "answer_id": 3,
+            "content": "It is NOT appropriate to use assertions to validate command-line arguments"
+          },
+          {
+            "answer_id": 4,
+            "content": "It is appropriate to use assertions to generate alerts when you\n reach code that should not be reachable"
+          },
+          {
+            "answer_id": 5,
+            "content": "It is NOT appropriate for assertions to change a program's state"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Clumsy {\n 4.   public static void main(String[] args) {\n 5.     int j = 7;\n 6.     assert(++j > 7);\n 7.     assert(++j > 8): \"hi\";\n 8.     assert(j > 10): j=12;\n 9.     assert(j==12): doStuff();\n10.     assert(j==12): new Clumsy();\n11. }\n12.   static void doStuff() { }\n13. }\n```    \nWhich are true? (Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation succeeds"
+          },
+          {
+            "answer_id": 2,
+            "content": "Compilation fails due to an error on line 6"
+          },
+          {
+            "answer_id": 3,
+            "content": "Compilation fails due to an error on line 7"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due to an error on line 8"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due to an error on line 9"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails due to an error on line 10"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass AllGoesWrong {\n  public static void main(String[] args) {\n    AllGoesWrong a = new AllGoesWrong();\n    try {\n      a.blowUp();\n      System.out.println(\"a\");\n    } catch (IOException e | SQLException e) {\n      System.out.println(\"c\");\n    } finally {\n      System.out.println(\"d\");\n    }\n  }\n  void blowUp() throws IOException, SQLException {\n    throw new SQLException();\n  }\n}\n```\nWhat is the result? ",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "ad"
+          },
+          {
+            "answer_id": 2,
+            "content": "acd"
+          },
+          {
+            "answer_id": 3,
+            "content": "cd"
+          },
+          {
+            "answer_id": 4,
+            "content": "d"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass BadIO {\n  public static void main(String[] args) {\n    BadIO a = new BadIO();\n    try {\n      a.fileBlowUp();\n      a.databaseBlowUp();\n      System.out.println(\"a\");\n    } // insert code here\n      System.out.println(\"b\");\n    } catch (Exception e) {\n      System.out.println(\"c\");\n    }\n  }\n  void databaseBlowUp() throws SQLException {\n    throw new SQLException();\n  }\n  void fileBlowUp() throws IOException {\n    throw new IOException();\n  }\n}\n```\nWhich inserted independently at ```//insert code here``` \nwill compile and produce the output:b?\n(Choose all that apply.) ",
+        "question_id": 5,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```catch(Exception e) {```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```catch(FileNotFoundException e) {```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```catch(IOException e) {```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```catch(IOException | SQLException e) {```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```catch(IOException e | SQLException e) {```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```catch(SQLException e) {```"
+          },
+          {
+            "answer_id": 7,
+            "content": "```catch(SQLException | IOException e) {```"
+          },
+          {
+            "answer_id": 8,
+            "content": "```catch(SQLException e | IOException e) {```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass Train {\n  class RanOutOfTrack extends Exception { }\n  class AnotherTrainComing extends Exception { }\n  public static void main(String[] args) throws RanOutOfTrack, AnotherTrainComing {\n    Train a = new Train();\n    try {\n      a.drive();\n      System.out.println(\"honk! honk!\");\n    } // insert code here\n      System.out.println(\"error driving\");\n      throw e; \n      }\n    }\n  void drive() throws RanOutOfTrack, AnotherTrainComing {\n      throw new RanOutOfTrack(); \n  }\n}\n```\nWhich inserted independently at ```//insert code here``` \nwill compile and produce the output\n```error driving``` before throwing an exception?\n(Choose all that apply.)   ",
+        "question_id": 6,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "catch(AnotherTrainComing e) {"
+          },
+          {
+            "answer_id": 2,
+            "content": "catch(AnotherTrainComing | RanOutOfTrack e) {"
+          },
+          {
+            "answer_id": 3,
+            "content": "catch(AnotherTrainComing e | RanOutOfTrack e) {"
+          },
+          {
+            "answer_id": 4,
+            "content": "catch(Exception e) {"
+          },
+          {
+            "answer_id": 5,
+            "content": "catch(IllegalArgumentException e) {"
+          },
+          {
+            "answer_id": 6,
+            "content": "catch(RanOutOfTrack e) {"
+          },
+          {
+            "answer_id": 7,
+            "content": "None of the above—code fails to compile for another reason"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass Conductor {\n  static String s = \"-\";\n  class Whistle implements AutoCloseable {\n    public void toot() {     s += \"t\";   }\n    public void close() {    s += \"c\";   }\n  }\n  public static void main(String[] args) {\n    new Conductor().run();\n    System.out.println(s);\n  }  \n  public void run() {\n    try (Whistle w = new Whistle()) {\n       w.toot();\n       s += \"1\";\n       throw new Exception();\n    } catch (Exception e) { s += \"2\";\n    } finally { s += \"3\"; } \n  } \n}\n```\nWhat is the result?",
+        "question_id": 7,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "-t123t"
+          },
+          {
+            "answer_id": 2,
+            "content": "-t12c3"
+          },
+          {
+            "answer_id": 3,
+            "content": "-t123"
+          },
+          {
+            "answer_id": 4,
+            "content": "-t1c3"
+          },
+          {
+            "answer_id": 5,
+            "content": "-t1c23"
+          },
+          {
+            "answer_id": 6,
+            "content": "None of the above; main() throws an exception"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class MultipleResources {\n  class Lamb implements AutoCloseable {\n    public void close() throws Exception {\n      System.out.print(\"l\");\n    }\n  }\n  class Goat implements AutoCloseable {\n     public void close() throws Exception {\n        System.out.print(\"g\");\n     }\n  }\n  public static void main(String[] args) throws Exception {\n    new MultipleResources().run();\n  }\n  public void run() throws Exception {\n    try (Lamb l = new Lamb();\n         System.out.print(\"t\");\n         Goat g = new Goat();) {\n      System.out.print(\"2\");\n    } finally {\n      System.out.print(\"f\");\n    }\n  } \n}\n```\nWhat is the result?   ",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "2glf"
+          },
+          {
+            "answer_id": 2,
+            "content": "2lgf"
+          },
+          {
+            "answer_id": 3,
+            "content": "tglf"
+          },
+          {
+            "answer_id": 4,
+            "content": "t2lgf"
+          },
+          {
+            "answer_id": 5,
+            "content": "t2lgf"
+          },
+          {
+            "answer_id": 6,
+            "content": "None of the above; main() throws an exception"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n1: public class Animals {\n2:   class Lamb {\n3:   public void close() throws Exception { }\n4:   }\n5:   public static void main(String[] args) throws Exception {\n6:      new Animals().run();  \n7:   } \n8:\n9:   public void run() throws Exception {\n10:   try (Lamb l = new Lamb();) {       \n11:   }                                  \n12:  }                                   \n13: }\n```       \nAnd the following possible changes:    \nC1. Replace line 2 with ```class Lamb implements AutoCloseable {```\nC2. Replace line 2 with ```class Lamb implements Closeable {```\nC3. Replace line 11 with ```} finally {}```\nWhat change(s) allow the code to compile? \n(Choose all that apply.)",
+        "question_id": 9,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Just C1 is sufficient"
+          },
+          {
+            "answer_id": 2,
+            "content": "Just C2 is sufficient"
+          },
+          {
+            "answer_id": 3,
+            "content": "Just C3 is sufficient"
+          },
+          {
+            "answer_id": 4,
+            "content": "Both C1 and C3"
+          },
+          {
+            "answer_id": 5,
+            "content": "Both C2 and C3"
+          },
+          {
+            "answer_id": 6,
+            "content": "The code compiles without any changes"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Animals {\n  class Lamb implements Closeable {\n    public void close() {\n      throw new RuntimeException(\"a\");\n    }\n  }\n  public static void main(String[] args) {\n    new Animals().run();\n  }\n  public void run()  {\n    try (Lamb l = new Lamb();) {\n      throw new IOException();\n    } catch(Exception e) {\n      throw new RuntimeException(\"c\"); \n    }\n  } \n}\n```    \nWhich exceptions will the code throw?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```IOException``` with suppressed ```RuntimeException a```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```IOException``` with suppressed ```RuntimeException c```"
+          },
+          {
+            "answer_id": 3,
+            "content": "``RuntimeException a``` with no suppressed exception"
+          },
+          {
+            "answer_id": 4,
+            "content": "```RuntimeException c``` with no suppressed exception"
+          },
+          {
+            "answer_id": 5,
+            "content": "```RuntimeException a``` with suppressed ```RuntimeException c```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```RuntimeException c``` with suppressed ```RuntimeException a```"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Animals {\n  class Lamb implements AutoCloseable {\n    public void close() {\n      throw new RuntimeException(\"a\");\n    }\n  }\n  public static void main(String[] args) throws IOException {\n    new Animals().run();\n  }\n  public void run() throws IOException {\n    try (Lamb l = new Lamb();) {\n      throw new IOException();\n    } catch(Exception e) {\n      throw e; \n    }\n  } \n}\n```\nWhich exceptions will the code throw? ",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```IOException``` with suppressed ```RuntimeException a```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```IOException``` with suppressed ```RuntimeException c```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```RuntimeException a``` with no suppressed exception"
+          },
+          {
+            "answer_id": 4,
+            "content": "```RuntimeException c``` with no suppressed exception"
+          },
+          {
+            "answer_id": 5,
+            "content": "```RuntimeException a``` with suppressed ```RuntimeException c```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```RuntimeException c``` with suppressed ```RuntimeException a```"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Concert {\n  static class PowerOutage extends Exception {}\n  static class Thunderstorm extends Exception {}\n  public static void main(String[] args) {\n    try {\n    new Concert().listen();\n    System.out.println(\"a\");\n    } catch(PowerOutage | Thunderstorm e) {\n      e = new PowerOutage();\n      System.out.println(\"b\");\n    } finally { System.out.println(\"c\"); }\n  }\n  public void listen() throws PowerOutage, Thunderstorm{ }\n}\n```\nWhat will this code print?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "a"
+          },
+          {
+            "answer_id": 2,
+            "content": "ab"
+          },
+          {
+            "answer_id": 3,
+            "content": "ac"
+          },
+          {
+            "answer_id": 4,
+            "content": "abc"
+          },
+          {
+            "answer_id": 5,
+            "content": "bc"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails"
+          }
+        ]
+      }
+    ]
   }
 ]

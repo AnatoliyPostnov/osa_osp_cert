@@ -1,5 +1,6 @@
 [
   {
+    "exam_id": 1,
     "theme_id": 1,
     "theme_content": "Declarations and Access Control",
     "questions": [
@@ -61,6 +62,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 2,
     "theme_content": "Declarations and Access Control",
     "questions": [
@@ -132,6 +134,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 3,
     "theme_content": "Assignments",
     "questions": [
@@ -203,6 +206,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 4,
     "theme_content": "Operations",
     "questions": [
@@ -255,6 +259,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 5,
     "theme_content": "Working with string, Arrays and ArrayLists",
     "questions": [
@@ -321,6 +326,7 @@
     ]
   },
   {
+    "exam_id": 1,
     "theme_id": 6,
     "theme_content": "Flow Control and Exceptions",
     "questions": [
@@ -404,6 +410,189 @@
         "correct_answers": [3, 4],
         "explanation": "3 and 4 are correct. An overriding method cannot throw checked exceptions that are broader than those thrown by the overridden method. However, an overriding method can throw RuntimeExceptions not thrown by the overridden method. 1, 2, 5, and 6 are incorrect based on the above. "
       }
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 7,
+    "theme_content": "Assertions and Java 7 Exceptions",
+    "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [2, 6],
+        "explanation": "2 and 6 are correct. class One will compile (and issue a warning) using the 1.3 flag, and class Two will compile using the 1.4 flag. 1, 3, 4, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [3, 4, 5],
+        "explanation": "3, 4, and 5 are correct statements. 1 is incorrect. It is acceptable to use assertions to test the arguments of private methods. 2 is incorrect. While assertion errors can be caught, Oracle discourages you from doing so."
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [5],
+        "explanation": "5 is correct. When an assert statement has two expressions, the second expression must return a value. The only two-expression assert statement that doesn't return a value is on line 9. 1, 2, 3, 4, and 6 are incorrect based on the above."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [5],
+        "explanation": "5 is correct. catch (IOException e | SQLException e) doesn't compile. While multiple exception types can be specified in the multi-catch, only one variable name is allowed. The correct syntax is catch (IOException | SQLException e). Other than this, the code is valid. Note that it is legal for blowUp() to have IOException in its signature even though that Exception can't be thrown. 1, 2, 3, 4, and 6 are incorrect based on the above. If the catch block's syntax error were corrected, the code would output cd. The multi-catch would catch the SQLException from blowUp() since it is one of the exception types listed. And, of course, the finally block runs at the end of the try/catch. "
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [3, 4, 7],
+        "explanation": "3, 4, and 7 are correct. Since order doesn't matter, both D and G show correct use of the multi-catch block. And C catches the IOException from fileBlowUp() directly. Note that databaseBlowUp() is never called at runtime. However, if you remove the call, the compiler won't let you catch the SQLException since it would be impossible to be thrown. 1 is incorrect because it will not compile. Since there is already a catch block for Exception, adding another will make the compiler think there is unreachable code. 2 is incorrect because it will print c rather than b. Since FileNotFoundException is a subclass of IOException, the thrown IOException will not match the catch block for FileNotFoundException. 5 and 8 are incorrect because they are invalid syntax for multi- catch. The catch parameter e can only appear once. 6 is incorrect because it will print c rather than b. Since the IOException thrown by fileBlowUp() is never caught, the thrown exception will match the catch block for Exception. "
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [2, 4, 6],
+        "explanation": "2, 4, and 6 are correct. 2 uses multi-catch to identify both exceptions drive() may throw. 4 still compiles since it uses the new enhanced exception typing to recognize that Exception may only refer to AnotherTrainComing and RanOutOfTrack. 6 is the simple case that catches a single exception. Since main throws AnotherTrainComing, the catch block doesn't need to handle it. 1 and 5 are incorrect because the catch block will not handle RanOutOfTrack when drive() throws it. The main method will still throw the exception, but the println() will not run. 3 is incorrect because it is invalid syntax for multi-catch. The catch parameter e can only appear once. 7 is incorrect because of the above. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [5],
+        "explanation": "5 is correct. After the exception is thrown, Automatic Resource Management calls close() before completing the try block. From that point, catch and finally execute in the normal order. 6 is incorrect because the catch block catches the exception and does not rethrow it. 1, 2, 3, 4, and 6 are incorrect because of the above."
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [7],
+        "explanation": "7 is correct. System.out.println cannot be in the declaration clause of a try-with- resources block because it does not declare a variable. If the println was removed, the answer would be A because resources are closed in the opposite order they are created. 1, 2, 3, 4, 5, and 6 are incorrect because of the above. "
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [1, 4],
+        "explanation": "1 and 4 are correct. If the code is left with no changes, it will not compile because try-with-resources requires Lamb to implement AutoCloseable or a subinterface. If C2 is implemented, the code will not compile because close() throws Exception instead of IOException. Unlike the traditional try, try-with-resources does not require catch or finally to present. So the code works equally well with or without C3. 2, 3, 5, and 6 are incorrect because of the above. "
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [4],
+        "explanation": "4 is correct. While the exception caught by the catch block matches choice 1, it is ignored by the catch block. The catch block just throws RuntimeException c without any suppressed exceptions. 1, 2, 3, 5, 6, and 7 are incorrect because of the above."
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [1],
+        "explanation": "1 is correct. After the try block throws an IOException, Automatic Resource Management calls close() to clean up the resources. Since an exception was already thrown in the try block, RuntimeException a gets added to it as a suppressed exception. The catch block merely rethrows the caught exception. The code does compile even though the catch block catches an Exception and the method merely throws an IOException. In Java 7, the compiler is able to pick up on this. 2, 3, 4, 5, 6, and 7 are incorrect because of the above. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [6],
+        "explanation": "6 is correct. The exception variable in a catch block may not be reassigned when using multi-catch. It CAN be reassigned if we are only catching one exception. 3 would have been correct if e = new PowerOutage(); were removed. 1, 2, 4, and 5 are incorrect because of the above."
+      }
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 8,
+    "theme_content": "String, Data Formatting, Resource Bundles",
+    "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [],
+        "explanation": ""
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [],
+        "explanation": ""
+      }
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 9,
+    "theme_content": "I/O and NIO",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 10,
+    "theme_content": "Advanced OO and Design Patterns",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 11,
+    "theme_content": "Generics and Collections",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 12,
+    "theme_content": "Inner Classes",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 13,
+    "theme_content": "Threads",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 14,
+    "theme_content": "Concurrency",
+    "questions": [
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 15,
+    "theme_content": "JDBC",
+    "questions": [
     ]
   }
 ]
