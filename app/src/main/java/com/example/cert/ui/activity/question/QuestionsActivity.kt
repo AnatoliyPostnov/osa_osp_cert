@@ -481,17 +481,12 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 
 val markdownContent5 = """ 
-Given a partial directory tree:
-        dir x - |
-        ..........| - dir y
-        ..........| -file a
-and given that a valid Path object, dir, 
-points to x, and given this snippet: 
-```
-WatchKey key = dir.register(watcher, ENTRY_CREATE);
-```
-If a WatchService is set using the given WatchKey, 
-what would be the result if a file is added todir y?
+Given:
+1) ClassA has a ClassD
+2) Methods in ClassA use public methods in ClassB
+3) Methods in ClassC use public methods in ClassA
+4) Methods in ClassA use public variables in ClassB
+Which is most likely true? (Choose only one.)
 """.trimIndent()
 
 

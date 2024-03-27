@@ -3590,7 +3590,346 @@
     "theme_id": 10,
     "theme_content": "Advanced OO and Design Patterns",
     "questions": [
-
+      {
+        "content": "Given:\n```\nclass A extends B {\n  C tail;\n}\n```      \nWhich is true?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "A HAS-A B and A HAS-A C"
+          },
+          {
+            "answer_id": 2,
+            "content": "A HAS-A B and A IS-A C"
+          },
+          {
+            "answer_id": 3,
+            "content": "A IS-A B and A HAS-A C"
+          },
+          {
+            "answer_id": 4,
+            "content": "A IS-A B and A IS-A C"
+          },
+          {
+            "answer_id": 5,
+            "content": "B IS-A A and A-HAS-A C"
+          },
+          {
+            "answer_id": 6,
+            "content": "B IS-A A and A IS-A C"
+          }
+        ]
+      },
+      {
+        "content": "Which statements are true? (Choose all that apply.)",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Method delegation relies on IS-A relationships"
+          },
+          {
+            "answer_id": 2,
+            "content": "Method forwarding relies on HAS-A relationships"
+          },
+          {
+            "answer_id": 3,
+            "content": "The DAO pattern limits you to one instance of the DAO object"
+          },
+          {
+            "answer_id": 4,
+            "content": "The singleton pattern relies on IS-A relationships"
+          },
+          {
+            "answer_id": 5,
+            "content": "To use object composition, classes must be final"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class F {\n  private static final F f = new F();\n  public static F c() {\n    return f; \n  }\n  public void update(F a) { }\n  public void delete(F a) { }\n}\n```\n        \nWhich design pattern or principle is implemented?",
+        "question_id": 3,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Coupling"
+          },
+          {
+            "answer_id": 2,
+            "content": "DAO"
+          },
+          {
+            "answer_id": 3,
+            "content": "Factory"
+          },
+          {
+            "answer_id": 4,
+            "content": "IS-A"
+          },
+          {
+            "answer_id": 5,
+            "content": "Object composition"
+          },
+          {
+            "answer_id": 6,
+            "content": "Singleton"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class E {\n  private D d;\n  public void m() {\n    d.m(); \n  }\n  public static E getInstance() {\n    return new E();\n  } \n}\nclass D {\n  public void m() {}\n}\n```\nWhich design pattern or principle is implemented?",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "DAO"
+          },
+          {
+            "answer_id": 2,
+            "content": "Factory"
+          },
+          {
+            "answer_id": 3,
+            "content": "IS-A"
+          },
+          {
+            "answer_id": 4,
+            "content": "Object composition"
+          },
+          {
+            "answer_id": 5,
+            "content": "Singleton"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass A {}\nabstract class G {\n  A m() { return n(); }\n  abstract A n() ;\n}\n```\nWhich design pattern or principle is implemented?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "DAO"
+          },
+          {
+            "answer_id": 2,
+            "content": "Factory"
+          },
+          {
+            "answer_id": 3,
+            "content": "IS-A"
+          },
+          {
+            "answer_id": 4,
+            "content": "Object composition"
+          },
+          {
+            "answer_id": 5,
+            "content": "Singleton"
+          }
+        ]
+      },
+      {
+        "content": "Which design patterns are classified as creational design patterns? (Choose all that apply.)",
+        "question_id": 6,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Coupling"
+          },
+          {
+            "answer_id": 2,
+            "content": "DAO"
+          },
+          {
+            "answer_id": 3,
+            "content": "Factory"
+          },
+          {
+            "answer_id": 4,
+            "content": "IS-A"
+          },
+          {
+            "answer_id": 5,
+            "content": "Object composition"
+          },
+          {
+            "answer_id": 6,
+            "content": "Singleton"
+          }
+        ]
+      },
+      {
+        "content": "Which statements indicate the need to use the factory pattern? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "You don't want the caller to depend on a specific implementation"
+          },
+          {
+            "answer_id": 2,
+            "content": "You have two classes that do the same thing"
+          },
+          {
+            "answer_id": 3,
+            "content": "You only want one instance of the object to exist"
+          },
+          {
+            "answer_id": 4,
+            "content": "You want one class to be responsible for database operations"
+          },
+          {
+            "answer_id": 5,
+            "content": "You want to build a chain of objects"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class Dao {\n  Collection<String> findAll() { return null;}\n  void create(String a) {}\n  void delete(String a) {}\n  void update(String a){}\n}\n```\nAnd the following statements:\nI – This is a good use of the DAO pattern\nII – The DAO needs an interface\nIII – The DAO is missing a method\nIV – The DAO must use a type other than String\nWhich of these statements are true?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Statement I only"
+          },
+          {
+            "answer_id": 2,
+            "content": "Statement II only"
+          },
+          {
+            "answer_id": 3,
+            "content": "Statement III only"
+          },
+          {
+            "answer_id": 4,
+            "content": "Statement IV only"
+          },
+          {
+            "answer_id": 5,
+            "content": "Statements II and III"
+          },
+          {
+            "answer_id": 6,
+            "content": "Statements III and IV"
+          }
+        ]
+      },
+      {
+        "content": "Which is a benefit of the DAO pattern? (Choose all that apply.)",
+        "question_id": 9,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Reuse is easier"
+          },
+          {
+            "answer_id": 2,
+            "content": "The database code is automatically generated"
+          },
+          {
+            "answer_id": 3,
+            "content": "We can change the database implementation independently"
+          },
+          {
+            "answer_id": 4,
+            "content": "Your business object extends the DAO pattern to reduce coding"
+          },
+          {
+            "answer_id": 5,
+            "content": "You are limited to one DAO object"
+          }
+        ]
+      },
+      {
+        "content": "Which are true of design patterns? (Choose all that apply.)",
+        "question_id": 10,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Design patterns are chunks of code you can copy into your application unchanged"
+          },
+          {
+            "answer_id": 2,
+            "content": "Design patterns are conceptual reusable solutions"
+          },
+          {
+            "answer_id": 3,
+            "content": "Design patterns are shortcuts to talking about code"
+          },
+          {
+            "answer_id": 4,
+            "content": "There are three design patterns defined for Java"
+          },
+          {
+            "answer_id": 5,
+            "content": "You can only use each design pattern once per application"
+          },
+          {
+            "answer_id": 6,
+            "content": "Design patterns are libraries you can call from your code"
+          }
+        ]
+      },
+      {
+        "content": "Which statement is true? (Choose all that apply.)",
+        "question_id": 11,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Cohesion is the OO principle most closely associated with hiding implementation details"
+          },
+          {
+            "answer_id": 2,
+            "content": "Cohesion is the OO principle most closely associated with making sure that classes know\nabout other classes only through their APIs"
+          },
+          {
+            "answer_id": 3,
+            "content": "Cohesion is the OO principle most closely associated with making sure that a class is designed with a single well-focused purpose"
+          },
+          {
+            "answer_id": 4,
+            "content": "Cohesion is the OO principle most closely associated with allowing a single object to be seen as having many types"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n1) ClassA has a ClassD\n2) Methods in ClassA use public methods in ClassB\n3) Methods in ClassC use public methods in ClassA\n4) Methods in ClassA use public variables in ClassB\nWhich is most likely true? (Choose only one.)",
+        "question_id": 12,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "ClassD has low cohesion."
+          },
+          {
+            "answer_id": 2,
+            "content": "ClassA has weak encapsulation."
+          },
+          {
+            "answer_id": 3,
+            "content": "ClassB has weak encapsulation."
+          },
+          {
+            "answer_id": 4,
+            "content": "ClassB has strong encapsulation."
+          },
+          {
+            "answer_id": 5,
+            "content": "ClassC is tightly coupled to ClassA."
+          }
+        ]
+      }
     ]
   },
   {

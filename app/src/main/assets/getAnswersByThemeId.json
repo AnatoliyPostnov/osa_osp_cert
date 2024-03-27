@@ -633,6 +633,66 @@
     "theme_id": 10,
     "theme_content": "Advanced OO and Design Patterns",
     "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [3],
+        "explanation": "3 is correct. Since A extends B, it IS-A B. Since C is an instance variable in A, A HAS-A C. 1, 2, 4, 5, and 6 are incorrect because of the above. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [2],
+        "explanation": "2 is correct. Method forwarding is an object composition principle and calls methods on an instance variable of an object. 1 is incorrect because method delegation and method forwarding are the same thing. 3 is incorrect because it is the singleton pattern that limits you to one object. 4 is incorrect because singleton classes typically don't have a superclass (other than Object). 5 is incorrect because there is no such requirement. "
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [6],
+        "explanation": "6 is correct. The singleton pattern is identifiable by the static variable for the single instance and the accessor returning it. 2 is incorrect because there is no interface. The class just happens to have methods update() and delete(), which are similar to those found in a DAO. 1, 3, 4, and 5 are incorrect because of the above. "
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The object composition principle of method forwarding is shown. 5 is tricky, but incorrect. Although getInstance() is a common name for a method in a singleton, the method doesn't return a static object. While it does create an object, it isn't a factory either, since there is no superclass. 1, 2, and 3 are incorrect because of the above."
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [2],
+        "explanation": "2 is correct. Class A is the object we are creating using the factory method. Class G is the abstract superclass for the factory. Not shown is a class implementing class G that actually creates the object. 1, 3, 4, and 5 are incorrect because of the above."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [3, 6],
+        "explanation": "3 and 6 are correct. The factory design pattern creates new objects for each call, and the singleton design pattern creates one object, returning it each time. 1, 2, 4, and 5 are incorrect because of the above."
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [1],
+        "explanation": "1 is correct. The factory design pattern decouples the caller from the implementation class name. 2 is incorrect because that would be poor design. 3 is incorrect because it describes the singleton pattern. 4 is incorrect because it describes the DAO pattern. 5 is incorrect because of the above. "
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [2],
+        "explanation": "2 is correct. The Data Access Object pattern uses an interface so callers aren't dependent on a specific implementation class. 1, 3, 4, 5, and 6 are incorrect because of the above."
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [1, 3],
+        "explanation": "1 and 3 are correct. The DAO pattern centralizes logic for the data access code, making reuse easier and allowing you to switch out implementations. 2 is incorrect because you still have to code the DAO. 4 is incorrect because you call a DAO from your business object; you do not inherit from it. 5 is incorrect because you can have many DAO objects. "
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [2, 3],
+        "explanation": "2 and 3 are correct. Design patterns are conceptual and design level. You have to code the implementation for each use. 4 is incorrect because there are dozens of patterns defined for Java. Only three of them are tested on the exam, but you should be aware that more exist. 5 is incorrect because it makes sense to reuse the same pattern. For example, you might have multiple DAO objects. 1 and 6 are incorrect because of the above. "
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [3],
+        "explanation": "3 is correct. 1, 2, and 4 are incorrect. 1 refers to encapsulation, 2 refers to coupling, and 4 refers to polymorphism. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [3],
+        "explanation": "3 is correct. Generally speaking, public variables are a sign of weak encapsulation. 1, 2, 4, and 5 are incorrect because based on the information given, none of these statements can be supported."
+      }
     ]
   },
   {
