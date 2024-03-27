@@ -3128,5 +3128,509 @@
         ]
       }
     ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 9,
+    "theme_content": "I/O and NIO",
+    "questions": [
+      {
+        "content": "Given:\n```\nimport java.io.*;\nclass Directories {\n  static String [] dirs = {\"dir1\", \"dir2\"};\n  public static void main(String [] args) {\n    for (String d : dirs) {\n      // insert code 1 here\n      File file = new File(path, args[0]);\n      // insert code 2 here\n    }\n  } \n}\n```\nand that the invocation\n```\njava Directories file2.txt \n```     \nis issued from a directory that has two subdirectories, \n\"dir1\" and \"dir2,\" and that \"dir1\" has a file \"file1.txt\" \nand \"dir2\" has a file \"file2.txt,\" and the output is \n\"false true,\" which set(s) of code fragments must be \ninserted? (Choose all that apply.)",
+        "question_id": 1,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```String path = d;```\n```System.out.print(file.exists() + \" \");```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```String path = d;``` \n```System.out.print(file.isFile() + \" \");```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```String path = File.separator + d;``` \n```System.out.print(file.exists() + \" \");```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```String path = File.separator + d;``` \n```System.out.print(file.isFile() + \" \");```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. import java.io.*;\n4. public class ReadingFor {\n5.  public static void main(String[] args) {\n6.    String s;                                       \n7.    try {                                           \n8.      FileReader fr = new FileReader(\"myfile.txt\"); \n9.      BufferedReader br = new BufferedReader(fr);   \n10.     while((s = br.readLine()) != null)            \n11.       System.out.println(s);\n12.     br.flush();\n13.   } catch (IOException e) { System.out.println(\"io error\"); }\n16.  }\n17. }\n```\nAnd given that ```myfile.txt``` contains the \nfollowing two lines of data:        \n```\nab\ncd\n```\nWhat is the result?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```ab```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```abcd```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```ab```\n```cd```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```a```\n ```b```\n ```c```\n ```d```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. import java.io.*;\n4. public class Talker {\n5.   public static void main(String[] args) {\n6.      Console c = System.console();                                               \n7.      String u = c.readLine(\"%s\", \"username: \"); \n8.      System.out.println(\"hello \" + u);               \n9.      String pw;                                                                  \n10.     if(c != null && (pw = c.readPassword(\"%s\", \"password: \")) != null)          \n11.     // check for valid password                                       \n12.   }\n13. }\n```\nIf line 6 creates a valid Console object and if the \nuser enters fred as a username and 1234 as a password, \nwhat is the result? (Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```username:```\n```password:```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```username: fred```\n```password:```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```username: fred```\n```password: 1234```"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An Exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. import java.io.*;\n 4. class Vehicle { }\n 5. class Wheels { }\n 6. class Car extends Vehicle implements Serializable {  }\n 7. class Ford extends Car { }\n 8. class Dodge extends Car {\n 9.  Wheels w = new Wheels();\n10. }\n```     \nInstances of which class(es) can be serialized? \n(Choose all that apply.)",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Car"
+          },
+          {
+            "answer_id": 2,
+            "content": "Ford"
+          },
+          {
+            "answer_id": 3,
+            "content": "Dodge"
+          },
+          {
+            "answer_id": 4,
+            "content": "Wheels"
+          },
+          {
+            "answer_id": 5,
+            "content": "Vehicle"
+          }
+        ]
+      },
+      {
+        "content": "Which of the following creates a Path object pointing\n to ```c:/temp/exam```? (Choose all that apply.)",
+        "question_id": 5,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```new Path(\"c:/temp/exam\")```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```new Path(\"c:/temp\", \"exam\")```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```Files.get(\"c:/temp/exam\")```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Files.get(\"c:/temp\", \"exam\")```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Paths.get(\"c:/temp/exam\")```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```Paths.get(\"c:/temp\", \"exam\")```"
+          }
+        ]
+      },
+      {
+        "content": "Given a directory tree at the root of the C: \ndrive and the fact that no other files exist:\n```\ndir x - |\n..........| - dir y\n..........| - file a\n```      \nand these two paths:\n```\nPath one = Paths.get(\"c:/x\");\nPath two = Paths.get(\"c:/x/y/a\");\n```\nWhich of the following statements prints out: \ny/a ?      ",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```System.out.println(one.relativize(two));```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```System.out.println(two.relativize(one));```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```System.out.println(one.resolve(two));```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```System.out.println(two.resolve(one));```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```System.out.println(two.resolve(two));```"
+          },
+          {
+            "answer_id": 6,
+            "content": "None of the above"
+          }
+        ]
+      },
+      {
+        "content": "Given the following statements:\nI. A nonempty directory can usually be deleted using\n Files.delete\nII. A nonempty directory can usually be moved using\n Files.move\nIII. A nonempty directory can usually be copied using \n Files.copy\nWhich of the following is true?",
+        "question_id": 7,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "I only"
+          },
+          {
+            "answer_id": 2,
+            "content": "II only"
+          },
+          {
+            "answer_id": 3,
+            "content": "III only"
+          },
+          {
+            "answer_id": 4,
+            "content": "I and II only"
+          },
+          {
+            "answer_id": 5,
+            "content": "II and III only"
+          },
+          {
+            "answer_id": 6,
+            "content": "I and III only"
+          },
+          {
+            "answer_id": 7,
+            "content": "I, II, and III"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nnew File(\"c:/temp/test.txt\").delete();\n```\nHow would you write this line of code using \nJava 7 APIs?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Files.delete(Paths.get(\"c:/temp/test.txt\"));"
+          },
+          {
+            "answer_id": 2,
+            "content": "Files.deleteIfExists(Paths.get(\"c:/temp/test.txt\"));"
+          },
+          {
+            "answer_id": 3,
+            "content": "Files.deleteOnExit(Paths.get(\"c:/temp/test.txt\"));"
+          },
+          {
+            "answer_id": 4,
+            "content": "Paths.get(\"c:/temp/test.txt\").delete();"
+          },
+          {
+            "answer_id": 5,
+            "content": "Paths.get(\"c:/temp/test.txt\").deleteIfExists();"
+          },
+          {
+            "answer_id": 6,
+            "content": "Paths.get(\"c:/temp/test.txt\").deleteOnExit();"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic void read(Path dir) throws IOException {\n  // CODE HERE\n  System.out.println(attr.creationTime());\n}\n```\nWhich code inserted at // CODE HERE will compile \nand run without error on Windows? \n(Choose all that apply.)",
+        "question_id": 9,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```BasicFileAttributes attr = Files.readAttributes(dir, BasicFileAttributes.class);```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```BasicFileAttributes attr = Files.readAttributes(dir, DosFileAttributes.class);```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```DosFileAttributes attr = Files.readAttributes(dir, BasicFileAttributes.class);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```DosFileAttributes attr = Files.readAttributes(dir, DosFileAttributes.class);```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```PosixFileAttributes attr = Files.readAttributes(dir, PosixFileAttributes.class);```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```BasicFileAttributes attr = new BasicFileAttributes(dir);```"
+          },
+          {
+            "answer_id": 7,
+            "content": "```BasicFileAttributes attr =dir.getBasicFileAttributes();```"
+          }
+        ]
+      },
+      {
+        "content": "Which of the following are true? (Choose all that apply.)",
+        "question_id": 10,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The ```class AbstractFileAttributes``` applies to all operating systems"
+          },
+          {
+            "answer_id": 2,
+            "content": "The ```class BasicFileAttributes``` applies to all operating systems"
+          },
+          {
+            "answer_id": 3,
+            "content": "The ```class DosFileAttributes``` applies to Windows-based operating systems"
+          },
+          {
+            "answer_id": 4,
+            "content": "The ```class WindowsFileAttributes``` applies to Windows-based operating systems"
+          },
+          {
+            "answer_id": 5,
+            "content": "The ```class PosixFileAttributes``` applies to all Linux/UNIX-based operating systems"
+          },
+          {
+            "answer_id": 6,
+            "content": "The ```class UnixFileAttributes``` applies to all Linux/UNIX-based operating systems"
+          }
+        ]
+      },
+      {
+        "content": "Given a partial directory tree:\n        dir x - |\n        ..........| - dir y\n        ..........| - file a\nIn what order can the following methods be called \nif walking the directory tree from x? \n(Choose all that apply.)\n\nI:preVisitDirectory x \nII:preVisitDirectory x/y \nIII:postVisitDirectory x/y \nIV:postVisitDirectory x\nV:visitFile x/a",
+        "question_id": 11,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "I, II, III, IV, V"
+          },
+          {
+            "answer_id": 2,
+            "content": "I, II, III, V, IV"
+          },
+          {
+            "answer_id": 3,
+            "content": "I, V, II, III, IV"
+          },
+          {
+            "answer_id": 4,
+            "content": "I, V, II, IV, III"
+          },
+          {
+            "answer_id": 5,
+            "content": "V, I, II, III, IV"
+          },
+          {
+            "answer_id": 6,
+            "content": "V, I, II, VI, III"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class MyFileVisitor extends SimpleFileVisitor<Path> {\n  // more code here\n  public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)\n    throws IOException {\n    System.out.println(\"File \" + file);\n    if ( file.getFileName().endsWith(\"Test.java\")) {\n      // CODE HERE \n    }\n    return FileVisitResult.CONTINUE;\n  }\n  // more code here\n}\n```\n        \nWhich code inserted at // CODE HERE would cause \nthe FileVisitor to stop visiting files after \nit sees the file Test.java?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```return FileVisitResult.CONTINUE;```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```return FileVisitResult.END;```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```return FileVisitResult.SKIP_SIBLINGS;```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```return FileVisitResult.SKIP_SUBTREE;```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```return FileVisitResult.TERMINATE;```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```return null;```"
+          }
+        ]
+      },
+      {
+        "content": "Assume all the files referenced by these paths exist: \n```\nPath a = Paths.get(\"c:/temp/dir/a.txt\");\nPath b = Paths.get(\"c:/temp/dir/subdir/b.txt\");\n```\nWhat is the correct string to pass to PathMatcher \nto match both these files?",
+        "question_id": 13,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```\"glob:*/*.txt\"```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```\"glob:**.txt\"```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```\"glob:*.txt\"```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```\"glob:/*/*.txt\"```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```\"glob:/**.txt\"```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```\"glob:/*.txt\"```"
+          },
+          {
+            "answer_id": 7,
+            "content": "None of the above"
+          }
+        ]
+      },
+      {
+        "content": "Given a partial directory tree at the root of the drive:\ndir x - |\n        ..........| = file a.txt\n        ..........| - dir y\n        ....................| - file b.txt\n        ....................| - dir y\n        ..............................| - file c.txt\nAnd the following snippet:\n```\nPath dir = Paths.get(\"c:/x\");\ntry (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, \"**/*.txt\")) {\nfor (Path path : stream) {\n    System.out.println(path); \n}}\n```\nWhat is the result?",
+        "question_id": 14,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```c:/x/a.txt```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```c:/x/a.txt```\n ```c:/x/y/b.txt```\n        ```c:/x/y/z/c.txt```"
+          },
+          {
+            "answer_id": 3,
+            "content": "Code compiles but does not output anything"
+          },
+          {
+            "answer_id": 4,
+            "content": "Does not compile because DirectoryStream comes from FileSystems, not Files"
+          },
+          {
+            "answer_id": 5,
+            "content": "Does not compile for another reason\n"
+          }
+        ]
+      },
+      {
+        "content": "Given a partial directory tree:\n        dir x - |\n        ..........| - dir y\n        ..........| -file a\nand given that a valid Path object, dir, \npoints to x, and given this snippet: \n```\nWatchKey key = dir.register(watcher, ENTRY_CREATE);\n```\nIf a WatchService is set using the given WatchKey, \nwhat would be the result if a file is added todir y?",
+        "question_id": 15,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "No notice is given"
+          },
+          {
+            "answer_id": 2,
+            "content": "A notice related to dir x is issued"
+          },
+          {
+            "answer_id": 3,
+            "content": "A notice related to dir y is issued"
+          },
+          {
+            "answer_id": 4,
+            "content": "Notices for both dir x and dir y are given"
+          },
+          {
+            "answer_id": 5,
+            "content": "An Exception is thrown"
+          },
+          {
+            "answer_id": 6,
+            "content": "The behavior depends on the underlying operating system"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 10,
+    "theme_content": "Advanced OO and Design Patterns",
+    "questions": [
+
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 11,
+    "theme_content": "Generics and Collections",
+    "questions": [
+
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 12,
+    "theme_content": "Inner Classes",
+    "questions": [
+
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 13,
+    "theme_content": "Threads",
+    "questions": [
+
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 14,
+    "theme_content": "Concurrency",
+    "questions": [
+
+    ]
+  },
+  {
+    "exam_id": 2,
+    "theme_id": 14,
+    "theme_content": "JDBC",
+    "questions": [
+
+    ]
   }
 ]

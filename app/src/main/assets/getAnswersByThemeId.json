@@ -551,6 +551,81 @@
     "theme_id": 9,
     "theme_content": "I/O and NIO",
     "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [1, 2],
+        "explanation": "1 and 2 are correct. Because you are invoking the program from the directory whose direct subdirectories are to be searched, you don't start your path with a File.separator character. The exists()method tests for either files or directories; the isFile() method tests only for files. Since we're looking for a file, both methods work. 3 and 4 are incorrect based on the above. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [5],
+        "explanation": "5 is correct. You need to call flush()only when you're writing data. Readers don't have flush() methods. If not for the call to flush(), answer 3 would be correct. 1, 2, 3, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The readPassword() method returns a char[]. If a char[] were used, answer 2 would be correct. 1, 2, 3, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [1, 2],
+        "explanation": "1 and 2 are correct. Dodge instances cannot be serialized because they \"have\" an instance of Wheels, which is not serializable. Vehicle instances cannot be serialized even though the subclass Car can be. 3, 4, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [5, 6],
+        "explanation": "5 and 6 are correct since Paths must be created using the Paths.get() method. This method takes a varargs String parameter, so you can pass as many path segments to it as you like. 1 and 2 are incorrect because you cannot construct a Path directly. 3 and 4 are incorrect because the Files class works with Path objects but does not create them from Strings."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [1],
+        "explanation": "1 is correct because it prints the path to get to two from one. 2 is incorrect because it prints out ../.. which is the path to navigate to one from two. This is the reverse of what we want. 3, 4, and 5 are incorrect because it does not make sense to call resolve with absolute paths. They might print out c:/x/c:/x/y/a, c:/x/y/a/c:/x, and c:/x/y/a/c:/x/y/a, respectively. 6 is incorrect because of the above. Note that the directory structure provided is redundant. Neither relativize() nor resolve() requires either path to actually exist. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [5],
+        "explanation": "5 is correct because a directory containing files or subdirectories is copied or moved in\nits entirety. Directories can only be deleted if they are empty. Trying to delete a nonempty directory will throw a DirectoryNotEmptyException. The question says \"usually\" because copy and move success depends on file permissions. Think about the most common cases when encountering words such as \"usually\" on the exam. 1, 2, 3, 4, 6, and 7 are incorrect because of the above."
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [2],
+        "explanation": "2 is correct because, like the Java 7 code, it returns false if the file does not exist. 1 is incorrect because this code throws an Exception if the file does not exist. 3, 4, 5, and 6 are incorrect because they do not compile. There is no deleteOnExit() method, and file operations such as delete occur using the Files class rather than the path object directly. "
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [1, 2, 4],
+        "explanation": "1, 2, and 4 are correct. Creation time is a basic attribute, which means you can read BasicFileAttributes or any of its subclasses to read it. DosFileAttributes is one such subclass. 3 is incorrect because you cannot cast a more general type to a more specific type. 5 is incorrect because this example specifies it is being run on Windows. While it would work on UNIX, it throws an UnsupportedOperationException on Windows due to requesting the WindowsFileSystemProvider to get a POSIX class. 6 and 7 are incorrect because those methods do not exist. You must use the Files class to get the attributes. "
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [2, 3, 5],
+        "explanation": "2, 3, and 5 are correct. BasicFileAttributes is the general superclass. DosFileAttributes subclasses BasicFileAttributes for Windows operating systems. PosixFileAttributes subclasses BasicFileAttributes for UNIX/Linux/Mac operating systems. 1, 4, and 6 are incorrect because no such classes exist. "
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [2, 3],
+        "explanation": "2 and 3 are correct because file visitor does a depth-first search. When files and directories are at the same level of the file tree, they can be visited in either order. Therefore, \"y\" and \"a\" could be reversed. All of the subdirectories and files are visited before postVisit is called on the directory. 1, 4, and 5 are incorrect because of the above. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [5],
+        "explanation": "5 is correct because it is the correct constant to end the FileVisitor. 2 is incorrect because END is not defined as a result constant. 1, 3, and 4 are incorrect.\nWhile they are valid constants, they do not end file visiting. CONTINUE proceeds as if nothing special has happened. SKIP_SUBTREE skips the subdirectory, which doesn't even make sense\nfor a Java file. SKIP_SIBLINGS would skip any files in the same directory. Since we weren't told what the file structure is, we can't assume there aren't other directories or subdirectories. Therefore, we have to choose the most general answer of TERMINATE. 6 is incorrect because file visitor throws a NullPointerException if null is returned as the result. "
+      },
+      {
+        "question_id": 13,
+        "correct_answers": [2],
+        "explanation": "2 is correct. ** matches zero or more characters, including multiple directories. 1 is incorrect because */ only matches one directory. It will match \"temp\" but not \"c:/temp,\" let alone \"c:/temp/dir.\" 3 is incorrect because *.txt only matches filenames and not directory paths. 4, 5, and 6 are incorrect because the paths we want to match do not begin with a slash. 7 is incorrect because of the above. "
+      },
+      {
+        "question_id": 14,
+        "correct_answers": [3],
+        "explanation": "3 is correct because DirectoryStream only looks at files in the immediate directory. **/*.txt means zero or more directories followed by a slash, followed by zero or more characters followed by .txt. Since the slash is in there, it is required to match, which makes it mean one or more directories. However, this is impossible because DirectoryStream only looks at one directory. If the expression were simply *.txt, answer 1 would be correct. 1, 2, 4, and 5 are incorrect because of the above. "
+      },
+      {
+        "question_id": 15,
+        "correct_answers": [1],
+        "explanation": "1 is correct because watch service only looks at a single directory. If you want to look at subdirectories, you need to set recursive watch keys. This is usually done using a FileVisitor. 2, 3, 4, 5, and 6 are incorrect because of the above."
+      }
     ]
   },
   {

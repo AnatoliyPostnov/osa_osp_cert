@@ -481,22 +481,17 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 
 val markdownContent5 = """ 
-Given:
+Given a partial directory tree:
+        dir x - |
+        ..........| - dir y
+        ..........| -file a
+and given that a valid Path object, dir, 
+points to x, and given this snippet: 
 ```
-3. import java.util.*;
-4. public class Looking {
-5.   public static void main(String[] args) {
-6.     String input = "1 2 a 3 45 6";
-7.     Scanner sc = new Scanner(input);
-8.     int x = 0;
-9.     do {
-10.      x = sc.nextInt();
-11.      System.out.print(x + " ");  
-12.    } while (x!=0);
-13.  }
-14.}       
-```        
-What is the result?
+WatchKey key = dir.register(watcher, ENTRY_CREATE);
+```
+If a WatchService is set using the given WatchKey, 
+what would be the result if a file is added todir y?
 """.trimIndent()
 
 
