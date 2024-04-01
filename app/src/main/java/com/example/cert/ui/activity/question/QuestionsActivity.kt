@@ -483,21 +483,30 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 val markdownContent5 = """ 
 Given:
 ```
- 3.import java.util.*;                                                  
- 4.public class GeoCache {                                              
- 5.  public static void main(String[] args) {                           
- 6.    String[] s = {"map", "pen", "marble", "key"};                    
- 7.    Othello o = new Othello();                                       
- 8.    Arrays.sort(s,o);                                                
- 9.    for(String s2: s) System.out.print(s2 + " ");                    
-10.    System.out.println(Arrays.binarySearch(s, "map"));               
-11.  }                                                                  
-12.  static class Othello implements Comparator<String> {               
-13.    public int compare(String a, String b) { return b.compareTo(a); }
-14.  }                                                                  
-15.}
+ 3. public class Chess implements Runnable {
+ 4.   public void run() {
+ 5.     move(Thread.currentThread().getId());
+ 6.   }
+ 7.   // insert code here
+ 8.     System.out.print(id + " ");
+ 9.     System.out.print(id + " ");
+10.   }
+11.   public static void main(String[] args) {
+12.     Chess ch = new Chess();
+13.     new Thread(ch).start();
+14.     new Thread(new Chess()).start();
+15.   } 
+16. }
 ```
-Which are true? (Choose all that apply.)
+         
+And given these two fragments:
+```
+I. synchronized void move(long id) {
+II. void move(long id) {
+```       
+When either fragment I or fragment II is 
+inserted at line 7, which are true? 
+(Choose all that apply.)
 """.trimIndent()
 
 

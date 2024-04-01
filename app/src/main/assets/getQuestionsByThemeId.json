@@ -4464,7 +4464,366 @@
     "theme_id": 12,
     "theme_content": "Inner Classes",
     "questions": [
-
+      {
+        "content": "Which are true about a static nested class?",
+        "question_id": 1,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "You must have a reference to an instance of the \nenclosing class in order to instantiate it"
+          },
+          {
+            "answer_id": 2,
+            "content": "It does not have access to nonstatic members of \nthe enclosing class"
+          },
+          {
+            "answer_id": 3,
+            "content": "Its variables and methods must be ```static```"
+          },
+          {
+            "answer_id": 4,
+            "content": "If the outer class is named MyOuter and the \nnested class is named MyInner, it can be \ninstantiated using ```new MyOuter.MyInner();```"
+          },
+          {
+            "answer_id": 5,
+            "content": "It must extend the enclosing class"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass Boo {\n   Boo(String s) { }\n   Boo() { }\n}\nclass Bar extends Boo {\n   Bar() { }\n   Bar(String s) {super(s);}\n   void zoo() {\n   // insert code here\n   }\n}\n```    \nWhich statements create an anonymous \ninner class from within class Bar? \n(Choose all that apply.)",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```Boo f = new Boo(24) { };```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```Boo f = new Bar() { };```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```Boo f = new Boo() {String s; };```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Bar f = new Boo(String s) { };```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Boo f = new Boo.Bar(String s) { };```"
+          }
+        ]
+      },
+      {
+        "content": "Which are true about a method-local inner \nclass? (Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "It must be marked final"
+          },
+          {
+            "answer_id": 2,
+            "content": "It can be marked abstract"
+          },
+          {
+            "answer_id": 3,
+            "content": "It can be marked public"
+          },
+          {
+            "answer_id": 4,
+            "content": "It can be marked static"
+          },
+          {
+            "answer_id": 5,
+            "content": "It can access private members of the enclosing class"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n1. public class TestObj {\n2.   public static void main(String[] args) {\n3.     Object o = new Object() {\n4.       public boolean equals(Object obj) {\n5.         return true;\n6.       }\n7.     }\n8.     System.out.println(o.equals(\"Fred\"));\n9.   }\n10. }\n```\nWhat is the result?",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "An exception occurs at runtime"
+          },
+          {
+            "answer_id": 2,
+            "content": "true"
+          },
+          {
+            "answer_id": 3,
+            "content": "Fred"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails because of an error on line 3"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails because of an error on line 4"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails because of an error on line 8"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails because of an error on a line other than 3, 4, or 8"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 1. public class HorseTest {\n 2.   public static void main(String[] args) {\n 3.     class Horse {\n 4.       public String name;\n 5.       public Horse(String s) {\n 6.         name = s;\n 7.       }\n 8.     }\n 9.     Object obj = new Horse(\"Zippo\");\n10.     System.out.println(obj.name);\n11.   }\n12. }\n```    \nWhat is the result?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "An exception occurs at runtime at line 10"
+          },
+          {
+            "answer_id": 2,
+            "content": "Zippo"
+          },
+          {
+            "answer_id": 3,
+            "content": "Compilation fails because of an error on line 3"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails because of an error on line 9"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails because of an error on line 10"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic abstract class AbstractTest {\n  public int getNum() {\n    return 45; \n  }\n  public abstract class Bar {\n    public int getNum() {\n      return 38; \n    }\n  }\n  public static void main(String[] args) {\n    AbstractTest t = new AbstractTest() {\n      public int getNum() {\n        return 22; \n      }\n    };\n    AbstractTest.Bar f = t.new Bar() {\n       public int getNum() {\n        return 57;\n       } \n    };\n    System.out.println(f.getNum() + \" \" + t.getNum());\n  }\n}\n```  \nWhat is the result?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "57 22"
+          },
+          {
+            "answer_id": 2,
+            "content": "45 38"
+          },
+          {
+            "answer_id": 3,
+            "content": "45 57"
+          },
+          {
+            "answer_id": 4,
+            "content": "An exception occurs at runtime"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. public class Tour {\n4.   public static void main(String[] args) {\n5.       Cathedral c = new Cathedral();\n6.       // insert code here\n7.       s.go();\n8.   }\n9. }\n10.class Cathedral {\n11.  class Sanctum {\n12.    void go() { System.out.println(\"spooky\"); }\n13.  }\n14.}\n```\nWhich, inserted independently at line 6, \ncompile and produce the output \"spooky\"? \n(Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```Sanctum s = c.new Sanctum();```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```c.Sanctum s = c.new Sanctum();```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```c.Sanctum s = Cathedral.new Sanctum();```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Cathedral.Sanctum s = c.new Sanctum();```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Cathedral.Sanctum s = Cathedral.new Sanctum();```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 5. class A { void m() { System.out.println(\"outer\"); } }\n 6.\n 7. public class TestInners {\n 8.   public static void main(String[] args) {\n 9.     new TestInners().go();                \n10.   }                                       \n11.   void go() {                                             \n12.     new A().m();                                            \n13.     class A { void m() { System.out.println(\"inner\"); } } \n14.   }                                                       \n15.   class A { void m() { System.out.println(\"middle\"); } }  \n16. }\n```\nWhat is the result?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```inner```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```outer```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```middle```"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3.public class Car {\n 4.  class Engine {\n 5.    // insert code here\n 6.  }\n 7.  public static void main(String[] args) {\n 8.    new Car().go();\n 9.  }\n10.  void go() {\n11.    new Engine();\n12.  }\n13.  void drive() { System.out.println(\"hi\"); }\n14.}\n```\nWhich, inserted independently at line 5, \nproduce the output \"hi\"? (Choose all that apply.)",
+        "question_id": 9,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```{ Car.drive(); }```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```{ this.drive(); }```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```{ Car.this.drive(); }```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```{ this.Car.this.drive(); }```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Engine() { Car.drive(); }```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```Engine() { this.drive(); }```"
+          },
+          {
+            "answer_id": 7,
+            "content": "```Engine() { Car.this.drive(); }```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. public class City {\n4.   class Manhattan {\n5.     void doStuff() throws Exception { System.out.print(\"x \"); }\n6.   }\n7.   class TimesSquare extends Manhattan {\n8.     void doStuff() throws Exception { }\n9.   }\n10.  public static void main(String[] args) throws Exception {\n11.    new City().go();\n12.  }\n13.  void go() throws Exception { new TimesSquare().doStuff(); }\n14.}\n```       \nWhat is the result?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "x"
+          },
+          {
+            "answer_id": 2,
+            "content": "x x"
+          },
+          {
+            "answer_id": 3,
+            "content": "No output is produced"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due to multiple errors"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due only to an error on line 4\n"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails due only to an error on line 7"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails due only to an error on line 10"
+          },
+          {
+            "answer_id": 8,
+            "content": "Compilation fails due only to an error on line 13"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. public class Navel {\n4.   private int size = 7;\n5.   private static int length = 3;\n6.   public static void main(String[] args) {\n7.     new Navel().go();\n8.   }\n9.   void go() {                                \n10.    int size = 5;                            \n11.    System.out.println(new Gazer().adder()); \n12.  }\n13.  class Gazer {\n14.     int adder() { return size * length; }         \n15.  }\n16.}\n```\nWhat is the result?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "15"
+          },
+          {
+            "answer_id": 2,
+            "content": "21"
+          },
+          {
+            "answer_id": 3,
+            "content": "An exception is thrown at runtime"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails due to multiple errors"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails due only to an error on line 4"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compilation fails due only to an error on line 5"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. import java.util.*;\n 4. public class Pockets {\n 5.   public static void main(String[] args) {\n 6.     String[] sa = {\"nickel\", \"button\", \"key\", \"lint\"};\n 7.     Sorter s = new Sorter();\n 8.     for(String s2: sa) System.out.print(s2 + \" \");\n 9.     Arrays.sort(sa,s);\n10.     System.out.println();\n11.     for(String s2: sa) System.out.print(s2 + \" \");\n12.   }\n13.   class Sorter implements Comparator<String> {\n14.     public int compare(String a, String b) {\n15.       return b.compareTo(a);\n16.     }\n17.   }\n18. }\n```         \nWhat is the result?",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "```button key lint nickel```\n```  nickel lint key button```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```nickel button key lint```\n```  button key lint nickel```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```nickel button key lint```\n```  nickel button key lint```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```nickel button key lint```\n```  nickel lint key button```"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      }
     ]
   },
   {
@@ -4472,7 +4831,541 @@
     "theme_id": 13,
     "theme_content": "Threads",
     "questions": [
-
+      {
+        "content": "The following block of code creates a \nThread using a Runnable target:\n```\nRunnable target = new MyRunnable();\nThread myThread = new Thread(target);\n```\nWhich of the following classes can be used to \ncreate the target so that the preceding code \ncompiles correctly?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "public class MyRunnable extends Runnable{public void run(){}}"
+          },
+          {
+            "answer_id": 2,
+            "content": "public class MyRunnable extends Object{public void run(){}}"
+          },
+          {
+            "answer_id": 3,
+            "content": "public class MyRunnable implements Runnable{public void run(){}}"
+          },
+          {
+            "answer_id": 4,
+            "content": "public class MyRunnable implements Runnable{void run(){}}"
+          },
+          {
+            "answer_id": 5,
+            "content": "public class MyRunnable implements Runnable{public void start(){}}"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. class MyThread extends Thread {\n 4.   public static void main(String [] args) {  \n 5.      MyThread t = new MyThread();            \n 6.      Thread x = new Thread(t);               \n 7.      x.start();                              \n 8.   }\n 9.   public void run() {                \n10.      for(int i=0;i<3;++i) {          \n11.         System.out.print(i + \"..\");  \n12.      }                               \n13.   }                                  \n14. }\n```\nWhat is the result of this code?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "1..2..3.."
+          },
+          {
+            "answer_id": 3,
+            "content": "0..1..2..3.."
+          },
+          {
+            "answer_id": 4,
+            "content": "0..1..2.."
+          },
+          {
+            "answer_id": 5,
+            "content": "An exception occurs at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. class Test {\n4.    public static void main(String [] args) {\n5.      printAll(args);\n6.    }\n7.    public static void printAll(String[] lines) {\n8.       for(int i=0;i<lines.length;i++){\n9.          System.out.println(lines[i]);\n10.         Thread.currentThread().sleep(1000);\n11.      }\n12.   }\n13. }\n```\nThe static method Thread.currentThread() returns \na reference to the currently executing Thread object. \nWhat is the result of this code? ",
+        "question_id": 3,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Each String in the array lines will output, \nwith a one-second pause between lines"
+          },
+          {
+            "answer_id": 2,
+            "content": "Each String in the array lines will output, \nwith no pause in between because this method\nis not executed in a Thread"
+          },
+          {
+            "answer_id": 3,
+            "content": "Each String in the array lines will output, \nand there is no guarantee that there will be\n a pause because currentThread() may not retrieve\n this thread"
+          },
+          {
+            "answer_id": 4,
+            "content": "This code will not compile"
+          },
+          {
+            "answer_id": 5,
+            "content": "Each String in the lines array will print, \nwith at least a one-second pause between lines"
+          }
+        ]
+      },
+      {
+        "content": "Assume you have a class that holds two private \nvariables: a and b. Which of the following pairs \ncan prevent concurrent access problems in that \nclass? (Choose all that apply.)    ",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```public int read(){return a+b;}```\n```public void set(int a, int b){this.a=a;this.b=b;}```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```public synchronized int read(){return a+b;}```\n```public synchronized void set(int a, int b){this.a=a;this.b=b;}```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```public int read(){synchronized(a){return a+b;}}```\n```public void set(int a, int b){synchronized(a){this.a=a;this.b=b;}}```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```public int read(){synchronized(a){return a+b;}}```\n```public void set(int a, int b){synchronized(b){this.a=a;this.b=b;}}```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```public synchronized(this) int read(){return a+b;}```\n```public synchronized(this) void set(int a, int b){this.a=a;this.b=b;}```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```public int read(){synchronized(this){return a+b;}}```\n```public void set(int a, int b){synchronized(this){this.a=a;this.b=b;}}```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n1. public class WaitTest {\n2.    public static void main(String [] args) {   \n3.       System.out.print(\"1 \");                  \n4.       synchronized(args){                      \n5.          System.out.print(\"2 \");               \n6.          try {                                 \n7.             args.wait();                       \n8.          }                                           \n9.          catch(InterruptedException e){}       \n10.      }                                        \n11.      System.out.print(\"3 \");                  \n12.   }                                           \n13. }\n```\nWhat is the result of trying to compile and run this program? ",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "It fails to compile because the \nIllegalMonitorStateException of wait() is not \ndealt with in line 7"
+          },
+          {
+            "answer_id": 2,
+            "content": "1 2 3"
+          },
+          {
+            "answer_id": 3,
+            "content": "1 3"
+          },
+          {
+            "answer_id": 4,
+            "content": "1 2"
+          },
+          {
+            "answer_id": 5,
+            "content": "At runtime, it throws an \nIllegalMonitorStateException when trying to wait"
+          },
+          {
+            "answer_id": 6,
+            "content": "It will fail to compile because it has to be \nsynchronized on the this object"
+          }
+        ]
+      },
+      {
+        "content": "Assume the following method is properly synchronized \nand called from a thread A on an object B: wait(2000);\nAfter calling this method, when will thread A become \na candidate to get another turn at the CPU?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "After object B is notified, or after two seconds"
+          },
+          {
+            "answer_id": 2,
+            "content": "After the lock on B is released, or after two seconds"
+          },
+          {
+            "answer_id": 3,
+            "content": "Two seconds after object B is notified"
+          },
+          {
+            "answer_id": 4,
+            "content": "Two seconds after lock B is released"
+          }
+        ]
+      },
+      {
+        "content": "Which are true? (Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The notifyAll() method must be called from \na synchronized context"
+          },
+          {
+            "answer_id": 2,
+            "content": "To call wait(), an object must own the lock on \nthe thread"
+          },
+          {
+            "answer_id": 3,
+            "content": "The notify() method is defined in \nclass java.lang.Thread\n"
+          },
+          {
+            "answer_id": 4,
+            "content": "When a thread is waiting as a result of \nwait(), it releases its lock"
+          },
+          {
+            "answer_id": 5,
+            "content": "The notify() method causes a thread to \nimmediately release its lock"
+          },
+          {
+            "answer_id": 6,
+            "content": "The difference between notify() and notifyAll() is that\n notifyAll() notifies all waiting threads, regardless\n of the object they're waiting on"
+          }
+        ]
+      },
+      {
+        "content": "Given this scenario: This class is intended \nto allow users to write a series of messages \nso that each message is identified with a \ntimestamp and the name of the thread that \nwrote the message:\n```\npublic class Logger {\n   private StringBuilder contents = new StringBuilder();\n   public void log(String message) {\n       contents.append(System.currentTimeMillis());\n       contents.append(\": \");\n       contents.append(Thread.currentThread().getName());\n       contents.append(message);\n       contents.append(\"\\n\");\n   }\n   public String getContents() { return contents.toString(); }\n}\n```\nHow can we ensure that instances of this class \ncan be safely used by multiple threads?",
+        "question_id": 8,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "This class is already thread-safe"
+          },
+          {
+            "answer_id": 2,
+            "content": "Replacing StringBuilder with StringBuffer\n will make this class thread-safe"
+          },
+          {
+            "answer_id": 3,
+            "content": "Synchronize the log() method only"
+          },
+          {
+            "answer_id": 4,
+            "content": "Synchronize the getContents() method only"
+          },
+          {
+            "answer_id": 5,
+            "content": "Synchronize both log() and getContents()"
+          },
+          {
+            "answer_id": 6,
+            "content": "This class cannot be made thread-safe"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic static synchronized void main(String[] args) throws InterruptedException {\n  Thread t = new Thread();\n  t.start();\n  System.out.print(\"X\");\n  t.wait(10000);\n  System.out.print(\"Y\");\n}\n```     \nWhat is the result of this code?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "It prints X and exits"
+          },
+          {
+            "answer_id": 2,
+            "content": "It prints X and never exits"
+          },
+          {
+            "answer_id": 3,
+            "content": "It prints XY and exits almost immediately"
+          },
+          {
+            "answer_id": 4,
+            "content": "It prints XY with a 10-second delay between X and Y"
+          },
+          {
+            "answer_id": 5,
+            "content": "It prints XY with a 10,000-second delay between X and Y"
+          },
+          {
+            "answer_id": 6,
+            "content": "The code does not compile"
+          },
+          {
+            "answer_id": 7,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nclass MyThread extends Thread {\n   MyThread() {\n     System.out.print(\"MyThread \");\n   }\n   public void run() {\n     System.out.print(\"bar \");\n   }\n   public void run(String s) {\n     System.out.print(\"baz \");\n   }\n}\npublic class TestThreads {\n   public static void main (String [] args) {\n     Thread t = new MyThread() {\n       public void run() {\n         System.out.print(\"foo \");\n       } \n     };\n     t.start(); \n   }\n}\n```       \nWhat is the result?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```foo```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```MyThread foo```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```MyThread bar```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```foo bar```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```foo bar baz```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```bar foo```"
+          },
+          {
+            "answer_id": 7,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 8,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class ThreadDemo {\n  synchronized void a() { actBusy(); }\n  static synchronized void b() { actBusy(); }\n  static void actBusy() {\n    try {\n      Thread.sleep(1000);\n    } catch (InterruptedException e) {}\n  }\n  public static void main(String[] args) {\n    final ThreadDemo x = new ThreadDemo();\n    final ThreadDemo y = new ThreadDemo();\n    Runnable runnable = new Runnable() {\n      public void run() {\n        int option = (int) (Math.random() * 4);\n        switch (option) {\n          case 0: x.a(); break;\n          case 1: x.b(); break;\n          case 2: y.a(); break;\n          case 3: y.b(); break;\n          }\n      } \n    };\n    Thread thread1 = new Thread(runnable);\n    Thread thread2 = new Thread(runnable);\n    thread1.start();\n    thread2.start();\n  } \n}\n```      \nWhich of the following pairs of method invocations \ncould NEVER be executing at the same time? \n(Choose all that apply.)",
+        "question_id": 11,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```x.a() in thread1, and x.a() in thread2```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```x.a() in thread1, and x.b() in thread2```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```x.a() in thread1, and y.a() in thread2```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```x.a() in thread1, and y.b() in thread2```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```x.b() in thread1, and x.a() in thread2```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```x.b() in thread1, and x.b() in thread2```"
+          },
+          {
+            "answer_id": 7,
+            "content": "```x.b() in thread1, and y.a() in thread2```"
+          },
+          {
+            "answer_id": 8,
+            "content": "```x.b() in thread1, and y.b() in thread2```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class TwoThreads {\n  static Thread laurel, hardy;\n  public static void main(String[] args) {\n    laurel = new Thread() {\n      public void run() {\n        System.out.println(\"A\");\n        try {\n          hardy.sleep(1000);\n          } catch (Exception e) {\n            System.out.println(\"B\");\n          }\n            System.out.println(\"C\");\n          }\n      };\n      hardy = new Thread() {\n        public void run() {\n          System.out.println(\"D\");\n          try {\n            laurel.wait();\n          } catch (Exception e) {\n              System.out.println(\"E\");\n          }\n          System.out.println(\"F\");\n      }\n    };\n    laurel.start();\n    hardy.start();\n  } \n}\n```    \nWhich letters will eventually appear somewhere \nin the output? (Choose all that apply.)",
+        "question_id": 12,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "A"
+          },
+          {
+            "answer_id": 2,
+            "content": "B"
+          },
+          {
+            "answer_id": 3,
+            "content": "C"
+          },
+          {
+            "answer_id": 4,
+            "content": "D"
+          },
+          {
+            "answer_id": 5,
+            "content": "E"
+          },
+          {
+            "answer_id": 6,
+            "content": "F"
+          },
+          {
+            "answer_id": 7,
+            "content": "The answer cannot be reliably determined"
+          },
+          {
+            "answer_id": 8,
+            "content": "The code does not compile"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Starter implements Runnable {\n 4.   void go(long id) {\n 5.     System.out.println(id);\n 6.   }\n 7.   public static void main(String[] args) {\n 8.     System.out.print(Thread.currentThread().getId() + \" \");\n 9.     // insert code here\n10.   }\n11.   public void run() { go(Thread.currentThread().getId()); }\n12. }\n```\n         \nAnd given the following five fragments:\n```\nI.  new Starter().run();               \nII. new Starter().start();             \nIII. new Thread(new Starter());             \nIV. new Thread(new Starter()).run();        \nV.  new Thread(new Starter()).start();      \n```              \nWhen the five fragments are inserted, one at \na time at line 9, which are true? (Choose all that apply.)",
+        "question_id": 13,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "All five will compile"
+          },
+          {
+            "answer_id": 2,
+            "content": "Only one might produce the output 4 4"
+          },
+          {
+            "answer_id": 3,
+            "content": "Only one might produce the output 4 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "Exactly two might produce the output 4 4"
+          },
+          {
+            "answer_id": 5,
+            "content": "Exactly two might produce the output 4 2"
+          },
+          {
+            "answer_id": 6,
+            "content": "Exactly three might produce the output 4 4"
+          },
+          {
+            "answer_id": 7,
+            "content": "Exactly three might produce the output 4 2"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Leader implements Runnable {\n 4.   public static void main(String[] args) {\n 5.     Thread t = new Thread(new Leader());\n 6.     t.start();\n 7.     System.out.print(\"m1 \");\n 8.   t.join();\n 9.     System.out.print(\"m2 \");\n10.   }\n11.   public void run() {\n12.     System.out.print(\"r1 \");\n13.     System.out.print(\"r2 \");\n14.   } \n15. }\n```\nWhich are true? (Choose all that apply.)",
+        "question_id": 14,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "The output could be ```r1 r2 m1 m2```"
+          },
+          {
+            "answer_id": 3,
+            "content": "The output could be ```m1 m2 r1 r2```"
+          },
+          {
+            "answer_id": 4,
+            "content": "The output could be ```m1 r1 r2 m2```"
+          },
+          {
+            "answer_id": 5,
+            "content": "The output could be ```m1 r1 m2 r2```"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. class Dudes {\n 4.   static long flag = 0;\n 5.   // insert code here\n 6.     if(flag == 0) flag = id;                  \n 7.     for(int x = 1; x < 3; x++) {              \n 8.       if(flag == id) System.out.print(\"yo \"); \n 9.       else System.out.print(\"dude \");         \n10.     }\n11.   }\n12. }\n13. public class DudesChat implements Runnable {\n14.   static Dudes d;\n15.   public static void main(String[] args) {\n16.     new DudesChat().go();\n17.   }\n18.   void go() {\n19.     d = new Dudes();\n20.     new Thread(new DudesChat()).start();\n21.     new Thread(new DudesChat()).start();\n22.   }\n23.   public void run() {\n24.     d.chat(Thread.currentThread().getId());\n25.   }\n26. }\n```        \nAnd given these two fragments:\n```\nI. synchronized void chat(long id) {\nII. void chat(long id) {            \n```  \nWhen fragment I or fragment II is inserted at \nline 5, which are true? (Choose all that apply.)",
+        "question_id": 15,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "An exception is thrown at runtime"
+          },
+          {
+            "answer_id": 2,
+            "content": "With fragment I, compilation fails"
+          },
+          {
+            "answer_id": 3,
+            "content": "With fragment II, compilation fails"
+          },
+          {
+            "answer_id": 4,
+            "content": "With fragment I, the output could be ```yo dude dude yo```"
+          },
+          {
+            "answer_id": 5,
+            "content": "With fragment I, the output could be ```dude dude yo yo```"
+          },
+          {
+            "answer_id": 6,
+            "content": "With fragment II, the output could be ```yo dude dude yo```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n3. class Chicks {\n4.   synchronized void yack(long id) {\n5.     for(int x = 1; x < 3; x++) {\n6.       System.out.print(id + \" \");\n7.       Thread.yield();\n8.     }\n9.   }\n10.}\n11.public class ChicksYack implements Runnable {\n12.  Chicks c;\n13.  public static void main(String[] args) {\n14.    new ChicksYack().go();\n15.  }\n16.  void go() {\n17.    c = new Chicks();\n18.    new Thread(new ChicksYack()).start();\n19.    new Thread(new ChicksYack()).start();\n20.  }\n21.  public void run() {\n22.    c.yack(Thread.currentThread().getId());\n23.  }\n24.}\n```\nWhich are true? (Choose all that apply.)",
+        "question_id": 16,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "The output could be 4 4 2 3"
+          },
+          {
+            "answer_id": 3,
+            "content": "The output could be 4 4 2 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "The output could be 4 4 4 2"
+          },
+          {
+            "answer_id": 5,
+            "content": "The output could be 2 2 4 4"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\n 3. public class Chess implements Runnable {\n 4.   public void run() {\n 5.     move(Thread.currentThread().getId());\n 6.   }\n 7.   // insert code here\n 8.     System.out.print(id + \" \");\n 9.     System.out.print(id + \" \");\n10.   }\n11.   public static void main(String[] args) {\n12.     Chess ch = new Chess();\n13.     new Thread(ch).start();\n14.     new Thread(new Chess()).start();\n15.   } \n16. }\n```\n         \nAnd given these two fragments:\n```\nI. synchronized void move(long id) {\nII. void move(long id) {\n```       \nWhen either fragment I or fragment II is \ninserted at line 7, which are true? \n(Choose all that apply.)",
+        "question_id": 17,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 2,
+            "content": "With fragment I, an exception is thrown"
+          },
+          {
+            "answer_id": 3,
+            "content": "With fragment I, the output could be 4 2 4 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "With fragment I, the output could be 4 4 2 3"
+          },
+          {
+            "answer_id": 5,
+            "content": "With fragment II, the output could be 2 4 2 4"
+          }
+        ]
+      }
     ]
   },
   {
@@ -4485,7 +5378,7 @@
   },
   {
     "exam_id": 2,
-    "theme_id": 14,
+    "theme_id": 15,
     "theme_content": "JDBC",
     "questions": [
 
