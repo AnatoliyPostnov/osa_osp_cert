@@ -700,6 +700,86 @@
     "theme_id": 11,
     "theme_content": "Generics and Collections",
     "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [1],
+        "explanation": "1 is correct. 2 is incorrect because List is an interface, so you can't say new List(), regardless of any generic types. 4, 5, and 6 are incorrect because List only takes one type parameter\n(a Map would take two, not a List). 3 is tempting, but incorrect. The type argument <List<Integer>\\> must be the same for both sides of the assignment, even though the constructor new ArrayList() on the right side is a subtype of the declared type List on the left. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [2, 4],
+        "explanation": "2 and 4. 2 is true because often two dissimilar objects can return the same hashcode value. 4 is true because if the hashCode() comparison returns ==, the two objects might or might not be equal. 1, 3, and 5 are incorrect. 3 is incorrect because the hashCode() method is very flexible in its return values, and often two dissimilar objects can return the same hashcode value. 1 and 5 are a negation of the hashCode() and equals() contract."
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [5],
+        "explanation": "5 is correct. You can't put both Strings and ints into the same TreeSet. Without generics, the compiler has no way of knowing what type is appropriate for this TreeSet,\nso it allows everything to compile. At runtime, the TreeSet will try to sort the elements\nas they're added, and when it tries to compare an Integer with a String, it will throw a ClassCastException. Note that although the before() method does not use generics, it does use autoboxing. Watch out for code that uses some new features and some old features mixed together. 1, 2, 3, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [3, 4],
+        "explanation": "3 and 4 are correct. If hashCode() is not overridden, then every entry will go into its own bucket, and the overridden equals() method will have no effect on determining equivalency. If hashCode() is overridden, then the overridden equals() method will view t1 and t2 as duplicates. 1, 2, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [2, 5, 7],
+        "explanation": "2, 5, and 7 are correct. 1 is incorrect because you can't use a primitive type as a type parameter. 3 is incorrect because a Map takes two type parameters separated by a comma. 4 is incorrect because an int can't autobox to a null, and 6 is incorrect because a null can't unbox to 0. 8 is incorrect because you can't autobox a primitive just by trying to invoke a method with it."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [2],
+        "explanation": "2 is correct. The problem with the original code is that Sheep tries to implement Herbivore<Sheep> and Herbivore declares that its type parameter E can be any type that extends Plant. Since a Sheep is not a Plant, Herbivore<Sheep> makes no sense—the type Sheep is outside the allowed range of Herbivore's parameter E. Only solutions that either alter the definition of a Sheep or alter the definition of Herbivore will be able to fix this. So 1, 5, and 6 are eliminated. 2 works—changing the definition of an Herbivore to allow it to eat Sheep solves the problem. 3 doesn't work because an Herbivore<Plant> must have a munch(Plant) method, not munch(Grass). And 4 doesn't work, because in 4 we made Sheep extend Plant—now the Wolf class breaks because its munch(Sheep) method no longer fulfills the contract of Carnivore. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [4],
+        "explanation": "4 is correct. All of the collection classes allow you to grow or shrink the size of your collection. ArrayList provides an index to its elements. The newer collection classes tend not to have synchronized methods. Vector is an older implementation of ArrayList functionality and has synchronized methods; it is slower than ArrayList. 1, 2, 3, 5, and 6 are incorrect based on the logic described earlier. 3, List, is an interface, and 6, PriorityQueue, does not offer access by index. "
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [2, 5, 6],
+        "explanation": "2, 5, and 6 are correct. The return type of process is definitely declared as a List, not an ArrayList, so 1 and\n4 are incorrect. 3 is incorrect because the return type evaluates to List<Integer>, and that can't be assigned to a variable of type List<Number>. Of course, all these would probably cause a NullPointerException since the variables are still null—but the question only asked us to get the code to compile."
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [2],
+        "explanation": "2 is correct. For the sake of the exam, add() and offer() both add to (in this case) naturally sorted queues. The calls to poll() both return and then remove the first item from the queue, so the test fails. 1, 3, 4, 5, 6, 7, and 8 are incorrect based on the above."
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [1, 2, 3, 4, 6],
+        "explanation": "1, 2, 3, 4, and 6 are all correct. Only 5 is incorrect. Elements of a TreeSet must in some way implement Comparable."
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [1, 4],
+        "explanation": "1 and 4 are correct. While fragment II wouldn't fulfill the hashCode() contract (as you can see by the results), it is legal Java. For the purpose of the exam, if you don't override hashCode(), every object will have a unique hashcode. 2, 3, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [2, 6],
+        "explanation": "2 and 6 are correct. After \"g\" is added, TreeSet s contains six elements and TreeSet subs contains three (b, c, d), because \"g\" is out of the range of subs. The first pollFirst() finds and removes only the \"a\". The second pollFirst() finds and removes the \"b\" from both TreeSets (remember they are backed). The final add() is in range of both TreeSets. The final contents are [c,c2,d,e,g] and [c,c2,d]. 1, 3, 4, 5, 7, and H are incorrect based on the above. "
+      },
+      {
+        "question_id": 13,
+        "correct_answers": [1],
+        "explanation": "1 is correct. The ceilingKey() method's argument is inclusive. The floorKey() method would be used to find keys before the specified key. The firstKey() method's argument is also inclusive. 2, 3, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 14,
+        "correct_answers": [2],
+        "explanation": "2 is correct. 1 is incorrect because polymorphic assignments don't apply to generic type parameters. 3 and 4 are incorrect because they don't follow basic polymorphism rules. "
+      },
+      {
+        "question_id": 15,
+        "correct_answers": [7],
+        "explanation": "7 is correct. Class Dog needs to implement Comparable in order for a TreeSet (which keeps its elements sorted) to be able to contain Dog objects. 1, 2, 3, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 16,
+        "correct_answers": [4, 7],
+        "explanation": "4 and 7 are correct. First, the compareTo() method will reverse the normal sort. Second, the sort() is valid. Third, the binarySearch() gives –1 because it needs to be invoked using the same Comparator (o) as was used to sort the array. Note that when the binarySearch() returns an \"undefined result,\" it doesn't officially have to be a –1, but it usually is, so if you selected only G, you get full credit! 1, 2, 3, 5, and 6 are incorrect based on the above."
+      }
     ]
   },
   {

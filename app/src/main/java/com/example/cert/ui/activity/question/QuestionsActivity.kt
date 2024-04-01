@@ -482,11 +482,22 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 
 val markdownContent5 = """ 
 Given:
-1) ClassA has a ClassD
-2) Methods in ClassA use public methods in ClassB
-3) Methods in ClassC use public methods in ClassA
-4) Methods in ClassA use public variables in ClassB
-Which is most likely true? (Choose only one.)
+```
+ 3.import java.util.*;                                                  
+ 4.public class GeoCache {                                              
+ 5.  public static void main(String[] args) {                           
+ 6.    String[] s = {"map", "pen", "marble", "key"};                    
+ 7.    Othello o = new Othello();                                       
+ 8.    Arrays.sort(s,o);                                                
+ 9.    for(String s2: s) System.out.print(s2 + " ");                    
+10.    System.out.println(Arrays.binarySearch(s, "map"));               
+11.  }                                                                  
+12.  static class Othello implements Comparator<String> {               
+13.    public int compare(String a, String b) { return b.compareTo(a); }
+14.  }                                                                  
+15.}
+```
+Which are true? (Choose all that apply.)
 """.trimIndent()
 
 
