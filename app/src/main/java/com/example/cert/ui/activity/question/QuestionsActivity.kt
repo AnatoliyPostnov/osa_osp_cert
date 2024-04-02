@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +30,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -87,25 +89,11 @@ class QuestionsActivity : ComponentActivity() {
             if (state.questions == null) {
                 Text(text = "questions were not found")
             } else {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.White)
-                ) {
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.3f)) {
-                        Header(state)
-                    }
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(5f)) {
-                        QuestionMainScreen(navController, viewModel, activityContext, state)
-                    }
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.3f)) {
-                        BottomMenu(navController, viewModel, state)
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    Box {
+                        Header(state, Modifier.align(Alignment.TopCenter))
+                        QuestionMainScreen(navController, viewModel, activityContext, state, Modifier.align(Alignment.Center))
+                        BottomMenu(navController, viewModel, Modifier.align(Alignment.BottomCenter))
                     }
                 }
             }
@@ -114,22 +102,20 @@ class QuestionsActivity : ComponentActivity() {
 }
 
 @Composable
-fun Header(state: TestActivityState) {
+fun Header(state: TestActivityState, modifier: Modifier) {
     Text(
-        state.questions?.themeContent ?: "Content was not found",
+        text = state.questions?.themeContent ?: "Content was not found",
         style = MaterialTheme.typography.titleLarge,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth().height(30.dp),
+        textAlign = TextAlign.Center
     )
 }
 
 @Composable
-fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: QuestionsActivity, state: TestActivityState) {
+fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: QuestionsActivity, state: TestActivityState, modifier: Modifier) {
     val navigation = TopNavigation(navController = navController, viewModel = viewModel, activityContext = activityContext)
     Scaffold(
-        modifier = Modifier
-            .background(Color.Yellow)
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().padding(bottom = 50.dp, top = 30.dp),
         topBar = {
             TopNavigation(navigation, state)
         },
@@ -144,18 +130,23 @@ fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivity
 }
 
 @Composable
-fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewModel, state: TestActivityState) {
+fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewModel, modifier: Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route?.toInt()
     val nextRote = viewModel.getNextRoute(currentRoute)
     val prevRote = viewModel.getPrevRoute(currentRoute)
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(50.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Button(
             onClick = {
+                if (!viewModel.commitQuestion(currentRoute)) {
+                    viewModel.uncommittedQuestion(currentRoute)
+                }
                 navController.navigate(prevRote.toString()) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         saveState = true
@@ -164,39 +155,19 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
                     restoreState = true
                 }
             },
-            colors = ButtonDefaults.buttonColors(Brown)
+            colors = ButtonDefaults.buttonColors(Brown),
+            modifier = Modifier
+                .width(150.dp)
+                .height(50.dp)
         ) {
             Text("prev")
         }
         Spacer(modifier = Modifier.weight(0.5f))
-        if (!viewModel.getCommitButtonState(currentRoute)) {
-            Button(
-                onClick = {
-                    if (viewModel.commitQuestion(currentRoute)) {
-                        navController.navigate(nextRote.toString()) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
-                },
-                colors = ButtonDefaults.buttonColors(Brown)
-            ) {
-                Text("commit answer")
-            }
-        } else {
-            Button(
-                onClick = { viewModel.uncommittedQuestion(currentRoute) },
-                colors = ButtonDefaults.buttonColors(Brown)
-            ) {
-                Text("uncommit answer")
-            }
-        }
-        Spacer(modifier = Modifier.weight(0.5f))
         Button(
             onClick = {
+                if (!viewModel.commitQuestion(currentRoute)) {
+                    viewModel.uncommittedQuestion(currentRoute)
+                }
                 navController.navigate(nextRote.toString()) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         saveState = true
@@ -205,7 +176,10 @@ fun BottomMenu(navController: NavController, viewModel: QuestionActivityViewMode
                     restoreState = true
                 }
             },
-            colors = ButtonDefaults.buttonColors(Brown)
+            colors = ButtonDefaults.buttonColors(Brown),
+            modifier = Modifier
+                .width(150.dp)
+                .height(75.dp)
         ) {
             Text("next")
         }

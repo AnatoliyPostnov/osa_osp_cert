@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -18,6 +19,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -56,70 +58,64 @@ class QuestionsResultActivity : ComponentActivity() {
             val state by viewModel.uiState.collectAsState()
 
             viewModel.setTestResult(activityContext.intent.extras?.getString("test_result"))
-            Column {
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .weight(1.1f)) {
-                    LazyColumn {
-                        state.resultItems.values.forEach {
-                            item {
-                                Card(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(10.dp),
-                                    shape = RoundedCornerShape(15.dp),
-                                    elevation = CardDefaults.cardElevation(10.dp),
-                                    colors = CardDefaults.cardColors(
-                                        containerColor = if (it.isRight) {
-                                            colorResource(R.color.light_green)
-                                        } else {
-                                            colorResource(R.color.light_red)
-                                        }
-                                    )
-                                ) {
-                                    Column(modifier = Modifier.padding(15.dp)) {
-                                        Question(it)
-                                        it.answers.forEach { answer -> Answers(answer) }
-                                        Text(
-                                            text = "Your answer: ${it.yourAnswer}",
-                                            style = MaterialTheme.typography.titleMedium,
-                                            textAlign = TextAlign.Start
-                                        )
-                                        Text(
-                                            text = "Correct answer: ${it.rightAnswer}",
-                                            style = MaterialTheme.typography.titleMedium,
-                                            textAlign = TextAlign.Start
-                                        )
-                                        Text(
-                                            text = "Explanation: ${it.explanation}",
-                                            style = MaterialTheme.typography.titleMedium,
-                                            textAlign = TextAlign.Start
-                                        )
+            Box(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(modifier = Modifier
+                    .padding(bottom = 50.dp)
+                    .align(Alignment.TopCenter)) {
+                    state.resultItems.values.forEach {
+                        item {
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                shape = RoundedCornerShape(15.dp),
+                                elevation = CardDefaults.cardElevation(10.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = if (it.isRight) {
+                                        colorResource(R.color.light_green)
+                                    } else {
+                                        colorResource(R.color.light_red)
                                     }
+                                )
+                            ) {
+                                Column(modifier = Modifier.padding(15.dp)) {
+                                    Question(it)
+                                    it.answers.forEach { answer -> Answers(answer) }
+                                    Text(
+                                        text = "Your answer: ${it.yourAnswer}",
+                                        style = MaterialTheme.typography.titleMedium,
+                                        textAlign = TextAlign.Start
+                                    )
+                                    Text(
+                                        text = "Correct answer: ${it.rightAnswer}",
+                                        style = MaterialTheme.typography.titleMedium,
+                                        textAlign = TextAlign.Start
+                                    )
+                                    Text(
+                                        text = "Explanation: ${it.explanation}",
+                                        style = MaterialTheme.typography.titleMedium,
+                                        textAlign = TextAlign.Start
+                                    )
                                 }
                             }
                         }
                     }
                 }
-                Box(
+                Button(
+                    onClick = {
+                        val intent = Intent(activityContext, MainActivity::class.java)
+                        ContextCompat.startActivity(
+                            activityContext,
+                            intent,
+                            null
+                        )
+                    },
+                    colors = ButtonDefaults.buttonColors(Brown),
                     modifier = Modifier
-                        .fillMaxSize()
-                        .weight(0.1f),
-                    contentAlignment = Alignment.Center
+                        .align(Alignment.BottomCenter)
+                        .height(50.dp)
                 ) {
-                    Button(
-                        onClick = {
-                            val intent = Intent(activityContext, MainActivity::class.java)
-                            ContextCompat.startActivity(
-                                activityContext,
-                                intent,
-                                null
-                            )
-                        },
-                        colors = ButtonDefaults.buttonColors(Brown),
-                    ) {
-                        Text("Return to main menu")
-                    }
+                    Text("Return to main menu")
                 }
             }
         }

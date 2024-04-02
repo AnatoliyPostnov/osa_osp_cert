@@ -92,10 +92,9 @@ class QuestionActivityViewModel (
         if (questionId == null) return
         val commitQuestion = getCurrentQuestion(questionId)
 
-        val examTestResultOld = _testActivityViewModelState.value.examTestResultRequestDomainDto
-            ?: throw RuntimeException("examTestResultRequest can`t be null")
+        val examTestResultOld = _testActivityViewModelState.value.examTestResultRequestDomainDto ?: return
 
-        val examTestResult = examTestResultOld.copy(questions = examTestResultOld.questions.filter { it == commitQuestion })
+        val examTestResult = examTestResultOld.copy(questions = examTestResultOld.questions.filterNot { it == commitQuestion })
 
         val currentTopItem = _testActivityViewModelState.value.topItems[questionId]
             ?: throw RuntimeException("questionId can`t be null")
