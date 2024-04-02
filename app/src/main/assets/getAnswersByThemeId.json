@@ -946,6 +946,76 @@
     "theme_id": 14,
     "theme_content": "Concurrency",
     "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [3],
+        "explanation": "3 is correct. The Iterator is obtained before 6 is added. As long as the reference to the Iterator is maintained, it will only provide access to the values 4 and 2. 1, 2, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [3],
+        "explanation": "3 is correct. Because the Iterator is obtained before the number 2 is removed, it will reflect all the elements that have been added to the collection. 1, 2, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [1, 4],
+        "explanation": "1 and 4 are correct. Of the methods listed, only add and remove will modify the list and cause a new internal array to be created. 2 and 3 are incorrect based on the above. "
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [3],
+        "explanation": "3 is correct. The add method will throw an IllegalStateException if the queue is full. The two offer methods will return false if the queue is full. Only the put method will block until space becomes available. 1, 2, and 4 are incorrect based on the above."
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [3],
+        "explanation": "3 is correct; it uses the correct syntax. The methods for answers 1, 2, and 4 do not exist in a ConcurrentHashMap. A traditional Map contains a single-argument remove method that removes an element based on its key. The ConcurrentMap interface (which ConcurrentHashMap implements) added the two-argument remove method, which takes a key and a value. An element will only be removed from the Map if its value matches the second argument. A boolean is returned to indicate if the element was removed."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The ThreadLocalRandom creates and retrieves Random instances that are specific to a thread. You could achieve the same effect prior to Java 7 by using the java.lang .ThreadLocal and java.util.Random classes, but it would require several lines of code. Math .random is thread-safe, but uses a shared java.util.Random instance and can suffer from contention problems. 1, 2, and 3 are incorrect based on the above. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [1, 2],
+        "explanation": "1 and 2 are correct. The addAndGet and getAndAdd both increment the value stored in an AtomicInteger. Answer 3 is not atomic because in between the call to get and set, the value stored by i may have changed. Answer 4 is invalid because the atomicIncrement method is fictional, and answer 5 is invalid because auto-boxing is not supported for the atomic classes. The difference between the addAndGet and getAndAdd methods is that the first is a prefix method (++x) and the second is a postfix method (x++)."
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [4, 5],
+        "explanation": "4 and 5 are correct. The addScore method modifies the collection and, therefore, should use a write lock, while the getHighScores method only reads the collection and should use a read lock. 1, 2, 3, and 6 are incorrect, they will not behave correctly. "
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [4],
+        "explanation": "4 is correct. A lock counts the number of times it has been locked. Calling lock increments the count, and calling unlock decrements the count. If a call to unlock decreases the count below zero, an exception is thrown. 1, 2, and 3 are incorrect based on the above. "
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [2],
+        "explanation": "2 is correct. Executor is the super-interface for ExecutorService. You use Executors to easily obtain ExecutorService instances with predefined threading behavior. If the Executor interface does not produce ExecutorService instances with the behaviors that you desire, you can always look into using java.util.concurrent.AbstractExecutorService or java.util.concurrent.ThreadPoolExecutor directly. 1, 3, and 4 are incorrect based on the above. "
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [3],
+        "explanation": "3 is correct. When you submit a Callable to an ExecutorService for execution, you will receive a Future as the result. You can use the Future to check on the status of the Callable's execution, or just use the get method to block until the result is available. 1, 2, and 4 are incorrect based on the above. "
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [2, 8],
+        "explanation": "2 and 8 are correct. Runnable and Callable serve similar purposes. Runnable has been available in Java since version 1. Callable was introduced in Java 5 and serves as a more flexible alternative to Runnable. A Callable allows a generic return type and permits thrown exceptions, while a Runnable does not. 1, 3, 4, 5, 6, and 7 are incorrect statements."
+      },
+      {
+        "question_id": 13,
+        "correct_answers": [4],
+        "explanation": "4 is correct. The invokeAll method is a var args method that will fork all Fork-Join tasks, except one that will be invoked directly. 1, 2, and 3 are incorrect; they would not correctly complete the Fork-Join process. 1, 2, and 3 are incorrect; they would not correctly complete the Fork-Join process."
+      },
+      {
+        "question_id": 14,
+        "correct_answers": [1, 5],
+        "explanation": "1 and 5 are correct. When creating multiple ForkJoinTask instances, all tasks except one should be forked first so that they can be picked up by other Fork-Join worker threads. The final task should then be executed within the same thread (typically by calling compute()) before calling join on all the forked tasks to await their results. In many cases, calling the methods in the wrong order will not result in any compiler errors, so care must be taken to call the methods in the correct order. 2, 3, 4, and 6 are incorrect based on the above. "
+      }
     ]
   },
   {
@@ -953,6 +1023,81 @@
     "theme_id": 15,
     "theme_content": "JDBC",
     "questions": [
+      {
+        "question_id": 1,
+        "correct_answers": [2],
+        "explanation": "2 is correct. Prior to JDBC 4.0, JDBC drivers were required to register themselves with the DriverManager class by invoking DriverManager.register(this); after the driver was instantiated through a call from the classloader. The Class.forName() method calls the classloader, which in turn creates an instance of the class passed as a String to the method. 1 is incorrect because this method is meant to be invoked with an instance of a Driver class. 3 is incorrect because DatabaseMetaData does not have a loadDriver method, and the purpose of DatabaseMetaData is to return information about a database connection. 4 is incorrect because, again, while the method sounds right, the arguments are not of the right types, and this method is actually the one called by DriverManager.getConnection to get a Connection object. 5 is incorrect because while this method returns a Driver instance, one has to be loaded and registered with the DriverManager first."
+      },
+      {
+        "question_id": 2,
+        "correct_answers": [1, 2, 5],
+        "explanation": "1, 2, and 5 are correct. To be JDBC 4.0 compliant, a JDBC driver must support the ability to autoload the driver by providing a file, META-INF/services/java.sql.Driver, that indicates the fully qualified class name of the Driver class that DriverManager should load upon start-up. The JDBC driver must implement the interfaces for Driver, Connection, Statement, ResultSet, and others. The driver must also support transactions.3 and 4 are incorrect. It is not a requirement to support scrollable or updatable ResultSets, although many drivers do. If, however, the driver reports that through DatabaseMetaData\nit supports scrollable and updatable ResultSets, then the driver must support all of the methods associated with cursor movement and updates. 6 is incorrect. The JDBC requires\nthat the driver support SQL92 entry-level grammar and the SQL command DROP TABLE (from SQL92 Transitional Level). 7 is not correct. While JDBC 4.0 drivers must support PreparedStatement, CallableStatement is optional, and only required if the driver returns true for the method DatabaseMetaData.supportsStoredProcedures. "
+      },
+      {
+        "question_id": 3,
+        "correct_answers": [3, 4, 6],
+        "explanation": "3, 4, and 6 are correct. DatabaseMetaData provides data about the database and the Connection object. The name, version, and other JDBC driver information are available, plus information about the database, including the names of stored procedures, functions, SQL keywords, and more. Finally, the default transaction isolation level and data about what transaction levels are supported are also available through DatabaseMetaData. 1 and 2 are incorrect, as they are really about the result of a query with the database. Column count is available through a ResultSetMetaData object, but a row count requires that you, as the developer, move the cursor to the end of a result set and then evaluate the cursor position. 5 is incorrect. There is no method defined to return the last query in JDBC. 7 is not correct. The Savepoint information is accessed through a Savepoint instance and is part of a transaction."
+      },
+      {
+        "question_id": 4,
+        "correct_answers": [5],
+        "explanation": "5 is correct. When the ResultSet returns, the cursor is pointing before the first row of the ResultSet. You must invoke the next() method to move to the next row of results before you can read any data from the columns. Trying to read a result using a getXXXX method will result in a SQLException when the cursor is before the first row or after the last row. 1, 2, 4, and 6 are incorrect based on the above. Note about 3: the ResultSet returned from executeQuery will never be null. "
+      },
+      {
+        "question_id": 5,
+        "correct_answers": [4],
+        "explanation": "4 is correct. Note that answer 5 is close, but will not compile because the executeUpdate(query) method returns an integer result. 1 will compile correctly, but throw a SQLException at runtime—the executeQuery method cannot be used on INSERT, UPDATE, DELETE, or DDL SQL queries. 2 will not compile because the createStatement method does not take a String argument for the query. 3 is incorrect because Statement does not have a setQuery method and this fragment will not compile."
+      },
+      {
+        "question_id": 6,
+        "correct_answers": [5],
+        "explanation": "5 is correct. Recall that the try-with-resources statement on line X will automatically close the resource specified at the close of the try block (when the closing curly brace is reached), and closing the Statement object automatically closes any open ResultSets associated with the Statement. The SQLException thrown is that the ResultSet is not open. To fix this code, move the while statement into the try-with-resources block. 1, 2, 3, 4, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 7,
+        "correct_answers": [1,2,3,4,5],
+        "explanation": "All of the answers are correct (1, 2, 3, 4, 5). SELECT statements will produce a ResultSet even if there are no rows. INSERT, UPDATE, and DELETE statements all produce an update count, even when the number of rows affected is 0. "
+      },
+      {
+        "question_id": 8,
+        "correct_answers": [3],
+        "explanation": "3 is the correct answer. Parameters are numbered from 1, not 0. When the program executes, a SQLException will be thrown by Line X.4 is incorrect because the compiler cannot detect that the value of the method should be a 1 and not a zero. The compiler can only determine that the type of the argument is correct, and in this case, the type is correct as an integer. 1 and 2 are incorrect based on the above."
+      },
+      {
+        "question_id": 9,
+        "correct_answers": [2],
+        "explanation": "2 is correct. In the first iteration of the for loop, i = 0 and the pstmt.setString method index (the first parameter) is 1 and the second index is 2. But in the second iteration of the loop, the index value is now 3 and 4, respectively. It would be better to hard-code these two values as 1 and 2, respectively. 1, 3, 4, 5, and 6 are incorrect based on the above."
+      },
+      {
+        "question_id": 10,
+        "correct_answers": [5],
+        "explanation": "5 is correct. Recall that to specify an IN parameter, you use a setXXXX method, and for an OUT parameter, you must register the parameter as an OUT before the call, and then use a getXXXX method to return the result from the stored procedure after executing the method. 1 is incorrect because parameter indexes are numbered from 1, not from 0. 2 is incorrect because the executeQuery method includes the String query passed in as a parameter. This method will throw a SQLException. 3 is incorrect because the OUT parameter was not registered before the execute call, but after the execute method. 4 is incorrect because this stored procedure does not return a ResultSet. So while a ResultSet will be returned as a result of the executeQuery call, the call to rs.getInt will throw a SQLException."
+      },
+      {
+        "question_id": 11,
+        "correct_answers": [3],
+        "explanation": "3 is the correct answer. This code fragment is creating an instance of a JdbcRowSet object—the only RowSet that is a connected RowSet object. This is the proper way to use the RowSetProvider static newFactory() method or obtain a RowSetFactory instance that is then used to create a JdbcRowSet instance. 1, 2, and 5 are incorrect. These are disconnected RowSet objects, although the syntax\nto acquire these objects is correct. 4 is incorrect and will not compile. The reason is that RowSetFactory does not extend AutoCloseable; thus, the compiler will complain about the use of RowSetFactory in a try-with-resources. 6 is incorrect because this is not the proper way to initialize a RowSet object. The factory method is used to create an instance, and the instance must be used to execute a query and populate the RowSet with results."
+      },
+      {
+        "question_id": 12,
+        "correct_answers": [7],
+        "explanation": "7 is correct. First, the database being offline at any point after the execute() method is invoked is irrelevant, since this is a disconnected RowSet object (CachedRowSet). Thus, the results are cached in the object and changes can be made to the results, regardless of the status of the database. However, there is a critical error in this code: to write the changes made to the data due to the update, insert, and delete, the acceptChanges() method must be called in order to make a connection to the database and reconcile the results in the CachedRowSet with the database. Since this line of code is missing, the changes were only made to the in-memory object and not reflected in the database. 1, 2, 3, 4, 5, and 6 are incorrect based on the above. "
+      },
+      {
+        "question_id": 13,
+        "correct_answers": [3],
+        "explanation": "3 is correct. Because the Connection object conn was never set to setAutoCommit(false), there is no transaction context to rollback. All transactions are in auto-commit mode, so the first transaction is executed and completed, the second transaction is executed and completed, and when the conn.rollback() method is executed on line Z, a SQLException is thrown because there is no transaction to rollback. 1, 2, 4, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 14,
+        "correct_answers": [4],
+        "explanation": "4 is correct. Because there is no commit statement, the Connection closes when the try block completes, and the transaction created by setting setAutoCommit to false is rolled back. 1, 2, 3, and 5 are incorrect based on the above. "
+      },
+      {
+        "question_id": 15,
+        "correct_answers": [2],
+        "explanation": "2 is correct. The statement conn.rollback(sp1); rolls back the insertion of the row that contains the 'Fleece Jacket'. Then the transaction continues and processes the insertion of the row that contains 'Wool Scarf'. 1, 3, 4, and 5 are incorrect based on the above. "
+      }
     ]
   }
 ]

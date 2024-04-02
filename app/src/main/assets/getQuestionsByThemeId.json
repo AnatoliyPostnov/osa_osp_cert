@@ -5373,7 +5373,380 @@
     "theme_id": 14,
     "theme_content": "Concurrency",
     "questions": [
-
+      {
+        "content": "The following block of code creates a CopyOnWriteArrayList, \nadds elements to it, and prints the contents:\n```\nCopyOnWriteArrayList<Integer> cowList = new CopyOnWriteArrayList<>();\ncowList.add(4);\ncowList.add(2);\nIterator<Integer> it = cowList.iterator();\ncowList.add(6);\nwhile(it.hasNext()) {\n  System.out.print(it.next() + \" \");\n}\n```  \nWhat is the result?",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "6"
+          },
+          {
+            "answer_id": 2,
+            "content": "12"
+          },
+          {
+            "answer_id": 3,
+            "content": "4 2"
+          },
+          {
+            "answer_id": 4,
+            "content": "4 2 6"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nCopyOnWriteArrayList<Integer> cowList = new CopyOnWriteArrayList<>();\ncowList.add(4);\ncowList.add(2);\ncowList.add(6);\nIterator<Integer> it = cowList.iterator();\ncowList.remove(2);\nwhile(it.hasNext()) {\n  System.out.print(it.next() + \" \");\n}\n```      \nWhich shows the output that will be produced?",
+        "question_id": 2,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "12"
+          },
+          {
+            "answer_id": 2,
+            "content": "10"
+          },
+          {
+            "answer_id": 3,
+            "content": "4 2 6"
+          },
+          {
+            "answer_id": 4,
+            "content": "4 6"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compilation fails"
+          },
+          {
+            "answer_id": 6,
+            "content": "An exception is thrown at runtime"
+          }
+        ]
+      },
+      {
+        "content": "Which methods from a CopyOnWriteArrayList will cause \na new copy of the internal array to be created? \n(Choose all that apply.)",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "add"
+          },
+          {
+            "answer_id": 2,
+            "content": "get"
+          },
+          {
+            "answer_id": 3,
+            "content": "iterator"
+          },
+          {
+            "answer_id": 4,
+            "content": "remove"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nArrayBlockingQueue<Integer> abq = new ArrayBlockingQueue<>(10);\n```\nWhich operation(s) can block indefinitely? \n(Choose all that apply.)",
+        "question_id": 4,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "abq.add(1);"
+          },
+          {
+            "answer_id": 2,
+            "content": "abq.offer(1);"
+          },
+          {
+            "answer_id": 3,
+            "content": "abq.put(1);"
+          },
+          {
+            "answer_id": 4,
+            "content": "abq.offer(1, 5, TimeUnit.SECONDS);"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nConcurrentMap<String,Integer> ages = new ConcurrentHashMap<>();\nages.put(\"John\", 23);\n```\nWhich method(s) would delete John from the \nmap only if his value was still equal to 23?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```ages.delete(\"John\", 23);```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```ages.deleteIfEquals(\"John\", 23);```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```ages.remove(\"John\", 23);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```ages.removeIfEquals(\"John\", 23);```"
+          }
+        ]
+      },
+      {
+        "content": "Which method represents the best approach \nto generating a random number between one and\nten if the method will be called concurrently \nand repeatedly by multiple threads?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```public static int randomA() {```\n```  Random r = new Random();```\n```  return r.nextInt(10) + 1;```\n```}    ```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```private static Random sr = new Random();``` \n```public static int randomB() {```\n```  return sr.nextInt(10) + 1;```\n```}    ```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```public static int randomC() {```\n```    int i = (int)(Math.random() * 10 + 1); ```\n```    return i;```\n```} ```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```public static int randomD() {```\n```    ThreadLocalRandom lr = ThreadLocalRandom.current(); ```\n```    return lr.nextInt(1, 11);```\n```}```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nAtomicInteger i = new AtomicInteger();\n```\nWhich atomically increment i by 9? \n(Choose all that apply.)",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```i.addAndGet(9);```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```i.getAndAdd(9);```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```i.set(i.get() + 9);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```i.atomicIncrement(9);```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```i = i + 9;```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class LeaderBoard {\n  private ReadWriteLock rwl = new ReentrantReadWriteLock();\n  private List<Integer> highScores = new ArrayList<>();\n  public void addScore(Integer score) {\n    // position A\n    lock.lock();\n    try {\n      if (highScores.size() < 10) {\n        highScores.add(score);\n      } else if (highScores.get(highScores.size() - 1) < score) {\n        highScores.set(highScores.size() - 1, score);\n      } else {\n        return;\n      }\n      Collections.sort(highScores, Collections.reverseOrder());\n    } finally {\n      lock.unlock();\n    }\n  }\n  public List<Integer> getHighScores() {\n    // position B\n    lock.lock();\n    try {\n      return Collections.unmodifiableList(highScores);\n    } finally {\n      lock.unlock();\n    }\n  } \n}\n```\nWhich block(s) of code best match the behavior \nof the methods in the LeaderBoard class? \n(Choose all that apply.)  ",
+        "question_id": 8,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```Lock lock = rwl.reentrantLock(); // should be inserted at position A```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```Lock lock = rwl.reentrantLcock(); // should be inserted at position B```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```Lock lock = rwl.readLock(); // should be inserted at position A```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Lock lock = rwl.readLock(); // should be inserted at position B```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Lock lock = rwl.writeLock(); // should be inserted at position A```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```Lock lock = rwl.writeLock(); // should be inserted at position B```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nReentrantReadWriteLock rwl = new ReentrantReadWriteLock();\nrwl.readLock().unlock();\nSystem.out.println(\"READ-UNLOCK-1\");\nrwl.readLock().lock();\nSystem.out.println(\"READ-LOCK-1\");\nrwl.readLock().lock();\nSystem.out.println(\"READ-LOCK-2\");\nrwl.readLock().unlock();\nSystem.out.println(\"READ-UNLOCK-2\");\nrwl.writeLock().lock();\nSystem.out.println(\"WRITE-LOCK-1\");\nrwl.writeLock().unlock();\nSystem.out.println(\"WRITE-UNLOCK-1\");\n```\nWhat is the result?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The code will not compile"
+          },
+          {
+            "answer_id": 2,
+            "content": "The code will compile and output:\n```\nREAD-UNLOCK-1\nREAD-LOCK-1\nREAD-LOCK-2\nREAD-UNLOCK-2\n```"
+          },
+          {
+            "answer_id": 3,
+            "content": "The code will compile and output:\n```\nREAD-UNLOCK-1\nREAD-LOCK-1\nREAD-LOCK-2\nREAD-UNLOCK-2\nWRITE-LOCK-1\nWRITE-UNLOCK-1\n```"
+          },
+          {
+            "answer_id": 4,
+            "content": "A ```java.lang.IllegalMonitorStateException``` will be thrown"
+          }
+        ]
+      },
+      {
+        "content": "Which class contains factory methods to produce\n preconfigured ```ExecutorService``` instances?",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Executor"
+          },
+          {
+            "answer_id": 2,
+            "content": "Executors"
+          },
+          {
+            "answer_id": 3,
+            "content": "ExecutorService"
+          },
+          {
+            "answer_id": 4,
+            "content": "ExecutorServiceFactory"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nprivate Integer executeTask(ExecutorService service,\n                            Callable<Integer> task) {\n  // insert here\n  }\n```\nWhich set(s) of lines, when inserted, would correctly \nuse the ExecutorService argument to execute the \nCallable and return the Callable's result? \n(Choose all that apply.)",
+        "question_id": 11,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```try {```\n```  return service.submit(task);```\n```} catch (Exception e) {```\n```  return null;```\n```}```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```try {```\n```   return service.execute(task);```\n```} catch (Exception e) {```\n```   return null;```\n```}```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```try {```\n```  Future<Integer> future = service.submit(task); ```\n```  return future.get();```\n```} catch (Exception e) {```\n```  return null;```\n```}```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```try {```\n```  Result<Integer> result = service.submit(task); return result.get();```\n```} catch (Exception e) {```\n```  return null;```\n```}```"
+          }
+        ]
+      },
+      {
+        "content": "Which are true? (Choose all that apply.)",
+        "question_id": 12,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "A ```Runnable``` may return a result, but must \nnot throw an Exception"
+          },
+          {
+            "answer_id": 2,
+            "content": "A ```Runnable``` must not return a result nor \nthrow an Exception"
+          },
+          {
+            "answer_id": 3,
+            "content": "A ```Runnable``` must not return a result, but \nmay throw an Exception"
+          },
+          {
+            "answer_id": 4,
+            "content": "A ```Runnable``` may return a result and throw \nan Exception"
+          },
+          {
+            "answer_id": 5,
+            "content": "A ```Callable``` may return a result, but must \nnot throw an Exception"
+          },
+          {
+            "answer_id": 6,
+            "content": "A ```Callable``` must not return a result nor \nthrow an Exception"
+          },
+          {
+            "answer_id": 7,
+            "content": "A ```Callable``` must not return a result, but\n may throw an Exception"
+          },
+          {
+            "answer_id": 8,
+            "content": "A ```Callable``` may return a result and throw\n an Exception"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\npublic class IncrementAction extends RecursiveAction {\n  private final int threshold;\n  private final int[] myArray;\n  private int start;\n  private int end;\n  public IncrementAction(int[] myArray, int start, int end, int threshold) {\n    this.threshold = threshold;\n    this.myArray = myArray;\n    this.start = start;\n    this.end = end;\n  }\n  @Override\n  protected void compute() {\n    if (end - start < threshold) {\n      for (int i = start; i <= end; i++) {\n        myArray[i]++;\n      }\n    } else {\n      int midway = (end - start) / 2 + start;\n      IncrementAction a1 = new IncrementAction(myArray, start,\n                                               midway, threshold);\n      IncrementAction a2 = new IncrementAction(myArray, midway + 1,\n      // insert answer here\n    }\n  } \n}\n```\nWhich line(s), when inserted at the end of the compute\n method, would correctly take the place of separate\n calls to ```fork()```and ```join()```?\n (Choose all that apply.) ",
+        "question_id": 13,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```compute();```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```forkAndJoin(a1, a2);```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```computeAll(a1, a2);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```invokeAll(a1, a2);```"
+          }
+        ]
+      },
+      {
+        "content": "When writing a ```RecursiveTask``` subclass, which are true? \n(Choose all that apply.)",
+        "question_id": 14,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```fork()``` and ```join()``` should be called on\n the same task"
+          },
+          {
+            "answer_id": 2,
+            "content": "```fork()``` and ```compute()``` should be called\n on the same task"
+          },
+          {
+            "answer_id": 3,
+            "content": "```compute()``` and ```join()``` should be called\n on the same task"
+          },
+          {
+            "answer_id": 4,
+            "content": "```compute()``` should be called before ```fork()```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```fork()``` should be called before ```compute()```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```join()``` should be called after ```fork()```\n but before ```compute()```"
+          }
+        ]
+      }
     ]
   },
   {
@@ -5381,7 +5754,447 @@
     "theme_id": 15,
     "theme_content": "JDBC",
     "questions": [
-
+      {
+        "content": "Given:\n```\nString url = \"jdbc:mysql://SolDBServer/soldb\";\nString user = \"sysEntry\";\nString pwd = \"fo0B3@r\";\n// INSERT CODE HERE\nConnection conn = DriverManager.getConnection(url, user, pwd); \n```\nAssuming \"org.gjt.mm.mysql.Driver\" is a \nlegitimate class, which line, when inserted at \n// INSERT CODE HERE, will correctly load \nthis JDBC 3.0 driver? ",
+        "question_id": 1,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```DriverManager.registerDriver(\"org.gjt.mm.mysql.Driver\");```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```Class.forName(\"org.gjt.mm.mysql.Driver\");```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```DatabaseMetaData.loadDriver(\"org.gjt.mm.mysql.Driver\");```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Driver.connect(\"org.gjt.mm.mysql.Driver\");```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```DriverManager.getDriver(\"org.gjt.mm.mysql.Driver\");```"
+          }
+        ]
+      },
+      {
+        "content": "Given that you are working with a JDBC 4.0 driver, \nwhich three are required for this JDBC driver \nto be compliant?   ",
+        "question_id": 2,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Must include a \n```META-INF/services/java.sql.Driver``` file"
+          },
+          {
+            "answer_id": 2,
+            "content": "Must provide implementations of Driver, \nConnection, Statement, and ResultSet interfaces"
+          },
+          {
+            "answer_id": 3,
+            "content": "Must support scrollable ResultSets"
+          },
+          {
+            "answer_id": 4,
+            "content": "Must support updatable ResultSets"
+          },
+          {
+            "answer_id": 5,
+            "content": "Must support transactions"
+          },
+          {
+            "answer_id": 6,
+            "content": "Must support the SQL99 standard"
+          },
+          {
+            "answer_id": 7,
+            "content": "Must support PreparedStatement and \n```CallableStatement```"
+          }
+        ]
+      },
+      {
+        "content": "Which three are available through an instance of \n```DatabaseMetaData```?",
+        "question_id": 3,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The number of columns returned"
+          },
+          {
+            "answer_id": 2,
+            "content": "The number of rows returned"
+          },
+          {
+            "answer_id": 3,
+            "content": "The name of the JDBC driver"
+          },
+          {
+            "answer_id": 4,
+            "content": "The default transaction isolation level"
+          },
+          {
+            "answer_id": 5,
+            "content": "The last query used"
+          },
+          {
+            "answer_id": 6,
+            "content": "The names of stored procedures in the \ndatabase"
+          },
+          {
+            "answer_id": 7,
+            "content": "The current Savepoint name"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry {\n   Statement stmt = conn.createStatement();\n   String query =\n          \"SELECT * FROM Author WHERE LastName LIKE 'Rand%'\";\n   ResultSet rs = stmt.executeQuery(query);  // Line X\n   if (rs == null) {                         // Line Y\n     System.out.println(\"No results\");\n   } else {\n     System.out.println(rs.getString(\"FirstName\"));\n   }\n} catch (SQLException se) {\n   System.out.println(\"SQLException\");\n}\n```      \nAssuming a Connection object has already been \ncreated (conn) and that the query produces\na valid result, what is the result?  ",
+        "question_id": 4,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Compiler error at line X"
+          },
+          {
+            "answer_id": 2,
+            "content": "Compiler error at line Y"
+          },
+          {
+            "answer_id": 3,
+            "content": "No result"
+          },
+          {
+            "answer_id": 4,
+            "content": "The first name from the first row that \nmatches 'Rand%'"
+          },
+          {
+            "answer_id": 5,
+            "content": "```SQLException```"
+          },
+          {
+            "answer_id": 6,
+            "content": "A runtime exception"
+          }
+        ]
+      },
+      {
+        "content": "Given the SQL query:\n```\nString query = \"UPDATE Customer SET EMail='John.Smith@comcast.net'\n                WHERE CustomerID = 5000\";\n```\nAssuming this is a valid SQL query and there \nis a valid ```Connection``` object (conn), which will\ncompile correctly and execute this query?",
+        "question_id": 5,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```Statement stmt = conn.createStatement();```\n```stmt.executeQuery(query);```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```Statement stmt = conn.createStatement(query);```\n```stmt.executeUpdate();```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```Statement stmt = conn.createStatement();```\n```stmt.setQuery(query);```\n```stmt.execute();```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```Statement stmt = conn.createStatement();```\n```stmt.execute(query);```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```Statement stmt = conn.createStatement();```\n```ResultSet rs = stmt.executeUpdate(query);```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry {\n    ResultSet rs = null;\n    try (Statement stmt = conn.createStatement()) {  // line X\n    String query = \"SELECT * from Customer\";\n    rs = stmt.executeQuery(query);                   // line Y\n  } catch (SQLException se) {\n    System.out.println(\"Illegal query\");\n  }\n  while (rs.next()) {\n    // print customer names\n  }\n} catch (SQLException se) {\n  System.out.println(\"SQLException\");\n}\n```\nAnd assuming a valid Connection object (conn) \nand that the query will return results, \nwhat is the result?",
+        "question_id": 6,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The customer names will be printed out"
+          },
+          {
+            "answer_id": 2,
+            "content": "Compiler error at line X"
+          },
+          {
+            "answer_id": 3,
+            "content": "Illegal query"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compiler error at line Y"
+          },
+          {
+            "answer_id": 5,
+            "content": "SQLException"
+          },
+          {
+            "answer_id": 6,
+            "content": "Runtime exception"
+          }
+        ]
+      },
+      {
+        "content": "Given this code fragment:\n```\nStatement stmt = conn.createStatement();\nResultSet rs;\nString query = \"<QUERY HERE>\";\nstmt.execute(query);\nif ((rs = stmt.getResultSet()) != null) {\n  System.out.println(\"Results\");\n}\nif (stmt.getUpdateCount() > -1) {\n  System.out.println(\"Update\");\n}\n```\nWhich query statements entered into ```\"<QUERY HERE>\"```\nproduce the output that follows the querystring \n(in the following answer), assuming each query is valid? \n(Choose all that apply.) ",
+        "question_id": 7,
+        "type": "some_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```\"SELECT * FROM Customer\"```\n```Results```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```\"INSERT INTO Book VALUES ('1023456789', 'One Night in Paris', '1984-10-20', 'Hardcover', 13.95)\"```\n```Update```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```\"UPDATE Customer SET Phone = '555-234-1021' WHERE CustomerID = 101\"```\n```Update```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```\"SELECT Author.LastName FROM Author\"```\n```Results```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```\"DELETE FROM Book WHERE ISBN = '1023456789'\"```\n```Update```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nString q = \"UPDATE Customer SET Last_name=? WHERE Customer_id=?\";\ntry {\n  PreparedStatement pstmt = conn.prepareStatement(q);\n  pstmt.setString(0, \"Smith\");                // Line X\n  pstmt.setString(1, \"5001\");                 // Line Y\n  int result = pstmt.executeUpdate();\n  if (result != 1) System.out.println (\"Error - update failed\");\n} catch (SQLException se) {\n  System.out.println(\"Exception\");\n}\n```  \nAssuming the table name and column names \nare valid, what is the result?",
+        "question_id": 8,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "The last name of the customer with id 5001is \nset to \"Smith\""
+          },
+          {
+            "answer_id": 2,
+            "content": "Error – update failed"
+          },
+          {
+            "answer_id": 3,
+            "content": "Exception"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compilation fails"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry {\n  String[] searchPair = {\"%lacey\", \"%Fire%\", \"R%\", \"%Lost Hero%\"};\n  String query = \"SELECT Book.Title, Author.FirstName, \" +\n                 \"Author.LastName FROM Author, Book, \" +\n                 \"Books_by_Author WHERE Author.LastName LIKE ? \" +\n                 \"AND Book.Title LIKE ? \" +\n                 \"AND Books_by_Author.AuthorID=Author.AuthorID \" +\n                 \"AND Books_by_Author.ISBN = Book.ISBN\";\n  PreparedStatement pstmt = conn.prepareStatement(query); \n  for (int i = 0; i < searchPair.length; i += 2) {\n    pstmt.setString(i+1, searchPair[i]);    // line X\n    pstmt.setString(i+2, searchPair[i+1]);  // line Y\n    ResultSet rs = pstmt.executeQuery();  // line Z \n    while (rs.next()) {\n      System.out.print(\"Yes \");\n    }\n  }\n} catch (SQLException se) {\n  System.out.println(\"SQLException\");\n}\n```\nAnd assuming that each pair of query elements \nin the array searchPair will return two rows \nand assuming a valid Connection object (conn), \nwhat is the result?",
+        "question_id": 9,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```SQLException```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```Yes Yes SQLException```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```Yes Yes Yes Yes```"
+          },
+          {
+            "answer_id": 4,
+            "content": "Compiler error at line X"
+          },
+          {
+            "answer_id": 5,
+            "content": "Compiler error at line Y"
+          },
+          {
+            "answer_id": 6,
+            "content": "Compiler error at line Z"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nString call = \"{CALL REMOVEBOOKS(?, ?)}\";\nString titleToRemove = null;\nint maxBooks = 0;\nCallableStatement cstmt = conn.prepareCall(call);\nString titles = \"%Hero%\";\nint numBooksRemoved;\n// Code added here\n```    \nIf REMOVEBOOKS is a stored procedure that takes \nan INOUT integer parameter as its first argument \nand an IN String parameter as its second argument, \nwhich code blocks, when placed at the line \n```// Code added here```, could correctly execute the \nstored procedure and return a result?  ",
+        "question_id": 10,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```cstmt.setInt(0, maxBooks);```\n```cstmt.setString(1, titleToRemove);```\n```cstmt.registerOutParameter(0, java.sql.Types.INTEGER);```\n```cstmt.execute();```\n```numBooksRemoved = cstmt.getInt(0);```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```cstmt.setInt(1, maxBooks);```\n```cstmt.setString(2, titleToRemove);```\n```cstmt.registerOutParameter(1, java.sql.Types.INTEGER);```\n```cstmt.executeQuery(query);```\n```numBooksRemoved = cstmt.getInt(1);```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```cstmt.setInt(1, maxBooks);```\n```cstmt.setString(2, titleToRemove);```\n```cstmt.execute();```\n```cstmt.registerOutParameter(1, java.sql.Types.INTEGER);```\n```numBooksRemoved = cstmt.getInt(1);```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```cstmt.setInt(1, maxBooks);```\n```cstmt.setString(2, titleToRemove);```\n```cstmt.registerOutParameter(1, java.sql.Types.INTEGER);```\n```ResultSet rs = cstmt.executeQuery();```\n```rs.next();```\n```numbBooks = rs.getInt(1);```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```cstmt.setInt(1, maxBooks);```\n```cstmt.setString(2, titleToRemove);```\n```cstmt.registerOutParameter(1, java.sql.Types.INTEGER);```\n```cstmt.execute();```\n```numBooksRemoved = cstmt.getInt(1);```"
+          }
+        ]
+      },
+      {
+        "content": "Which creates a connected RowSet object?",
+        "question_id": 11,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```WebRowSet wrs = RowSetProvider.newFactory().createWebRowSet();```"
+          },
+          {
+            "answer_id": 2,
+            "content": "```CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();```"
+          },
+          {
+            "answer_id": 3,
+            "content": "```try(JdbcRowSet jrs = RowSetProvider.newFactory().createJdbcRowSet()) {```\n```  // assume the rest of the try-catch is valid```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```try(RowSetFactory rsf = RowSetProvider.newFactory()) {```\n``` RowSet rws = rsf.createRowSet();```\n```          // assume the rest of the try-catch is valid```"
+          },
+          {
+            "answer_id": 5,
+            "content": "```JoinRowSet jrs = RowSetProvider.newFactory().createJoinRowSet();```"
+          },
+          {
+            "answer_id": 6,
+            "content": "```ResultSet rs = Statement.execute(\"SELECT * FROM Customer\");```\n```JdbcRowSet jrs = RowSetProvider.newFactory().setResultSet(rs);```"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry (CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet()) {\n    String query = \"SELECT * FROM Employee\";   // Line Q\n    crs.setCommand(query);\n    crs.setUrl(url);\n    crs.setUsername(user);\n    crs.setPassword(pwd);\n    crs.execute();\n    crs.last();              // Line V \n    crs.updateString(\"LastName\", \"Sullivan-McGinn\");\n    // DATABASE GOES OFFLINE HERE\n    crs.moveToInsertRow();  // Line W\n    crs.updateInt(\"ID\", 101);\n    crs.updateString(\"FirstName\", \"Michael\");\n    crs.updateString(\"LastName\", \"Fuller\");\n    crs.updateFloat(\"Salary\", 101234.56f);\n    crs.insertRow();       // Line X\n    crs.moveToCurrentRow();\n    crs.absolute(10);      // Line Y\n    crs.deleteRow();       // Line Z\n    // DATABASE BACK ONLINE\n} catch (SQLException se) {\n    System.out.println (\"SQLException\");\n}\n```      \nAssuming that the query produced a result \nset in Line Q and that the database goes \noffline on or before the line OFFLINE and \ncomes back online on or before the line ONLINE, \nwhich statements are true?   ",
+        "question_id": 12,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "```SQLException``` will print out due to Line V"
+          },
+          {
+            "answer_id": 2,
+            "content": "```SQLException``` will print out due to Line Z"
+          },
+          {
+            "answer_id": 3,
+            "content": "```SQLException``` will print out due to Line X"
+          },
+          {
+            "answer_id": 4,
+            "content": "```SQLException``` will print out due to Line Y"
+          },
+          {
+            "answer_id": 5,
+            "content": "```SQLException``` will print out due to Line W"
+          },
+          {
+            "answer_id": 6,
+            "content": "One row is updated, one row is inserted, \nand one row is deleted"
+          },
+          {
+            "answer_id": 7,
+            "content": "The database will be unchanged"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\nboolean businessRule = true; \ntry {\n    Connection conn = DriverManager.getConnection(url, username, password); \n    String query1 = \"INSERT INTO Order VALUES(20, 200.50, 'Panasonic Stereo Receiver')\";\n    String query2 = \"UPDATE Order SET Price = 35.20 WHERE ID = 21\";\n    Statement stmt = conn.createStatement(); \n    stmt.executeUpdate(query1); // Line X \n    stmt.executeUpdate(query2); // Line Y \n    if (businessRule) {\n        conn.rollback(); // Line Z \n    }\n} catch (SQLException se) { \n    System.out.println(\"SQLException\");\n}\n```\nAnd assuming the two queries are valid, \nwhat is the result of executing this fragment? ",
+        "question_id": 13,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Query 1 and Query 2 are rolled back \n(no change to the database)"
+          },
+          {
+            "answer_id": 2,
+            "content": "Query 1 is executed and Query 2 is rolled\nback"
+          },
+          {
+            "answer_id": 3,
+            "content": "Query 1 is executed, Query 2 is executed,\nand ```SQLException```"
+          },
+          {
+            "answer_id": 4,
+            "content": "```SQLException```"
+          },
+          {
+            "answer_id": 5,
+            "content": "A runtime exception is thrown"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry (Connection conn = DriverManager.getConnection(url, username, password)) { \n    conn.setAutoCommit(false);\n    String query1 = \"INSERT INTO Order VALUES (22, 99.99, 'Winter Boots')\"; \n    String query2 = \"INSERT INTO Order VALUES (24, 39.99, 'Fleece Jacket')\"; \n    Statement stmt = conn.createStatement();\n    stmt.executeUpdate(query1); \n    Savepoint sp1 = conn.setSavepoint(); \n    stmt.executeUpdate(query2); \n    conn.rollback(sp1);\n} catch (SQLException se) { \n    System.out.println (\"SQLException\");\n}\n```\nAnd given that the queries are valid, \nwhat is the result of executing this fragment?",
+        "question_id": 14,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "Two new rows are added to the database"
+          },
+          {
+            "answer_id": 2,
+            "content": "The row from query 1 is added to the database"
+          },
+          {
+            "answer_id": 3,
+            "content": "The row from query 2 is added to the database"
+          },
+          {
+            "answer_id": 4,
+            "content": "No rows are added to the database"
+          },
+          {
+            "answer_id": 5,
+            "content": "A ```SQLException``` is thrown"
+          }
+        ]
+      },
+      {
+        "content": "Given:\n```\ntry (Connection conn = DriverManager.getConnection(url, username, password)) { \n    conn.setAutoCommit(false);\n    String q1, q2, q3;\n    q1 = \"INSERT INTO Order VALUES(23, 99.99, 'Winter Boots')\";\n    q2 = \"INSERT INTO Order VALUES(24, 39.99, 'Fleece Jacket')\"; \n    q3 = \"INSERT INTO Order VALUES(25, 29.99, 'Wool Scarf')\"; \n    Statement stmt = conn.createStatement(); \n    stmt.executeUpdate(q1);\n    Savepoint sp1 = conn.setSavepoint(\"item1\"); \n    stmt.executeUpdate(q2);\n    Savepoint sp2 = conn.setSavepoint(\"item2\"); \n    conn.rollback(sp1);\n    stmt.executeUpdate(q3);\n    Savepoint sp3 = conn.setSavepoint(\"item3\"); \n    conn.commit();\n} catch (SQLException se) { \n    System.out.println (\"SQLException\");\n}\n```\nAssuming that the Order table was empty before this code \nfragment was executed and that the database supports \nmultiple savepoints and that all of the queries are \nvalid, what rows does Order contain?",
+        "question_id": 15,
+        "type": "one_answer",
+        "answers": [
+          {
+            "answer_id": 1,
+            "content": "23, 99.99, 'Winter Boots'"
+          },
+          {
+            "answer_id": 2,
+            "content": "23, 99.99, 'Winter Boots' \n25, 29.99, 'Wool Scarf'"
+          },
+          {
+            "answer_id": 3,
+            "content": "23, 99.99, 'Winter Boots' \n24, 39.99, 'Fleece Jacket'"
+          },
+          {
+            "answer_id": 4,
+            "content": "24, 39.99, 'Fleece Jacket' \n25, 29.99, 'Wool Scarf'"
+          },
+          {
+            "answer_id": 5,
+            "content": "No rows"
+          }
+        ]
+      }
     ]
   }
 ]

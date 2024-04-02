@@ -483,30 +483,29 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
 val markdownContent5 = """ 
 Given:
 ```
- 3. public class Chess implements Runnable {
- 4.   public void run() {
- 5.     move(Thread.currentThread().getId());
- 6.   }
- 7.   // insert code here
- 8.     System.out.print(id + " ");
- 9.     System.out.print(id + " ");
-10.   }
-11.   public static void main(String[] args) {
-12.     Chess ch = new Chess();
-13.     new Thread(ch).start();
-14.     new Thread(new Chess()).start();
-15.   } 
-16. }
+try (Connection conn = DriverManager.getConnection(url, username, password)) { 
+    conn.setAutoCommit(false);
+    String q1, q2, q3;
+    q1 = "INSERT INTO Order VALUES(23, 99.99, 'Winter Boots')";
+    q2 = "INSERT INTO Order VALUES(24, 39.99, 'Fleece Jacket')"; 
+    q3 = "INSERT INTO Order VALUES(25, 29.99, 'Wool Scarf')"; 
+    Statement stmt = conn.createStatement(); 
+    stmt.executeUpdate(q1);
+    Savepoint sp1 = conn.setSavepoint("item1"); 
+    stmt.executeUpdate(q2);
+    Savepoint sp2 = conn.setSavepoint("item2"); 
+    conn.rollback(sp1);
+    stmt.executeUpdate(q3);
+    Savepoint sp3 = conn.setSavepoint("item3"); 
+    conn.commit();
+} catch (SQLException se) { 
+    System.out.println ("SQLException");
+}
 ```
-         
-And given these two fragments:
-```
-I. synchronized void move(long id) {
-II. void move(long id) {
-```       
-When either fragment I or fragment II is 
-inserted at line 7, which are true? 
-(Choose all that apply.)
+Assuming that the Order table was empty before this code 
+fragment was executed and that the database supports 
+multiple savepoints and that all of the queries are 
+valid, what rows does Order contain?
 """.trimIndent()
 
 

@@ -18,21 +18,25 @@
             android:name=".ui.activity.ThemesMainActivity"
             android:exported="false"
             android:label="@string/title_activity_osa_main"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Test" />
         <activity
             android:name=".ui.activity.question.QuestionsActivity"
             android:exported="false"
             android:label="@string/title_activity_test"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Test" />
         <activity
             android:name=".ui.activity.question.QuestionsResultActivity"
             android:exported="false"
             android:label="@string/title_activity_test"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Test" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
