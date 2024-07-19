@@ -9,10 +9,12 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,6 +23,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,6 +41,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,9 +53,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.cert.R
 import com.example.cert.configuration.JacksonConfig.Companion.objectMapper
 import com.example.cert.domain.model.AnswerDomainDto
 import com.example.cert.domain.model.QuestionDomainDto
+import com.example.cert.ui.activity.MainActivity
+import com.example.cert.ui.model.ResultItem
 import com.example.cert.ui.model.TestActivityState
 import com.example.cert.ui.model.TopItem
 import com.example.cert.ui.model.TopNavigation
@@ -106,7 +113,9 @@ fun Header(state: TestActivityState, modifier: Modifier) {
     Text(
         text = state.questions?.themeContent ?: "Content was not found",
         style = MaterialTheme.typography.titleLarge,
-        modifier = modifier.fillMaxWidth().height(30.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(30.dp),
         textAlign = TextAlign.Center
     )
 }
@@ -115,7 +124,9 @@ fun Header(state: TestActivityState, modifier: Modifier) {
 fun QuestionMainScreen(navController: NavController, viewModel: QuestionActivityViewModel, activityContext: QuestionsActivity, state: TestActivityState, modifier: Modifier) {
     val navigation = TopNavigation(navController = navController, viewModel = viewModel, activityContext = activityContext)
     Scaffold(
-        modifier = modifier.fillMaxWidth().padding(bottom = 50.dp, top = 30.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(bottom = 50.dp, top = 30.dp),
         topBar = {
             TopNavigation(navigation, state)
         },
@@ -423,7 +434,7 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
                         viewModel.setChooseAnswerButton(question.questionId, answer.answerId)
                     },
                     modifier = Modifier
-                        .size(20.dp)
+                        .size(30.dp)
                         .padding(start = 8.dp)
                 )
             } else {
@@ -433,7 +444,7 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
                         viewModel.setChooseAnswerButton(question.questionId, answer.answerId)
                     },
                     modifier = Modifier
-                        .size(20.dp)
+                        .size(30.dp)
                         .padding(start = 8.dp)
                 )
             }
@@ -445,6 +456,9 @@ fun Answers(answer: AnswerDomainDto, viewModel: QuestionActivityViewModel, quest
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = 10.dp),
+                        onClick = {
+                            viewModel.setChooseAnswerButton(question.questionId, answer.answerId)
+                        },
                         textAlign = TextAlign.Start
                     )
                 }
@@ -496,15 +510,81 @@ fun MinimalExampleContentPreview() {
 @Preview(showBackground = true)
 @Composable
 fun QuestionPreview() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        LazyRow {
-            item {
-//            MarkdownText(markdown = item.question.content.trimIndent(), style = MaterialTheme.typography.titleMedium)
-                MinimalExampleContentPreview()
-            }
+//    Box(
+//        modifier = Modifier.fillMaxSize(),
+//        contentAlignment = Alignment.Center
+//    ) {
+//        LazyRow {
+//            item {
+////            MarkdownText(markdown = item.question.content.trimIndent(), style = MaterialTheme.typography.titleMedium)
+//                MinimalExampleContentPreview()
+//            }
+//        }
+//    }
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().background(Color.White)) {
+
+            items(
+                items = listOf(ResultItem(
+                    id = 0,
+                    isRight = true,
+                    yourAnswer = "yourAnswer",
+                    rightAnswer = "yourAnswer",
+                    explanation = "yourAnswer",
+                    question = "yourAnswer",
+                    answers = listOf(AnswerDomainDto(1, "fdfdf", true))
+                )),
+                itemContent = { itm ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(850.dp)
+                            .padding(10.dp),
+                        shape = RoundedCornerShape(15.dp),
+                        elevation = CardDefaults.cardElevation(10.dp),
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(modifier = Modifier
+                                .weight(0.93f)
+//                                .padding(15.dp, end = 0.dp)
+                            ) {
+                                Text(
+                                    text = "Your answer: ${itm.yourAnswer}",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Start
+                                )
+                                Text(
+                                    text = "Correct answer: ${itm.rightAnswer}",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Start
+                                )
+                                Text(
+                                    text = "Explanation: ${itm.explanation}",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Start
+                                )
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .weight(0.07f)
+                                    .fillMaxSize()
+                                    .background(
+                                        colorResource(R.color.light_green)
+
+//                                        if (itm.isRight) {
+//                                            colorResource(R.color.light_green)
+//                                        } else {
+//                                            colorResource(R.color.light_red)
+//                                        }
+                                    )
+                            )
+                        }
+                    }
+                })
         }
     }
 }

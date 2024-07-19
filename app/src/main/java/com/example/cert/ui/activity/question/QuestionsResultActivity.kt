@@ -5,14 +5,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,6 +31,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -62,44 +68,58 @@ class QuestionsResultActivity : ComponentActivity() {
                 LazyColumn(modifier = Modifier
                     .padding(bottom = 50.dp)
                     .align(Alignment.TopCenter)) {
-                    state.resultItems.values.forEach {
-                        item {
+                    items(
+                        items = state.resultItems.values.toList(),
+                        itemContent = { itm ->
                             Card(
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .height(1000.dp)
                                     .padding(10.dp),
                                 shape = RoundedCornerShape(15.dp),
                                 elevation = CardDefaults.cardElevation(10.dp),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = if (it.isRight) {
-                                        colorResource(R.color.light_green)
-                                    } else {
-                                        colorResource(R.color.light_red)
-                                    }
-                                )
                             ) {
-                                Column(modifier = Modifier.padding(15.dp)) {
-                                    Question(it)
-                                    it.answers.forEach { answer -> Answers(answer) }
-                                    Text(
-                                        text = "Your answer: ${it.yourAnswer}",
-                                        style = MaterialTheme.typography.titleMedium,
-                                        textAlign = TextAlign.Start
-                                    )
-                                    Text(
-                                        text = "Correct answer: ${it.rightAnswer}",
-                                        style = MaterialTheme.typography.titleMedium,
-                                        textAlign = TextAlign.Start
-                                    )
-                                    Text(
-                                        text = "Explanation: ${it.explanation}",
-                                        style = MaterialTheme.typography.titleMedium,
-                                        textAlign = TextAlign.Start
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.Top
+                                ) {
+                                    Column(modifier = Modifier
+                                        .weight(0.93f)
+                                        .padding(15.dp, end = 3.dp)
+                                    ) {
+                                        Question(itm)
+                                        itm.answers.forEach { answer -> Answers(answer) }
+                                        Text(
+                                            text = "Your answer: ${itm.yourAnswer}",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            textAlign = TextAlign.Start
+                                        )
+                                        Text(
+                                            text = "Correct answer: ${itm.rightAnswer}",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            textAlign = TextAlign.Start
+                                        )
+                                        Text(
+                                            text = "Explanation: ${itm.explanation}",
+                                            style = MaterialTheme.typography.titleMedium,
+                                            textAlign = TextAlign.Start
+                                        )
+                                    }
+                                    Box(
+                                        modifier = Modifier
+                                            .weight(0.07f)
+                                            .fillMaxHeight()
+                                            .background(
+                                                if (itm.isRight) {
+                                                    colorResource(R.color.light_green)
+                                                } else {
+                                                    colorResource(R.color.light_red)
+                                                }
+                                            )
                                     )
                                 }
                             }
-                        }
-                    }
+                    })
                 }
                 Button(
                     onClick = {
